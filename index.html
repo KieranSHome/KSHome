@@ -218,6 +218,13 @@
     .contact .eyebrow { background: #1d332d; }
     footer { border-color: var(--line); }
     .footer-inner { color: var(--muted); }
+
+    .footer-uptime { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+    .footer-uptime-item { display: inline-flex; align-items: center; gap: 7px; }
+    .uptime-dot { width: 7px; height: 7px; flex: 0 0 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 10px #e6c85a55; }
+    .uptime-dot.pending { background: #d8b879; box-shadow: none; }
+    .footer-uptime strong { color: var(--ink); font-weight: 700; }
+
     @media (max-width: 850px) { .hero { padding-top: 54px; } }
 \n  </style>
 </head>
@@ -337,9 +344,28 @@
         <a href="https://jellyfin.kiwiii.stream">Jellyfin</a>
       </div>
     </div>
+    <div class="shell footer-uptime" aria-label="Website uptime information">
+      <span class="footer-uptime-item"><span class="uptime-dot" aria-hidden="true"></span><span>Live since <strong>20 Oct 2026</strong></span></span>
+      <span class="footer-uptime-item">Elapsed: <strong id="site-uptime">calculating…</strong></span>
+      <span class="footer-uptime-item"><span class="uptime-dot pending" aria-hidden="true"></span><span>Historical uptime monitoring: <strong>setup pending</strong></span></span>
+    </div>
   </footer>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Launch date is tracked at day-level until the first public deployment is confirmed.
+    const siteLaunchDate = new Date('2026-10-20T00:00:00Z');
+    const uptimeEl = document.getElementById('site-uptime');
+    function updateSiteUptime() {
+      const elapsedMs = Math.max(0, Date.now() - siteLaunchDate.getTime());
+      const totalMinutes = Math.floor(elapsedMs / 60000);
+      const days = Math.floor(totalMinutes / 1440);
+      const hours = Math.floor((totalMinutes % 1440) / 60);
+      const minutes = totalMinutes % 60;
+      uptimeEl.textContent = days + 'd ' + String(hours).padStart(2, '0') + 'h ' + String(minutes).padStart(2, '0') + 'm';
+    }
+    updateSiteUptime();
+    window.setInterval(updateSiteUptime, 60000);
   </script>
 </body>
 </html>
