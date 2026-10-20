@@ -140,7 +140,86 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
     }
-  </style>
+
+    /* Kiwiii.Stream: optimistic eco-tech, little robot / ship-console energy */
+    :root {
+      color-scheme: dark;
+      --cream: #101b1b;
+      --paper: #172626;
+      --ink: #edf5df;
+      --muted: #a9b9aa;
+      --leaf: #9bd36a;
+      --leaf-dark: #203d35;
+      --mint: #23413a;
+      --lime: #e6c85a;
+      --pink: #e8a58d;
+      --peach: #d8b879;
+      --line: #345048;
+      --radius: 18px;
+    }
+    body {
+      background:
+        radial-gradient(ellipse at 82% 8%, #263f36 0, transparent 32rem),
+        radial-gradient(ellipse at 5% 35%, #1b3430 0, transparent 35rem),
+        var(--cream);
+      color: var(--ink);
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      opacity: .15;
+      background-image: radial-gradient(#d8e8bd 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(to bottom, black, transparent 75%);
+    }
+    .topbar { border-bottom-color: var(--line); }
+    .brand-mark { background: var(--lime); color: #182522; border-radius: 12px 12px 12px 4px; box-shadow: 0 0 24px #e6c85a22; }
+    .brand-name span, .card-link { color: var(--leaf); }
+    .pill, .button { background: var(--lime); color: #172321; border-radius: 10px 10px 10px 3px; box-shadow: 0 5px 0 #9d8537; }
+    .pill:hover, .button:hover { background: #f1d975; color: #172321; box-shadow: 0 2px 0 #9d8537; }
+    .button.secondary { background: #1c302d; color: var(--ink); border-color: #456158; box-shadow: none; }
+    .button.secondary:hover { background: #29443b; }
+    .eyebrow { background: #1d332d; color: var(--leaf); border-color: #48654e; border-radius: 8px; letter-spacing: 1.3px; }
+    h1, h2, h3 { letter-spacing: -.035em; }
+    h1 em { color: var(--lime); }
+    h1 em::after { background: #9bd36a44; height: 9px; bottom: 2px; }
+    .hero { padding-top: 82px; }
+    .hero-art { min-height: 450px; }
+    .art-blob { background: #203b34; border: 1px solid #486a55; box-shadow: inset 0 0 65px #9bd36a0b; }
+    .plant-photo { border: 7px solid #d9d7b8; border-radius: 20px 20px 48% 48%; box-shadow: 0 0 0 1px #d8c879, 0 24px 60px #0006; filter: saturate(.82) contrast(1.05); }
+    .sticker { box-shadow: 0 10px 30px #0004; border: 1px solid #ffffff26; }
+    .sticker-one { background: var(--lime); color: #172321; border-radius: 13px 13px 13px 4px; }
+    .sticker-two { background: #d8e8bd; color: #1b3029; border-radius: 13px 13px 4px 13px; }
+    .sprout { color: var(--lime); }
+    .ticker { background: #182b28; border-color: var(--line); }
+    .ticker-inner { color: #d9e8c9; }
+    .ticker b { color: var(--lime); }
+    .section { padding-top: 84px; padding-bottom: 84px; }
+    .card, .card:nth-child(2), .card:nth-child(3) {
+      background: linear-gradient(145deg, #1b2d2a, #152321);
+      border-color: #355148;
+      border-radius: 16px 16px 16px 4px;
+    }
+    .card:nth-child(2) { border-top: 2px solid var(--leaf); }
+    .card:nth-child(3) { border-top: 2px solid var(--lime); }
+    .card:hover { box-shadow: 0 18px 42px #0003; border-color: #66866a; }
+    .card-icon, .card:nth-child(2) .card-icon, .card:nth-child(3) .card-icon {
+      background: #2c4940; border: 1px solid #52745a; border-radius: 12px 12px 12px 4px;
+    }
+    .card:nth-child(3) .card-icon { background: #49432b; border-color: #827344; }
+    .card p, .section-intro, .hero-copy > p:not(.eyebrow), .contact p { color: var(--muted); }
+    .about { background: linear-gradient(125deg, #203d35, #142522); border: 1px solid #456356; border-radius: 20px 20px 20px 5px; }
+    .about-art { background: #dce7c6; border-radius: 15px; }
+    .about .kicker { color: var(--lime); }
+    .about p:not(.kicker) { color: #c5d4c4; }
+    .about .button { background: var(--lime); color: #172321; }
+    .media-band { background: #1a302b; border-color: #73905d; border-radius: 16px 16px 16px 4px; }
+    .media-band .media-label { color: var(--lime); }
+    .media-band p { color: var(--muted); }
+    .contact .eyebrow { background: #1d332d; }
+    footer { border-color: var(--line); }
+    .footer-inner { color: var(--muted); }
+    @media (max-width: 850px) { .hero { padding-top: 54px; } }
+\n  </style>
 </head>
 <body>
   <header class="shell topbar" id="top">
@@ -158,14 +237,14 @@
   <main>
     <section class="shell hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">🌿 Your friendly neighbourhood human</p>
-        <h1>A little tech.<br>A little nature.<br><em>A lot of heart.</em></h1>
-        <p>Welcome to my little corner of the internet — where leafy things, looking after pets and making technology less mysterious all live happily together.</p>
+        <p class="eyebrow">◈ BOOTING UP A GREENER INTERNET</p>
+        <h1>Good tech.<br>Green future.<br><em>Little joys.</em></h1>
+        <p>A tiny eco-friendly corner of the web: thoughtful tech, happy pets, thriving plants, and small ideas that make everyday life work a little better.</p>
         <div class="actions">
           <a class="button" href="#services">Have a little look <span aria-hidden="true">↘</span></a>
           <a class="button secondary" href="https://jellyfin.kiwiii.stream">🎬 Enter the media nook</a>
         </div>
-        <p class="tiny-note">Made with care, a sprinkle of chaos, and probably a houseplant nearby. 🪴</p>
+        <p class="tiny-note">SYSTEM STATUS: curious · kind · powered by plants 🪴</p>
       </div>
       <div class="hero-art" aria-label="A leafy houseplant illustration">
         <div class="art-blob" aria-hidden="true"></div>
@@ -178,10 +257,10 @@
 
     <div class="ticker" aria-label="Things that make this corner of the internet">
       <div class="shell ticker-inner">
-        <span>PLANT PEOPLE <b>✳</b></span>
-        <span>HAPPY PETS <b>✳</b></span>
-        <span>LESS TECH STRESS <b>✳</b></span>
-        <span>GOOD INTERNET VIBES <b>✳</b></span>
+        <span>GROW MORE GREEN <b>✳</b></span>
+        <span>CARE FOR CREATURES <b>✳</b></span>
+        <span>TECH WITH PURPOSE <b>✳</b></span>
+        <span>A BETTER LITTLE WORLD <b>✳</b></span>
       </div>
     </div>
 
@@ -189,9 +268,9 @@
       <div class="section-heading">
         <div>
           <p class="kicker">A few things I can help with</p>
-          <h2 id="services-title">Different little passions.<br>One friendly place.</h2>
+          <h2 id="services-title">A friendly interface<br>for a living world.</h2>
         </div>
-        <p class="section-intro">Whether you need a hand with your tech, someone kind to look after your pets, or just want to explore what I'm building — you're in the right place.</p>
+        <p class="section-intro">Think of this as a small command deck for the things I care about: practical tech support, reliable pet care and curious, sustainable projects.</p>
       </div>
       <div class="cards">
         <article class="card">
@@ -223,8 +302,8 @@
         </div>
         <div>
           <p class="kicker">A little introduction</p>
-          <h2 id="about-title">Curious by nature.<br>Helpful by choice.</h2>
-          <p>Kiwiii.Stream brings together the things I enjoy: technology, plants, caring for animals and making useful things. This is a work in progress, so there'll be more about me and my experience here soon.</p>
+          <h2 id="about-title">A little robot heart.<br>A human-sized mission.</h2>
+          <p>Inspired by hopeful sci-fi, helpful digital assistants and a planet worth looking after, Kiwiii.Stream is where technology and nature meet. The goal is simple: use what I know to help people, care for living things and make everyday systems a little kinder.</p>
           <a class="button" href="#contact">Say hello <span aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -234,8 +313,8 @@
       <div class="media-band">
         <div>
           <p class="media-label">🍿 Your cosy corner for watching</p>
-          <h3 id="media-title">The Kiwiii media nook</h3>
-          <p>Already have access to the family media library? Head over to Jellyfin and sign in with your usual account.</p>
+          <h3 id="media-title">Your personal media bay</h3>
+          <p>Your home media system is ready when you are. Open Jellyfin and sign in with your usual account.</p>
         </div>
         <a class="button" href="https://jellyfin.kiwiii.stream">Go to Jellyfin <span aria-hidden="true">↗</span></a>
       </div>
@@ -243,8 +322,8 @@
 
     <section class="shell contact" id="contact" aria-labelledby="contact-title">
       <p class="eyebrow">💌 Good things start with hello</p>
-      <h2 id="contact-title">Got a question or an idea?</h2>
-      <p>I'm still putting the finishing touches on my contact details and service information. Check back soon — this little corner is growing.</p>
+      <h2 id="contact-title">Need a hand, human?</h2>
+      <p>Have a pet-sitting enquiry, a tech puzzle or a sustainable idea? Drop by Instagram for now — more contact options are on the roadmap.</p>
       <a class="button secondary" href="https://www.instagram.com/plantiethingz/" target="_blank" rel="noopener noreferrer">Find me on Instagram <span aria-hidden="true">↗</span></a>
     </section>
   </main>
