@@ -3,313 +3,339 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f3ed">
-  <meta name="description" content="KSHome makes caring for and improving your home feel straightforward.">
-  <title>KSHome | Thoughtful home services</title>
+  <meta name="theme-color" content="#f4f3e8">
+  <meta name="description" content="Kiwiii.Stream — planty vibes, thoughtful pet sitting, friendly tech help and a gateway to the Kiwiii media library.">
+  <title>Kiwiii.Stream — A little tech, a little nature</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       color-scheme: light;
-      --paper: #f5f3ed;
-      --ink: #20241e;
-      --muted: #686c62;
-      --line: #d9d9cf;
-      --green: #385442;
-      --lime: #d9e49b;
-      --white: #fffefa;
+      --cream: #f4f3e8;
+      --paper: #fffdf5;
+      --ink: #20392c;
+      --muted: #647267;
+      --leaf: #2e6648;
+      --leaf-dark: #204b36;
+      --mint: #dcebd6;
+      --lime: #d9ed79;
+      --pink: #f4c8c0;
+      --peach: #f8dfb9;
+      --line: #d8dfd0;
       --sans: 'DM Sans', sans-serif;
-      --display: 'Manrope', sans-serif;
+      --display: 'Nunito', sans-serif;
+      --radius: 24px;
     }
-
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--sans);
-      -webkit-font-smoothing: antialiased;
-    }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
     a { color: inherit; text-decoration: none; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-    .shell { width: min(1240px, calc(100% - 80px)); margin: 0 auto; }
-
-    .topbar {
-      height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--line);
-    }
-    .wordmark {
-      font-family: var(--display);
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: 0;
-    }
-    .wordmark span { color: var(--green); }
-    .nav { display: flex; align-items: center; gap: 36px; font-size: 13px; font-weight: 600; }
-    .nav a:not(.nav-cta):hover { color: var(--green); }
-    .nav-cta {
-      padding: 11px 17px;
-      border: 1px solid var(--ink);
-      border-radius: 2px;
-      transition: background .2s, color .2s;
-    }
-    .nav-cta:hover { background: var(--ink); color: var(--white); }
-
-    .hero {
-      min-height: 635px;
-      padding: 58px 0 64px;
-      display: grid;
-      grid-template-columns: .88fr 1.12fr;
-      align-items: center;
-      gap: 7%;
-    }
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 24px;
-      color: var(--green);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-    }
-    .eyebrow::before { content: ''; width: 23px; height: 1px; background: currentColor; }
+    a:focus-visible { outline: 3px solid #c08a38; outline-offset: 4px; }
+    .shell { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font: 900 24px/1 var(--display); letter-spacing: -.8px; }
+    .brand-mark { width: 38px; height: 38px; display: grid; place-items: center; background: var(--lime); border-radius: 14px 14px 14px 5px; font-size: 23px; transform: rotate(-4deg); }
+    .brand-name span { color: var(--leaf); }
+    .nav { display: flex; align-items: center; gap: 27px; font-size: 13px; font-weight: 700; }
+    .nav a:not(.pill):hover { color: var(--leaf); }
+    .pill, .button { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 19px; border: 0; border-radius: 999px; background: var(--leaf); color: white; font: 700 13px var(--sans); transition: transform .2s, background .2s; }
+    .pill:hover, .button:hover { transform: translateY(-2px); background: var(--leaf-dark); }
+    .hero { display: grid; grid-template-columns: 1fr .92fr; align-items: center; gap: 60px; padding: 76px 0 70px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 19px; padding: 8px 12px; border: 1px solid #c9d9c3; border-radius: 999px; color: var(--leaf); background: #e8f0e1; font-size: 11px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; }
     h1, h2, h3, p { margin-top: 0; }
-    h1 {
-      max-width: 490px;
-      margin-bottom: 23px;
-      font-family: var(--display);
-      font-size: clamp(46px, 5.2vw, 72px);
-      line-height: 1.04;
-      font-weight: 600;
-      letter-spacing: 0;
-    }
-    h1 em { color: var(--green); font-style: normal; }
-    .hero-copy > p:not(.eyebrow) {
-      max-width: 400px;
-      margin-bottom: 31px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.75;
-    }
-    .actions { display: flex; align-items: center; gap: 23px; }
-    .button {
-      min-height: 48px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 20px;
-      background: var(--green);
-      color: var(--white);
-      font-size: 13px;
-      font-weight: 700;
-      transition: background .2s, transform .2s;
-    }
-    .button:hover { background: #273d30; transform: translateY(-2px); }
-    .text-link { font-size: 13px; font-weight: 700; }
-    .text-link span { padding-left: 6px; color: var(--green); }
-    .hero-visual { position: relative; min-width: 0; }
-    .hero-image {
-      width: 100%;
-      height: 475px;
-      display: block;
-      object-fit: cover;
-      object-position: center 55%;
-    }
-    .image-note {
-      position: absolute;
-      right: -20px;
-      bottom: 24px;
-      width: 172px;
-      padding: 18px 19px;
-      background: var(--lime);
-      font-size: 12px;
-      line-height: 1.5;
-    }
-    .image-note strong { display: block; margin-bottom: 5px; font-family: var(--display); font-size: 16px; }
-
-    .trustline {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 20px 0;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 12px;
-    }
-    .trustline strong { color: var(--ink); font-family: var(--display); font-size: 14px; }
-    .trustline .divider { width: 1px; height: 24px; background: var(--line); }
-
-    .services { padding: 94px 0 100px; }
-    .section-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 30px;
-      margin-bottom: 37px;
-    }
-    .section-heading .eyebrow { margin-bottom: 14px; }
-    h2 {
-      max-width: 520px;
-      margin-bottom: 0;
-      font-family: var(--display);
-      font-size: clamp(34px, 4vw, 48px);
-      line-height: 1.12;
-      font-weight: 600;
-      letter-spacing: 0;
-    }
-    .section-intro { max-width: 350px; margin: 0 0 3px; color: var(--muted); font-size: 14px; line-height: 1.7; }
-    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
-    .service {
-      min-height: 230px;
-      padding: 25px 27px 24px 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .service + .service { padding-left: 27px; border-left: 1px solid var(--line); }
-    .service-number { margin-bottom: 39px; color: var(--green); font-size: 11px; font-weight: 700; }
-    .service h3 { margin-bottom: 11px; font-family: var(--display); font-size: 21px; font-weight: 700; }
-    .service p { max-width: 310px; margin-bottom: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
-
-    .closing {
-      padding: 54px 0;
-      background: var(--green);
-      color: var(--white);
-    }
-    .closing-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
-    .closing .eyebrow { color: var(--lime); margin-bottom: 12px; }
-    .closing h2 { max-width: 560px; font-size: clamp(30px, 4vw, 42px); }
-    .closing .button { background: var(--lime); color: var(--ink); white-space: nowrap; }
-    .closing .button:hover { background: var(--white); }
-    footer { padding: 23px 0; background: #273d30; color: #d8ded5; font-size: 11px; }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .footer-brand { color: var(--white); font-family: var(--display); font-size: 15px; font-weight: 800; }
-
-    .reveal { animation: rise .65s both; }
-    .hero-visual { animation-delay: .12s; }
-    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-
-    @media (max-width: 800px) {
-      .shell { width: min(100% - 44px, 620px); }
-      .topbar { height: 68px; }
-      .nav { gap: 18px; }
-      .nav a:not(.nav-cta) { display: none; }
-      .hero { min-height: 0; grid-template-columns: 1fr; gap: 37px; padding: 55px 0 43px; }
-      .hero-copy { max-width: 540px; }
-      h1 { max-width: 520px; font-size: clamp(46px, 11vw, 66px); }
-      .hero-image { height: min(68vw, 430px); }
-      .image-note { right: -9px; bottom: 15px; }
-      .trustline { justify-content: flex-start; flex-wrap: wrap; column-gap: 15px; row-gap: 9px; }
-      .trustline .divider { height: 18px; }
-      .services { padding: 69px 0; }
+    h1, h2, h3 { font-family: var(--display); }
+    h1 { max-width: 630px; margin-bottom: 21px; font-size: clamp(46px, 6.3vw, 76px); font-weight: 900; letter-spacing: -2.8px; line-height: .99; }
+    h1 em { position: relative; display: inline-block; color: var(--leaf); font-style: normal; z-index: 0; }
+    h1 em::after { position: absolute; content: ''; z-index: -1; left: 1px; right: 0; bottom: 4px; height: 13px; background: var(--lime); border-radius: 20px; transform: rotate(-1.5deg); }
+    .hero-copy > p:not(.eyebrow) { max-width: 510px; margin-bottom: 27px; color: var(--muted); font-size: 16px; line-height: 1.8; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .button.secondary { background: var(--paper); color: var(--ink); border: 1px solid var(--line); }
+    .button.secondary:hover { background: var(--mint); }
+    .tiny-note { margin: 20px 0 0; color: var(--muted); font-size: 12px; }
+    .hero-art { position: relative; min-height: 420px; display: grid; place-items: center; }
+    .art-blob { position: absolute; width: min(100%, 440px); aspect-ratio: 1; border-radius: 46% 54% 61% 39% / 43% 43% 57% 57%; background: var(--mint); transform: rotate(-7deg); }
+    .plant-photo { position: relative; width: 78%; height: 355px; object-fit: cover; border: 9px solid var(--paper); border-radius: 48% 48% 28px 28px; box-shadow: 0 18px 50px #264a2c1a; transform: rotate(2deg); }
+    .sticker { position: absolute; z-index: 2; display: grid; place-items: center; text-align: center; font-family: var(--display); font-weight: 900; box-shadow: 0 10px 25px #20392c12; }
+    .sticker-one { top: 35px; left: 0; width: 96px; height: 96px; padding: 12px; background: var(--pink); border-radius: 50%; font-size: 14px; line-height: 1.1; transform: rotate(-12deg); }
+    .sticker-two { right: 0; bottom: 35px; width: 120px; height: 105px; padding: 12px; background: var(--lime); border-radius: 23px 23px 23px 5px; font-size: 13px; line-height: 1.2; transform: rotate(7deg); }
+    .sticker-two span { font-size: 25px; }
+    .sprout { position: absolute; top: 3px; right: 10px; color: var(--leaf); font-size: 42px; transform: rotate(18deg); }
+    .ticker { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #e9eedf; }
+    .ticker-inner { min-height: 59px; display: flex; align-items: center; justify-content: space-around; gap: 20px; color: var(--leaf-dark); font: 800 12px var(--display); }
+    .ticker span { white-space: nowrap; }
+    .ticker b { padding-left: 17px; color: #8da45b; font-size: 18px; }
+    .section { padding: 92px 0; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 34px; }
+    .kicker { margin-bottom: 12px; color: var(--leaf); font-size: 11px; font-weight: 800; letter-spacing: 1.1px; text-transform: uppercase; }
+    h2 { max-width: 620px; margin-bottom: 0; font-size: clamp(34px, 4.5vw, 52px); font-weight: 900; letter-spacing: -1.5px; line-height: 1.04; }
+    .section-intro { max-width: 365px; margin-bottom: 3px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .card { min-height: 275px; padding: 27px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); transition: transform .2s, box-shadow .2s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 15px 35px #20392c0b; }
+    .card:nth-child(2) { background: #e7f0df; border-color: #d4e3cc; }
+    .card:nth-child(3) { background: #f8e7d4; border-color: #f0dac0; }
+    .card-icon { width: 54px; height: 54px; display: grid; place-items: center; margin-bottom: 25px; border-radius: 18px 18px 18px 5px; background: var(--mint); font-size: 27px; }
+    .card:nth-child(2) .card-icon { background: var(--paper); }
+    .card:nth-child(3) .card-icon { background: var(--pink); }
+    .card h3 { margin-bottom: 10px; font-size: 23px; font-weight: 900; letter-spacing: -.5px; }
+    .card p { margin-bottom: 18px; color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .card-link { display: inline-flex; align-items: center; gap: 7px; color: var(--leaf); font-size: 12px; font-weight: 800; }
+    .about { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 70px; padding: 48px; border-radius: 30px; background: var(--leaf-dark); color: white; }
+    .about-art { min-height: 265px; display: grid; place-items: center; position: relative; overflow: hidden; border-radius: 24px; background: #dcebd6; }
+    .about-art .big-leaf { font-size: clamp(100px, 15vw, 180px); filter: drop-shadow(0 14px 0 #204b3610); transform: rotate(-15deg); }
+    .about-art .small-sticker { position: absolute; right: 16px; bottom: 16px; padding: 12px 16px; border-radius: 15px; background: var(--lime); color: var(--ink); font: 900 12px var(--display); transform: rotate(4deg); }
+    .about .kicker { color: var(--lime); }
+    .about h2 { margin-bottom: 18px; }
+    .about p:not(.kicker) { color: #e0e9df; font-size: 14px; line-height: 1.8; }
+    .about .button { margin-top: 7px; background: var(--lime); color: var(--ink); }
+    .media-band { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 25px; padding: 31px 35px; border: 2px dashed #b9cba9; border-radius: var(--radius); background: #e8f0e1; }
+    .media-band .media-label { margin-bottom: 7px; color: var(--leaf); font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+    .media-band h3 { margin-bottom: 6px; font-size: 27px; font-weight: 900; }
+    .media-band p { max-width: 590px; margin-bottom: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .contact { padding: 75px 0; text-align: center; }
+    .contact .eyebrow { margin-bottom: 18px; }
+    .contact h2 { max-width: 700px; margin: 0 auto 16px; }
+    .contact p { max-width: 490px; margin: 0 auto 23px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    footer { padding: 25px 0; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 11px; }
+    .footer-inner .brand { color: var(--ink); font-size: 17px; }
+    .footer-inner .brand-mark { width: 28px; height: 28px; border-radius: 10px 10px 10px 3px; font-size: 17px; }
+    .footer-links { display: flex; gap: 17px; }
+    .footer-links a:hover { color: var(--leaf); }
+    @media (max-width: 850px) {
+      .shell { width: min(100% - 36px, 650px); }
+      .nav { gap: 14px; }
+      .nav a:not(.pill) { display: none; }
+      .hero { grid-template-columns: 1fr; gap: 25px; padding: 54px 0 45px; }
+      .hero-copy { max-width: 620px; }
+      .hero-art { min-height: 390px; }
+      .plant-photo { height: 325px; }
+      .section { padding: 68px 0; }
       .section-heading { display: block; }
-      .section-intro { margin-top: 17px; }
-      .service-grid { grid-template-columns: 1fr; }
-      .service { min-height: 0; padding: 22px 0 23px; }
-      .service + .service { padding-left: 0; border-left: 0; }
-      .service-number { margin-bottom: 19px; }
-      .service p { max-width: 460px; }
-      .closing-inner { align-items: flex-start; flex-direction: column; }
+      .section-intro { margin-top: 16px; }
+      .cards { grid-template-columns: 1fr; }
+      .card { min-height: 0; }
+      .card-icon { margin-bottom: 18px; }
+      .about { grid-template-columns: 1fr; gap: 30px; padding: 24px; }
+      .about-art { min-height: 220px; }
+      .media-band { grid-template-columns: 1fr; padding: 25px; }
+      .media-band .button { justify-self: start; }
+      .ticker-inner { justify-content: flex-start; overflow: hidden; }
     }
-    @media (max-width: 420px) {
-      .shell { width: calc(100% - 36px); }
-      .actions { align-items: flex-start; flex-direction: column; gap: 16px; }
-      .image-note { width: 153px; padding: 14px; }
-      .trustline { font-size: 11px; }
-      .footer-inner { align-items: flex-start; flex-direction: column; gap: 8px; }
+    @media (max-width: 460px) {
+      .shell { width: calc(100% - 30px); }
+      .topbar { min-height: 72px; }
+      .brand { font-size: 21px; }
+      .brand-mark { width: 34px; height: 34px; }
+      .nav .pill { min-height: 40px; padding: 0 13px; font-size: 12px; }
+      h1 { font-size: clamp(43px, 13vw, 60px); letter-spacing: -2px; }
+      .hero-art { min-height: 325px; }
+      .plant-photo { height: 275px; border-width: 7px; }
+      .sticker-one { top: 13px; width: 78px; height: 78px; font-size: 12px; }
+      .sticker-two { right: -2px; bottom: 17px; width: 100px; height: 90px; font-size: 11px; }
+      .ticker-inner { min-height: 50px; font-size: 11px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
     }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
     }
-  </style>
+
+    /* Kiwiii.Stream: optimistic eco-tech, little robot / ship-console energy */
+    :root {
+      color-scheme: dark;
+      --cream: #101b1b;
+      --paper: #172626;
+      --ink: #edf5df;
+      --muted: #a9b9aa;
+      --leaf: #9bd36a;
+      --leaf-dark: #203d35;
+      --mint: #23413a;
+      --lime: #e6c85a;
+      --pink: #e8a58d;
+      --peach: #d8b879;
+      --line: #345048;
+      --radius: 18px;
+    }
+    body {
+      background:
+        radial-gradient(ellipse at 82% 8%, #263f36 0, transparent 32rem),
+        radial-gradient(ellipse at 5% 35%, #1b3430 0, transparent 35rem),
+        var(--cream);
+      color: var(--ink);
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      opacity: .15;
+      background-image: radial-gradient(#d8e8bd 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(to bottom, black, transparent 75%);
+    }
+    .topbar { border-bottom-color: var(--line); }
+    .brand-mark { background: var(--lime); color: #182522; border-radius: 12px 12px 12px 4px; box-shadow: 0 0 24px #e6c85a22; }
+    .brand-name span, .card-link { color: var(--leaf); }
+    .pill, .button { background: var(--lime); color: #172321; border-radius: 10px 10px 10px 3px; box-shadow: 0 5px 0 #9d8537; }
+    .pill:hover, .button:hover { background: #f1d975; color: #172321; box-shadow: 0 2px 0 #9d8537; }
+    .button.secondary { background: #1c302d; color: var(--ink); border-color: #456158; box-shadow: none; }
+    .button.secondary:hover { background: #29443b; }
+    .eyebrow { background: #1d332d; color: var(--leaf); border-color: #48654e; border-radius: 8px; letter-spacing: 1.3px; }
+    h1, h2, h3 { letter-spacing: -.035em; }
+    h1 em { color: var(--lime); }
+    h1 em::after { background: #9bd36a44; height: 9px; bottom: 2px; }
+    .hero { padding-top: 82px; }
+    .hero-art { min-height: 450px; }
+    .art-blob { background: #203b34; border: 1px solid #486a55; box-shadow: inset 0 0 65px #9bd36a0b; }
+    .plant-photo { border: 7px solid #d9d7b8; border-radius: 20px 20px 48% 48%; box-shadow: 0 0 0 1px #d8c879, 0 24px 60px #0006; filter: saturate(.82) contrast(1.05); }
+    .sticker { box-shadow: 0 10px 30px #0004; border: 1px solid #ffffff26; }
+    .sticker-one { background: var(--lime); color: #172321; border-radius: 13px 13px 13px 4px; }
+    .sticker-two { background: #d8e8bd; color: #1b3029; border-radius: 13px 13px 4px 13px; }
+    .sprout { color: var(--lime); }
+    .ticker { background: #182b28; border-color: var(--line); }
+    .ticker-inner { color: #d9e8c9; }
+    .ticker b { color: var(--lime); }
+    .section { padding-top: 84px; padding-bottom: 84px; }
+    .card, .card:nth-child(2), .card:nth-child(3) {
+      background: linear-gradient(145deg, #1b2d2a, #152321);
+      border-color: #355148;
+      border-radius: 16px 16px 16px 4px;
+    }
+    .card:nth-child(2) { border-top: 2px solid var(--leaf); }
+    .card:nth-child(3) { border-top: 2px solid var(--lime); }
+    .card:hover { box-shadow: 0 18px 42px #0003; border-color: #66866a; }
+    .card-icon, .card:nth-child(2) .card-icon, .card:nth-child(3) .card-icon {
+      background: #2c4940; border: 1px solid #52745a; border-radius: 12px 12px 12px 4px;
+    }
+    .card:nth-child(3) .card-icon { background: #49432b; border-color: #827344; }
+    .card p, .section-intro, .hero-copy > p:not(.eyebrow), .contact p { color: var(--muted); }
+    .about { background: linear-gradient(125deg, #203d35, #142522); border: 1px solid #456356; border-radius: 20px 20px 20px 5px; }
+    .about-art { background: #dce7c6; border-radius: 15px; }
+    .about .kicker { color: var(--lime); }
+    .about p:not(.kicker) { color: #c5d4c4; }
+    .about .button { background: var(--lime); color: #172321; }
+    .media-band { background: #1a302b; border-color: #73905d; border-radius: 16px 16px 16px 4px; }
+    .media-band .media-label { color: var(--lime); }
+    .media-band p { color: var(--muted); }
+    .contact .eyebrow { background: #1d332d; }
+    footer { border-color: var(--line); }
+    .footer-inner { color: var(--muted); }
+    @media (max-width: 850px) { .hero { padding-top: 54px; } }
+\n  </style>
 </head>
 <body>
-  <header class="shell topbar">
-    <a class="wordmark" href="#top" aria-label="KSHome home">KS<span>Home</span></a>
+  <header class="shell topbar" id="top">
+    <a class="brand" href="#top" aria-label="Kiwiii.Stream home">
+      <span class="brand-mark" aria-hidden="true">🌱</span>
+      <span class="brand-name">Kiwiii<span>.Stream</span></span>
+    </a>
     <nav class="nav" aria-label="Main navigation">
-      <a href="#services">Services</a>
-      <a href="#approach">Our approach</a>
-      <a class="nav-cta" href="#services">Explore services <span aria-hidden="true">↗</span></a>
+      <a href="#services">My services</a>
+      <a href="#about">A little about me</a>
+      <a class="pill" href="https://jellyfin.kiwiii.stream">Media sign in <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
 
-  <main id="top">
+  <main>
     <section class="shell hero" aria-labelledby="hero-title">
-      <div class="hero-copy reveal">
-        <p class="eyebrow">A little more at home</p>
-        <h1 id="hero-title">Good care for the place <em>you call home.</em></h1>
-        <p>From the fix you’ve been putting off to the update you’ve been dreaming about, KSHome makes home projects feel a little more manageable.</p>
+      <div class="hero-copy">
+        <p class="eyebrow">◈ BOOTING UP A GREENER INTERNET</p>
+        <h1>Good tech.<br>Green future.<br><em>Little joys.</em></h1>
+        <p>A tiny eco-friendly corner of the web: thoughtful tech, happy pets, thriving plants, and small ideas that make everyday life work a little better.</p>
         <div class="actions">
-          <a class="button" href="#services">See how we can help <span aria-hidden="true">&nbsp;↗</span></a>
-          <a class="text-link" href="#approach">The KSHome approach <span aria-hidden="true">↓</span></a>
+          <a class="button" href="#services">Have a little look <span aria-hidden="true">↘</span></a>
+          <a class="button secondary" href="https://jellyfin.kiwiii.stream">🎬 Enter the media nook</a>
         </div>
+        <p class="tiny-note">SYSTEM STATUS: curious · kind · powered by plants 🪴</p>
       </div>
-      <div class="hero-visual reveal">
-        <img class="hero-image" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85" alt="Sunlit, comfortable living room with natural wood details">
-        <div class="image-note"><strong>Room to feel at home.</strong>Thoughtful help for the spaces you live in every day.</div>
+      <div class="hero-art" aria-label="A leafy houseplant illustration">
+        <div class="art-blob" aria-hidden="true"></div>
+        <span class="sprout" aria-hidden="true">✳</span>
+        <img class="plant-photo" src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1000&q=85" alt="A lush green houseplant in a pot">
+        <div class="sticker sticker-one">hello,<br>plant pal! 🌱</div>
+        <div class="sticker sticker-two"><span>🐾</span> Kind care for<br>your little pals</div>
       </div>
     </section>
 
-    <div class="shell trustline" id="approach" aria-label="Our approach">
-      <strong>Good work starts with listening.</strong>
-      <span class="divider" aria-hidden="true"></span>
-      <span>Clear communication</span>
-      <span class="divider" aria-hidden="true"></span>
-      <span>Care for your space</span>
-      <span class="divider" aria-hidden="true"></span>
-      <span>Practical solutions</span>
+    <div class="ticker" aria-label="Things that make this corner of the internet">
+      <div class="shell ticker-inner">
+        <span>GROW MORE GREEN <b>✳</b></span>
+        <span>CARE FOR CREATURES <b>✳</b></span>
+        <span>TECH WITH PURPOSE <b>✳</b></span>
+        <span>A BETTER LITTLE WORLD <b>✳</b></span>
+      </div>
     </div>
 
-    <section class="shell services" id="services" aria-labelledby="services-title">
+    <section class="shell section" id="services" aria-labelledby="services-title">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">What we do</p>
-          <h2 id="services-title">The right help for your home.</h2>
+          <p class="kicker">A few things I can help with</p>
+          <h2 id="services-title">A friendly interface<br>for a living world.</h2>
         </div>
-        <p class="section-intro">Every home has its own to-do list. We help you take it on, one thoughtful project at a time.</p>
+        <p class="section-intro">Think of this as a small command deck for the things I care about: practical tech support, reliable pet care and curious, sustainable projects.</p>
       </div>
-      <div class="service-grid">
-        <article class="service">
-          <div class="service-number">01 / REPAIR</div>
-          <h3>Repairs &amp; fixes</h3>
-          <p>Help with the small fixes and everyday wear that keep a home working as it should.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🐾</div>
+          <h3>Pet &amp; home sitting</h3>
+          <p>Going away? I can help keep your furry friends company and their routines feeling familiar while you're out and about.</p>
+          <a class="card-link" href="#contact">Let's talk pet sitting <span aria-hidden="true">↗</span></a>
         </article>
-        <article class="service">
-          <div class="service-number">02 / IMPROVE</div>
-          <h3>Home improvements</h3>
-          <p>Make a room feel more like you with considered updates to the spaces you use most.</p>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">💻</div>
+          <h3>Friendly tech help</h3>
+          <p>From computer niggles and setup help to getting devices talking to each other, I want tech to feel less intimidating.</p>
+          <a class="card-link" href="#contact">Untangle some tech <span aria-hidden="true">↗</span></a>
         </article>
-        <article class="service">
-          <div class="service-number">03 / MAINTAIN</div>
-          <h3>Ongoing care</h3>
-          <p>Stay ahead of your home’s needs with practical upkeep and a little extra peace of mind.</p>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🪴</div>
+          <h3>Plants &amp; projects</h3>
+          <p>A home for my planty side, experiments, personal projects and the things I get excited about along the way.</p>
+          <a class="card-link" href="https://www.instagram.com/plantiethingz/" target="_blank" rel="noopener noreferrer">Visit PlantieThingz <span aria-hidden="true">↗</span></a>
         </article>
       </div>
     </section>
 
-    <section class="closing" aria-labelledby="closing-title">
-      <div class="shell closing-inner">
-        <div>
-          <p class="eyebrow">Your home, your next step</p>
-          <h2 id="closing-title">A better home day starts with a conversation.</h2>
+    <section class="shell section" id="about" aria-labelledby="about-title">
+      <div class="about">
+        <div class="about-art" aria-hidden="true">
+          <span class="big-leaf">🌿</span>
+          <span class="small-sticker">Growing at my own pace ✨</span>
         </div>
-        <a class="button" href="#services">Find your service <span aria-hidden="true">&nbsp;↗</span></a>
+        <div>
+          <p class="kicker">A little introduction</p>
+          <h2 id="about-title">A little robot heart.<br>A human-sized mission.</h2>
+          <p>Inspired by hopeful sci-fi, helpful digital assistants and a planet worth looking after, Kiwiii.Stream is where technology and nature meet. The goal is simple: use what I know to help people, care for living things and make everyday systems a little kinder.</p>
+          <a class="button" href="#contact">Say hello <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
+    </section>
+
+    <section class="shell" aria-labelledby="media-title">
+      <div class="media-band">
+        <div>
+          <p class="media-label">🍿 Your cosy corner for watching</p>
+          <h3 id="media-title">Your personal media bay</h3>
+          <p>Your home media system is ready when you are. Open Jellyfin and sign in with your usual account.</p>
+        </div>
+        <a class="button" href="https://jellyfin.kiwiii.stream">Go to Jellyfin <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="shell contact" id="contact" aria-labelledby="contact-title">
+      <p class="eyebrow">💌 Good things start with hello</p>
+      <h2 id="contact-title">Need a hand, human?</h2>
+      <p>Have a pet-sitting enquiry, a tech puzzle or a sustainable idea? Drop by Instagram for now — more contact options are on the roadmap.</p>
+      <a class="button secondary" href="https://www.instagram.com/plantiethingz/" target="_blank" rel="noopener noreferrer">Find me on Instagram <span aria-hidden="true">↗</span></a>
     </section>
   </main>
 
   <footer>
     <div class="shell footer-inner">
-      <a class="footer-brand" href="#top">KSHome</a>
-      <span>Thoughtful care for the place you call home.</span>
-      <span>© <span id="year">2026</span> KSHome</span>
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">🌱</span><span class="brand-name">Kiwiii<span>.Stream</span></span></a>
+      <span>A little corner of the internet, grown with care. © <span id="year">2026</span></span>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="https://jellyfin.kiwiii.stream">Jellyfin</a>
+      </div>
     </div>
   </footer>
   <script>
