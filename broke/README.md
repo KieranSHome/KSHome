@@ -38,7 +38,7 @@ Then open `http://localhost:8080`.
 
 ## Cloudflare Pages
 
-The dashboard is maintained under `broke/` in `KieranSHome/KSHome` and is published from the repository root by the `kshome` Cloudflare Pages project. Its build command runs `python3 blog-project/build.py`; the dashboard itself is static and reads `data/public.json` in the browser.
+The dashboard is maintained under `broke/` in `KieranSHome/KSHome` and is included in the `dist/` site output by the `kshome` Cloudflare Pages project. Its build command runs `python3 blog-project/build.py`; the dashboard itself is static and reads `data/public.json` in the browser.
 
 The repository currently contains only static site assets and an unpublished data template. The dashboard is part of the main Kiwiii.Stream site, so it uses the same deployment and domain. DNS and Jellyfin settings remain separate.
 
