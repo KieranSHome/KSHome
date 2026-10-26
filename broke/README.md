@@ -1,6 +1,6 @@
 # Broke — Kiwiii.Stream
 
-A privacy-conscious, static dashboard for sharing an honest aggregate view of a debt-reduction journey. Intended site: **https://broke.kiwiii.stream**.
+A privacy-conscious, static dashboard for sharing an honest aggregate view of a debt-reduction journey. Published at **https://kiwiii.stream/broke/**.
 
 ## Current state
 
@@ -38,14 +38,9 @@ Then open `http://localhost:8080`.
 
 ## Cloudflare Pages
 
-Consolidated deployment configuration:
-- The public dashboard files are maintained under `broke/` in `KieranSHome/KSHome`.
-- Framework preset: **None**.
-- Build command: leave blank.
-- Build output directory: `/` (repository root of KSHome GitHub Pages).
-- Add the custom domain only after checking the published data and privacy review.
+The dashboard is maintained under `broke/` in `KieranSHome/KSHome` and is published from the repository root by the `kshome` Cloudflare Pages project. Its build command runs `python3 blog-project/build.py`; the dashboard itself is static and reads `data/public.json` in the browser.
 
-The repository currently contains only static site assets and an unpublished data template. The dashboard is deployed with the main KSHome GitHub Pages site. DNS and Jellyfin settings remain separate.
+The repository currently contains only static site assets and an unpublished data template. The dashboard is part of the main Kiwiii.Stream site, so it uses the same deployment and domain. DNS and Jellyfin settings remain separate.
 
 ## Shared brand contract
 
