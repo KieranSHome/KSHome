@@ -17,13 +17,16 @@
     .projects-logo{display:block;width:min(100%,320px);max-height:130px;object-fit:contain;object-position:left center;margin-bottom:1.5rem}
     .projects-nav{display:flex;flex-wrap:wrap;gap:1rem}
   </style>
+  <link rel="stylesheet" href="/site-header.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="/" aria-label="Kiwiii.Stream home"><img class="site-logo" src="/assets/Kiwiii%20Projects%20Logo%20with%20Hammer%20Emblem.png" alt="Kiwiii Projects"></a>
-    <nav class="nav" aria-label="Main navigation">
-      <a href="/">Home</a><a href="/blog/">Blog</a><a href="https://jellyfin.kiwiii.stream/">Media</a><a href="/broke/">Broke</a>
-    </nav>
+    <div class="site-header-inner">
+      <a class="site-brand" href="/" aria-label="Kiwiii.Stream home"><img class="site-brand-logo" src="/assets/Kiwiii%20Projects%20Logo%20with%20Hammer%20Emblem.png" alt="Kiwiii Projects" width="230" height="66"></a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="/">Home</a><a href="/blog/">Blog</a><a href="https://jellyfin.kiwiii.stream/">Media <span aria-hidden="true">↗</span></a><a href="/Projects/" aria-current="page">Projects</a><a href="/broke/">Broke</a>
+      </nav>
+    </div>
   </header>
   <main class="projects-shell">
     <p class="eyebrow">Work in progress · learning by building</p>
