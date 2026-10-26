@@ -192,7 +192,7 @@ def render_markdown(source):
     return "\n".join(out)
 
 def header():
-    return f'<header><div class="wrap topbar"><a class="brand" href="{SITE}/" aria-label="Kiwiii Blog home"><img class="brand-logo" src="https://kiwiii.stream/assets/Kiwiii%20Blog%20Kiwi%20Emblem%20Logo.png" alt="Kiwiii.Blog"></a><nav class="nav" aria-label="Main navigation"><a href="{SITE}/">Notebook</a><a href="{HOME}/">Kiwiii.Stream ↗</a></nav></div></header>'
+    return f'<header class="site-header"><div class="site-header-inner"><a class="site-brand" href="{HOME}/" aria-label="Kiwiii.Stream home"><img class="site-brand-logo" src="/assets/Kiwiii%20Blog%20Kiwi%20Emblem%20Logo.png" alt="Kiwiii Blog" width="230" height="66"></a><nav class="site-nav" aria-label="Main navigation"><a href="{HOME}/">Home</a><a href="{SITE}/" aria-current="page">Blog</a><a href="https://jellyfin.kiwiii.stream/">Media <span aria-hidden="true">↗</span></a><a href="{HOME}/Projects/">Projects</a><a href="{HOME}/broke/">Broke</a></nav></div></header>'
 
 def footer():
     return f'<footer><div class="wrap footer-inner"><span>Small notes from a curious corner of the internet.</span><nav class="footer-links" aria-label="Footer navigation"><a href="{SITE}/">Blog home</a><a href="{HOME}/">Kiwiii.Stream ↗</a></nav></div></footer>'
@@ -206,7 +206,7 @@ def document(title, description, canonical, content):
 <meta name="twitter:card" content="summary"><title>{escape(title)} — Kiwiii.Blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-<style>{CSS}</style></head><body>{header()}<main class="wrap">{content}</main>{footer()}</body></html>'''
+<style>{CSS}</style><link rel="stylesheet" href="/site-header.css"></head><body>{header()}<main class="wrap">{content}</main>{footer()}</body></html>'''
 
 def render_article(post):
     body = render_markdown(post["body"])
@@ -220,7 +220,7 @@ def prepare_output():
     if DIST.exists():
         shutil.rmtree(DIST)
     DIST.mkdir(parents=True)
-    for name in ("index.html", "brand.css", "_headers"):
+    for name in ("index.html", "brand.css", "site-header.css", "_headers"):
         source = ROOT.parent / name
         if source.is_file():
             shutil.copy2(source, DIST / name)
