@@ -205,7 +205,7 @@ def document(title, description, canonical, content):
 <meta name="twitter:card" content="summary"><title>{escape(title)} — Kiwiii.Blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-<style>{CSS}</style><link rel="stylesheet" href="/site-theme.css"><link rel="stylesheet" href="/site-header.css"></head><body>{header()}<main class="wrap">{content}</main>{footer()}</body></html>'''
+<style>{CSS}</style><link rel="stylesheet" href="/site-theme.css?v=20261026-2"><link rel="stylesheet" href="/site-header.css?v=20261026-2"></head><body>{header()}<main class="wrap">{content}</main>{footer()}</body></html>'''
 
 def render_article(post):
     body = render_markdown(post["body"])
