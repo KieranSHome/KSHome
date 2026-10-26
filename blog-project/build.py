@@ -144,7 +144,7 @@ def render_markdown(source):
     return "\n".join(out)
 
 def header():
-    return f'<header><div class="wrap topbar"><a class="brand" href="{SITE}/" aria-label="Kiwiii Blog home"><img class="brand-logo" src="/assets/logos/kiwiii-blog.svg" alt="Kiwiii.Blog"></a><nav class="nav" aria-label="Main navigation"><a href="{SITE}/">Notebook</a><a href="{HOME}/">Kiwiii.Stream ↗</a></nav></div></header>'
+    return f'<header><div class="wrap topbar"><a class="brand" href="{SITE}/" aria-label="Kiwiii Blog home"><img class="brand-logo" src="/assets/Kiwiii%20Blog%20Kiwi%20Emblem%20Logo.png" alt="Kiwiii.Blog"></a><nav class="nav" aria-label="Main navigation"><a href="{SITE}/">Notebook</a><a href="{HOME}/">Kiwiii.Stream ↗</a></nav></div></header>'
 
 def footer():
     return f'<footer><div class="wrap footer-inner"><span>Small notes from a curious corner of the internet.</span><nav class="footer-links" aria-label="Footer navigation"><a href="{SITE}/">Blog home</a><a href="{HOME}/">Kiwiii.Stream ↗</a></nav></div></footer>'
@@ -153,7 +153,7 @@ def document(title, description, canonical, content):
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="{escape(description,quote=True)}"><meta name="theme-color" content="#101b1b">
-<link rel="canonical" href="{escape(canonical,quote=True)}"><link rel="icon" type="image/svg+xml" href="/assets/logos/kiwiii-blog.svg"><meta property="og:type" content="article"><meta property="og:site_name" content="Kiwiii.Blog">
+<link rel="canonical" href="{escape(canonical,quote=True)}"><link rel="icon" type="image/png" href="/assets/Kiwiii%20Blog%20Kiwi%20Emblem%20Logo.png"><meta property="og:type" content="article"><meta property="og:site_name" content="Kiwiii.Blog">
 <meta property="og:title" content="{escape(title,quote=True)}"><meta property="og:description" content="{escape(description,quote=True)}">
 <meta name="twitter:card" content="summary"><title>{escape(title)} — Kiwiii.Blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
