@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f4f3e8">
+  <meta name="theme-color" content="#101b1b">
   <meta name="description" content="Kiwiii.Stream — planty vibes, thoughtful pet sitting, friendly tech help and a gateway to the Kiwiii media library.">
-  <title>Kiwiii.Stream — A little tech, a little nature</title>
+  <title>Kiwiii.Stream — Technology, nature and ideas</title>
+  <link rel="icon" type="image/png" href="/assets/Kiwiii-Transparent.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
@@ -101,6 +102,15 @@
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 11px; }
     .footer-inner .brand { color: var(--ink); font-size: 17px; }
     .footer-inner .brand-mark { width: 28px; height: 28px; border-radius: 10px 10px 10px 3px; font-size: 17px; }
+    .brand-logo { display:block; width:190px; height:auto; max-height:66px; object-fit:contain; object-position:left center; }
+    .blog-section { padding-top:35px; }
+    .latest-post { display:grid; grid-template-columns:1fr 130px; align-items:center; gap:24px; padding:30px; border:1px solid #456158; border-radius:16px 16px 16px 4px; background:linear-gradient(120deg,#1b2d2a,#142522); }
+    .post-meta { margin-bottom:12px; color:var(--lime); font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase; }
+    .latest-post h3 { margin-bottom:10px; font-size:clamp(25px,3vw,34px); }
+    .latest-post p:not(.post-meta) { max-width:650px; margin-bottom:18px; color:var(--muted); font-size:14px; line-height:1.8; }
+    .latest-post-mark { display:grid; place-items:center; width:120px; height:120px; border:1px solid #73905d; border-radius:50% 50% 50% 10%; background:#203b34; color:var(--lime); font:900 48px var(--display); }
+    .blog-all { margin:20px 0 0; }
+    @media (max-width:460px) { .brand-logo { width:160px; max-height:56px; } .latest-post { grid-template-columns:1fr; padding:22px; } .latest-post-mark { display:none; } }
     .footer-links { display: flex; gap: 17px; }
     .footer-links a:hover { color: var(--leaf); }
     @media (max-width: 850px) {
@@ -253,12 +263,12 @@
 <body>
   <header class="shell topbar" id="top">
     <a class="brand" href="#top" aria-label="Kiwiii.Stream home">
-      <span class="brand-mark" aria-hidden="true">🌱</span>
-      <span class="brand-name">Kiwiii<span>.Stream</span></span>
+      <img class="brand-logo" src="/assets/Kiwiii-Transparent.png" alt="Kiwiii.Stream" width="190" height="66">
     </a>
     <nav class="nav" aria-label="Main navigation">
       <a href="#services">My services</a>
-      <a href="#about">A little about me</a>
+      <a href="#about">About</a>
+      <a href="#blog">Blog</a>
       <a class="pill" href="https://jellyfin.kiwiii.stream">Media sign in <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
@@ -266,14 +276,14 @@
   <main>
     <section class="shell hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">◈ BOOTING UP A GREENER INTERNET</p>
-        <h1>Good tech.<br>Green future.<br><em>Little joys.</em></h1>
-        <p>A tiny eco-friendly corner of the web: thoughtful tech, happy pets, thriving plants, and small ideas that make everyday life work a little better.</p>
+        <p class="eyebrow">KIWIII.STREAM · PERSONAL SITE</p>
+        <h1>Technology,<br>nature &amp;<br><em>curiosity.</em></h1>
+        <p>A personal space for practical technology, creative projects, ideas in progress and the everyday details that make life interesting.</p>
         <div class="actions">
           <a class="button" href="#services">Have a little look <span aria-hidden="true">↘</span></a>
           <a class="button secondary" href="https://jellyfin.kiwiii.stream">🎬 Enter the media nook</a>
         </div>
-        <p class="tiny-note">SYSTEM STATUS: curious · kind · powered by plants 🪴</p>
+        <p class="tiny-note">Independent projects, thoughtful notes and a work in progress.</p>
       </div>
       <div class="hero-art" aria-label="A leafy houseplant illustration">
         <div class="art-blob" aria-hidden="true"></div>
@@ -286,10 +296,10 @@
 
     <div class="ticker" aria-label="Things that make this corner of the internet">
       <div class="shell ticker-inner">
-        <span>GROW MORE GREEN <b>✳</b></span>
-        <span>CARE FOR CREATURES <b>✳</b></span>
-        <span>TECH WITH PURPOSE <b>✳</b></span>
-        <span>A BETTER LITTLE WORLD <b>✳</b></span>
+        <span>TECHNOLOGY <b>✳</b></span>
+        <span>NATURE <b>✳</b></span>
+        <span>PERSONAL PROJECTS <b>✳</b></span>
+        <span>NOTES &amp; IDEAS <b>✳</b></span>
       </div>
     </div>
 
@@ -321,6 +331,13 @@
           <a class="card-link" href="https://www.instagram.com/plantiethingz/" target="_blank" rel="noopener noreferrer">Visit PlantieThingz <span aria-hidden="true">↗</span></a>
         </article>
       </div>
+    </section>
+
+
+    <section class="shell section blog-section" id="blog" aria-labelledby="blog-title">
+      <div class="section-heading"><div><p class="kicker">From the notebook</p><h2 id="blog-title">Latest writing.</h2></div><p class="section-intro">A separate stream of thoughts, experiments, lessons and things worth writing down.</p></div>
+      <article class="latest-post" aria-live="polite"><div class="latest-post-copy"><p class="post-meta" id="post-meta">KIWIII NOTES</p><h3 id="post-title">The blog is taking shape</h3><p id="post-excerpt">The latest post will appear here automatically when the blog publishes its feed.</p><a class="card-link" id="post-link" href="https://blog.kiwiii.stream/">Explore the blog <span aria-hidden="true">↗</span></a></div><div class="latest-post-mark" aria-hidden="true">K.</div></article>
+      <p class="blog-all"><a class="button secondary" href="https://blog.kiwiii.stream/">Visit the blog <span aria-hidden="true">↗</span></a></p>
     </section>
 
     <section class="shell section" id="about" aria-labelledby="about-title">
@@ -363,12 +380,28 @@
       <span>A little corner of the internet, grown with care. © <span id="year">2026</span></span>
       <div class="footer-links">
         <a href="#services">Services</a>
+        <a href="#blog">Blog</a>
+        <a href="https://blog.kiwiii.stream/">Writing</a>
         <a href="https://jellyfin.kiwiii.stream">Jellyfin</a>
       </div>
     </div>
   </footer>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    fetch('https://blog.kiwiii.stream/feed.json', { headers: { Accept: 'application/json' } })
+      .then(response => { if (!response.ok) throw new Error('Blog feed unavailable'); return response.json(); })
+      .then(feed => {
+        const posts = Array.isArray(feed.posts) ? feed.posts : [];
+        const latest = posts.filter(post => post && post.published !== false && post.url && post.title)
+          .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))[0];
+        if (!latest) return;
+        document.getElementById('post-title').textContent = latest.title;
+        document.getElementById('post-excerpt').textContent = latest.excerpt || 'Read the latest note from Kiwiii.';
+        document.getElementById('post-link').href = latest.url;
+        document.getElementById('post-link').innerHTML = 'Read article <span aria-hidden="true">↗</span>';
+        const date = latest.date ? new Date(latest.date) : null;
+        document.getElementById('post-meta').textContent = date && !Number.isNaN(date.getTime()) ? 'LATEST NOTE · ' + new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(date) : 'LATEST NOTE';
+      }).catch(() => {});
   </script>
 </body>
 </html>
