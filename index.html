@@ -291,7 +291,7 @@
     </a>
     <nav class="nav" aria-label="Main navigation">
       <a href="#top" aria-current="page">Home</a>
-      <a href="/blog/">Blog</a>
+      <a href="https://blog.kiwiii.stream/">Blog</a>
       <a href="https://jellyfin.kiwiii.stream">Media <span aria-hidden="true">↗</span></a>
       <a href="/Projects/">Projects</a>
       <a href="/broke/">Broke</a>
@@ -375,8 +375,8 @@
 
     <section class="shell section blog-section" id="blog" aria-labelledby="blog-title">
       <div class="section-heading"><div><p class="kicker">From the notebook</p><h2 id="blog-title">Latest writing.</h2></div><p class="section-intro">A separate stream of thoughts, experiments, lessons and things worth writing down.</p></div>
-      <article class="latest-post" aria-live="polite"><div class="latest-post-copy"><p class="post-meta" id="post-meta">KIWIII NOTES</p><h3 id="post-title">The blog is taking shape</h3><p id="post-excerpt">The latest post will appear here automatically when the blog publishes its feed.</p><a class="card-link" id="post-link" href="/blog/">Explore the blog <span aria-hidden="true">↗</span></a></div><div class="latest-post-mark" aria-hidden="true">K.</div></article>
-      <p class="blog-all"><a class="button secondary" href="/blog/">Visit the blog <span aria-hidden="true">↗</span></a></p>
+      <article class="latest-post" aria-live="polite"><div class="latest-post-copy"><p class="post-meta" id="post-meta">KIWIII NOTES</p><h3 id="post-title">The blog is taking shape</h3><p id="post-excerpt">The latest post will appear here automatically when the blog publishes its feed.</p><a class="card-link" id="post-link" href="https://blog.kiwiii.stream/">Explore the blog <span aria-hidden="true">↗</span></a></div><div class="latest-post-mark" aria-hidden="true">K.</div></article>
+      <p class="blog-all"><a class="button secondary" href="https://blog.kiwiii.stream/">Visit the blog <span aria-hidden="true">↗</span></a></p>
     </section>
 
     <section class="shell section" id="about" aria-labelledby="about-title">
@@ -420,7 +420,7 @@
       <span>A little corner of the internet, grown with care. © <span id="year">2026</span></span>
       <div class="footer-links">
         <a href="#top">Home</a>
-        <a href="/blog/">Blog</a>
+        <a href="https://blog.kiwiii.stream/">Blog</a>
         <a href="https://jellyfin.kiwiii.stream">Media</a>
         <a href="/Projects/">Projects</a>
         <a href="/broke/">Broke</a>
@@ -484,9 +484,9 @@
       title: 'A place for the things in between',
       date: '2026-10-26',
       excerpt: 'A starting point for notes on technology, nature, projects and the ideas that connect them.',
-      url: '/blog/posts/hello-world.html'
+      url: 'https://blog.kiwiii.stream/posts/hello-world.html'
     });
-    fetch('/blog/feed.json', { headers: { Accept: 'application/json' }, cache: 'no-store' })
+    fetch('https://blog.kiwiii.stream/feed.json', { headers: { Accept: 'application/json' }, cache: 'no-store' })
       .then(response => { if (!response.ok) throw new Error('Blog feed unavailable'); return response.json(); })
       .then(feed => {
         const posts = Array.isArray(feed.posts) ? feed.posts : [];
