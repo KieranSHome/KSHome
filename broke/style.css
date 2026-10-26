@@ -7,28 +7,6 @@
   margin-inline: auto;
   padding-block: clamp(2rem, 5vw, 4.5rem);
 }
-.site-header-inner {
-  width: min(100% - 2rem, 1120px);
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  min-height: 76px;
-}
-.site-header { border-bottom: 1px solid var(--ks-border, #345048); }
-.brand { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; font-weight: 750; }
-.site-header .brand img.site-logo {
-  display: block;
-  width: 190px;
-  height: 66px;
-  max-width: 100%;
-  object-fit: contain;
-  flex: 0 0 auto;
-}
-.site-nav { display: flex; align-items: center; gap: clamp(.75rem, 2vw, 1.5rem); flex-wrap: wrap; }
-.site-nav a { color: var(--ks-text, #edf5df); text-decoration: none; }
-.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--ks-leaf, #9bd36a); }
 .skip-link { position: absolute; left: -9999px; top: 1rem; z-index: 10; padding: .75rem 1rem; background: var(--ks-surface, #172626); }
 .skip-link:focus { left: 1rem; }
 .broke-hero { padding-block: clamp(2rem, 6vw, 5rem); max-width: 850px; }
@@ -65,8 +43,7 @@
 .site-footer a { color: var(--ks-leaf, #9bd36a); }
 @media (max-width: 900px) { .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) {
-  .site-header-inner { align-items: flex-start; flex-direction: column; padding-block: 1rem; gap: .8rem; }
-  .site-nav { gap: 1rem; }
+    .site-nav { gap: 1rem; }
   .metric-grid, .story-grid { grid-template-columns: 1fr; }
   .metric-card { min-height: 0; }
   .trajectory-item { grid-template-columns: 1fr; gap: .25rem; }
