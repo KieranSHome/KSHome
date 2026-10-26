@@ -38,8 +38,7 @@ From the repository root:
 python blog-project/build.py
 ```
 
-The script reads Markdown from `blog-project/posts/` and generates the website under the root `blog/` directory. GitHub Actions runs this build before publishing the complete KSHome repository to GitHub Pages. The feed is available at `/blog/feed.json`.
+The script reads Markdown from `blog-project/posts/` and generates the site under the root `blog/` directory. Cloudflare Pages runs the build command `python3 blog-project/build.py` and publishes the repository root. The feed is available at `/blog/feed.json`.
 
-The separate `KieranSHome/Blog` repository is being retained as an archive until the consolidated deployment has been verified. Make future blog changes in `KieranSHome/KSHome/blog-project/`.
+The separate `KieranSHome/Blog` repository is an archive. Make future blog changes in `KieranSHome/KSHome/blog-project/`.
 
-This migration does not change DNS, Cloudflare routing, Jellyfin, or Caddy configuration.
