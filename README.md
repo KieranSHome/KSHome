@@ -1,6 +1,6 @@
 # Kiwiii.Stream
 
-The public website is maintained and deployed from this repository, `KieranSHome/KSHome`.
+The public website is maintained in `KieranSHome/KSHome` and deployed to Cloudflare Pages from the generated `dist/` directory.
 
 ## Site map
 
@@ -22,7 +22,7 @@ Only reviewed aggregate figures may be published. Never copy the private workboo
 
 ## Production boundaries
 
-- The custom domain website deploys through Cloudflare Pages from this repository. Its build command is `python3 blog-project/build.py`, and its output directory is `.`. Cloudflare Pages is the production deployment.
+- The custom domain website deploys through Cloudflare Pages from this repository. Its build command is `python3 blog-project/build.py`, and its output directory is `dist`. Cloudflare Pages is the production deployment.
 - Jellyfin and Caddy remain separate services; this repository must not change their server configuration.
 - DNS and domain routing changes are separate from repository changes.
 - Do not add secrets, private financial records, or generated private exports.
