@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f4f3e8">
+  <meta name="theme-color" content="#101b1b">
   <meta name="description" content="Kiwiii.Stream — planty vibes, thoughtful pet sitting, friendly tech help and a gateway to the Kiwiii media library.">
-  <title>Kiwiii.Stream — A little tech, a little nature</title>
+  <title>Kiwiii.Stream — Technology, nature and ideas</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/kiwiii-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
@@ -55,7 +56,17 @@
     .tiny-note { margin: 20px 0 0; color: var(--muted); font-size: 12px; }
     .hero-art { position: relative; min-height: 420px; display: grid; place-items: center; }
     .art-blob { position: absolute; width: min(100%, 440px); aspect-ratio: 1; border-radius: 46% 54% 61% 39% / 43% 43% 57% 57%; background: var(--mint); transform: rotate(-7deg); }
-    .plant-photo { position: relative; width: 78%; height: 355px; object-fit: cover; border: 9px solid var(--paper); border-radius: 48% 48% 28px 28px; box-shadow: 0 18px 50px #264a2c1a; transform: rotate(2deg); }
+    .botanical-art { position: relative; z-index: 1; width: min(76%, 330px); aspect-ratio: .88; display: grid; place-items: center; border: 1px solid #486a55; border-radius: 48% 48% 22px 22px; background: linear-gradient(150deg, #29483d, #172a27 78%); box-shadow: 0 24px 60px #0005, inset 0 0 45px #9bd36a0b; transform: rotate(2deg); overflow: hidden; }
+    .botanical-art::before, .botanical-art::after { content: ""; position: absolute; width: 170px; height: 76px; border: 1px solid #9bd36a66; border-radius: 100% 0 100% 0; background: linear-gradient(135deg, #9bd36a55, #9bd36a08 75%); }
+    .botanical-art::before { top: 19%; left: -7%; transform: rotate(32deg); }
+    .botanical-art::after { right: -7%; bottom: 19%; transform: rotate(212deg); }
+    .botanical-stem { position: absolute; width: 2px; height: 68%; background: linear-gradient(#9bd36a22, #9bd36a); transform: rotate(18deg); }
+    .botanical-leaf { position: absolute; width: 104px; height: 49px; border: 1px solid #9bd36a99; border-radius: 100% 0 100% 0; background: linear-gradient(135deg, #9bd36a88, #527d4b33); }
+    .leaf-a { top: 23%; left: 24%; transform: rotate(-25deg); }
+    .leaf-b { top: 37%; right: 13%; transform: rotate(155deg); }
+    .leaf-c { top: 51%; left: 12%; transform: rotate(-18deg); }
+    .leaf-d { top: 65%; right: 17%; transform: rotate(158deg); }
+    .botanical-caption { position: absolute; bottom: 17px; z-index: 2; color: #d9e8c9; font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
     .sticker { position: absolute; z-index: 2; display: grid; place-items: center; text-align: center; font-family: var(--display); font-weight: 900; box-shadow: 0 10px 25px #20392c12; }
     .sticker-one { top: 35px; left: 0; width: 96px; height: 96px; padding: 12px; background: var(--pink); border-radius: 50%; font-size: 14px; line-height: 1.1; transform: rotate(-12deg); }
     .sticker-two { right: 0; bottom: 35px; width: 120px; height: 105px; padding: 12px; background: var(--lime); border-radius: 23px 23px 23px 5px; font-size: 13px; line-height: 1.2; transform: rotate(7deg); }
@@ -101,6 +112,16 @@
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 11px; }
     .footer-inner .brand { color: var(--ink); font-size: 17px; }
     .footer-inner .brand-mark { width: 28px; height: 28px; border-radius: 10px 10px 10px 3px; font-size: 17px; }
+    .brand-logo { display:block; width:230px; height:auto; max-height:72px; object-fit:contain; object-position:left center; }
+    .footer-brand-logo { width:170px; max-height:54px; }
+    .blog-section { padding-top:35px; }
+    .latest-post { display:grid; grid-template-columns:1fr 130px; align-items:center; gap:24px; padding:30px; border:1px solid #456158; border-radius:16px 16px 16px 4px; background:linear-gradient(120deg,#1b2d2a,#142522); }
+    .post-meta { margin-bottom:12px; color:var(--lime); font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase; }
+    .latest-post h3 { margin-bottom:10px; font-size:clamp(25px,3vw,34px); }
+    .latest-post p:not(.post-meta) { max-width:650px; margin-bottom:18px; color:var(--muted); font-size:14px; line-height:1.8; }
+    .latest-post-mark { display:grid; place-items:center; width:120px; height:120px; border:1px solid #73905d; border-radius:50% 50% 50% 10%; background:#203b34; color:var(--lime); font:900 48px var(--display); }
+    .blog-all { margin:20px 0 0; }
+    @media (max-width:460px) { .brand-logo { width:175px; max-height:58px; } .footer-brand-logo { width:150px; max-height:48px; } .latest-post { grid-template-columns:1fr; padding:22px; } .latest-post-mark { display:none; } }
     .footer-links { display: flex; gap: 17px; }
     .footer-links a:hover { color: var(--leaf); }
     @media (max-width: 850px) {
@@ -110,7 +131,7 @@
       .hero { grid-template-columns: 1fr; gap: 25px; padding: 54px 0 45px; }
       .hero-copy { max-width: 620px; }
       .hero-art { min-height: 390px; }
-      .plant-photo { height: 325px; }
+      .botanical-art { width: min(72%, 300px); }
       .section { padding: 68px 0; }
       .section-heading { display: block; }
       .section-intro { margin-top: 16px; }
@@ -131,7 +152,7 @@
       .nav .pill { min-height: 40px; padding: 0 13px; font-size: 12px; }
       h1 { font-size: clamp(43px, 13vw, 60px); letter-spacing: -2px; }
       .hero-art { min-height: 325px; }
-      .plant-photo { height: 275px; border-width: 7px; }
+      .botanical-art { width: 72%; }
       .sticker-one { top: 13px; width: 78px; height: 78px; font-size: 12px; }
       .sticker-two { right: -2px; bottom: 17px; width: 100px; height: 90px; font-size: 11px; }
       .ticker-inner { min-height: 50px; font-size: 11px; }
@@ -185,7 +206,9 @@
     .hero { padding-top: 82px; }
     .hero-art { min-height: 450px; }
     .art-blob { background: #203b34; border: 1px solid #486a55; box-shadow: inset 0 0 65px #9bd36a0b; }
-    .plant-photo { border: 7px solid #d9d7b8; border-radius: 20px 20px 48% 48%; box-shadow: 0 0 0 1px #d8c879, 0 24px 60px #0006; filter: saturate(.82) contrast(1.05); }
+    .botanical-art { border-color: #73905d; }
+    .botanical-art::before, .botanical-art::after { border-color: #9bd36a77; }
+    .botanical-leaf { box-shadow: 0 0 28px #9bd36a0c; }
     .sticker { box-shadow: 0 10px 30px #0004; border: 1px solid #ffffff26; }
     .sticker-one { background: var(--lime); color: #172321; border-radius: 13px 13px 13px 4px; }
     .sticker-two { background: #d8e8bd; color: #1b3029; border-radius: 13px 13px 4px 13px; }
@@ -218,18 +241,48 @@
     .contact .eyebrow { background: #1d332d; }
     footer { border-color: var(--line); }
     .footer-inner { color: var(--muted); }
-    @media (max-width: 850px) { .hero { padding-top: 54px; } }
-\n  </style>
+    /* Responsive polish: keep navigation discoverable and prevent narrow-screen overflow. */
+    .nav a, .button, .pill { touch-action: manipulation; }
+    .nav a:focus-visible, .button:focus-visible, .pill:focus-visible,
+    .card-link:focus-visible, .footer-links a:focus-visible {
+      outline: 3px solid var(--lime);
+      outline-offset: 4px;
+    }
+    img { max-width: 100%; }
+    .ticker-inner { flex-wrap: wrap; padding-top: 12px; padding-bottom: 12px; }
+    @media (max-width: 850px) {
+      .hero { padding-top: 54px; }
+      .topbar { flex-wrap: wrap; padding: 14px 0; row-gap: 12px; }
+      .nav { width: 100%; flex-wrap: wrap; justify-content: flex-start; gap: 10px 18px; }
+      .nav a:not(.pill) { display: inline-flex; min-height: 36px; align-items: center; }
+      .nav .pill { margin-left: auto; }
+      .ticker-inner { justify-content: center; }
+    }
+    @media (max-width: 460px) {
+      .topbar { align-items: flex-start; }
+      .nav { gap: 8px 12px; }
+      .nav a:not(.pill) { font-size: 12px; }
+      .nav .pill { margin-left: 0; }
+      .actions .button { width: 100%; }
+      .sticker-one { left: -2px; }
+      .sticker-two { right: -2px; }
+      .ticker-inner { justify-content: flex-start; gap: 8px 16px; }
+      .ticker-inner span { font-size: 10px; }
+      .about { padding: 20px; }
+      .media-band { padding: 20px; }
+    }
+
+  </style>
 </head>
 <body>
   <header class="shell topbar" id="top">
     <a class="brand" href="#top" aria-label="Kiwiii.Stream home">
-      <span class="brand-mark" aria-hidden="true">🌱</span>
-      <span class="brand-name">Kiwiii<span>.Stream</span></span>
+      <img class="brand-logo" src="/assets/kiwiii-logo.svg" alt="Kiwiii.Stream" width="190" height="66">
     </a>
     <nav class="nav" aria-label="Main navigation">
       <a href="#services">My services</a>
-      <a href="#about">A little about me</a>
+      <a href="#about">About</a>
+      <a href="#blog">Blog</a>
       <a class="pill" href="https://jellyfin.kiwiii.stream">Media sign in <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
@@ -237,30 +290,36 @@
   <main>
     <section class="shell hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">◈ BOOTING UP A GREENER INTERNET</p>
-        <h1>Good tech.<br>Green future.<br><em>Little joys.</em></h1>
-        <p>A tiny eco-friendly corner of the web: thoughtful tech, happy pets, thriving plants, and small ideas that make everyday life work a little better.</p>
+        <p class="eyebrow">KIWIII.STREAM · PERSONAL SITE</p>
+        <h1>Technology,<br>nature &amp;<br><em>curiosity.</em></h1>
+        <p>A personal space for practical technology, creative projects, ideas in progress and the everyday details that make life interesting.</p>
         <div class="actions">
           <a class="button" href="#services">Have a little look <span aria-hidden="true">↘</span></a>
-          <a class="button secondary" href="https://jellyfin.kiwiii.stream">🎬 Enter the media nook</a>
+          <a class="button secondary" href="https://jellyfin.kiwiii.stream">Media corner</a>
         </div>
-        <p class="tiny-note">SYSTEM STATUS: curious · kind · powered by plants 🪴</p>
+        <p class="tiny-note">Independent projects, thoughtful notes and a work in progress.</p>
       </div>
-      <div class="hero-art" aria-label="A leafy houseplant illustration">
+      <div class="hero-art" role="img" aria-label="Abstract botanical artwork in layered green tones">
         <div class="art-blob" aria-hidden="true"></div>
         <span class="sprout" aria-hidden="true">✳</span>
-        <img class="plant-photo" src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1000&q=85" alt="A lush green houseplant in a pot">
-        <div class="sticker sticker-one">hello,<br>plant pal! 🌱</div>
+        <div class="botanical-art" aria-hidden="true">
+          <span class="botanical-stem"></span>
+          <span class="botanical-leaf leaf-a"></span>
+          <span class="botanical-leaf leaf-b"></span>
+          <span class="botanical-leaf leaf-c"></span>
+          <span class="botanical-leaf leaf-d"></span>
+          <span class="botanical-caption">Rooted in curiosity</span>
+        </div>
         <div class="sticker sticker-two"><span>🐾</span> Kind care for<br>your little pals</div>
       </div>
     </section>
 
     <div class="ticker" aria-label="Things that make this corner of the internet">
       <div class="shell ticker-inner">
-        <span>GROW MORE GREEN <b>✳</b></span>
-        <span>CARE FOR CREATURES <b>✳</b></span>
-        <span>TECH WITH PURPOSE <b>✳</b></span>
-        <span>A BETTER LITTLE WORLD <b>✳</b></span>
+        <span>TECHNOLOGY <b>✳</b></span>
+        <span>NATURE <b>✳</b></span>
+        <span>PERSONAL PROJECTS <b>✳</b></span>
+        <span>NOTES &amp; IDEAS <b>✳</b></span>
       </div>
     </div>
 
@@ -294,6 +353,13 @@
       </div>
     </section>
 
+
+    <section class="shell section blog-section" id="blog" aria-labelledby="blog-title">
+      <div class="section-heading"><div><p class="kicker">From the notebook</p><h2 id="blog-title">Latest writing.</h2></div><p class="section-intro">A separate stream of thoughts, experiments, lessons and things worth writing down.</p></div>
+      <article class="latest-post" aria-live="polite"><div class="latest-post-copy"><p class="post-meta" id="post-meta">KIWIII NOTES</p><h3 id="post-title">The blog is taking shape</h3><p id="post-excerpt">The latest post will appear here automatically when the blog publishes its feed.</p><a class="card-link" id="post-link" href="https://blog.kiwiii.stream/">Explore the blog <span aria-hidden="true">↗</span></a></div><div class="latest-post-mark" aria-hidden="true">K.</div></article>
+      <p class="blog-all"><a class="button secondary" href="https://blog.kiwiii.stream/">Visit the blog <span aria-hidden="true">↗</span></a></p>
+    </section>
+
     <section class="shell section" id="about" aria-labelledby="about-title">
       <div class="about">
         <div class="about-art" aria-hidden="true">
@@ -314,9 +380,9 @@
         <div>
           <p class="media-label">🍿 Your cosy corner for watching</p>
           <h3 id="media-title">Your personal media bay</h3>
-          <p>Your home media system is ready when you are. Open Jellyfin and sign in with your usual account.</p>
+          <p>Your home media system is ready when you are. Sign in with your usual account.</p>
         </div>
-        <a class="button" href="https://jellyfin.kiwiii.stream">Go to Jellyfin <span aria-hidden="true">↗</span></a>
+        <a class="button" href="https://jellyfin.kiwiii.stream">Open media <span aria-hidden="true">↗</span></a>
       </div>
     </section>
 
@@ -330,16 +396,32 @@
 
   <footer>
     <div class="shell footer-inner">
-      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">🌱</span><span class="brand-name">Kiwiii<span>.Stream</span></span></a>
+      <a class="brand" href="#top" aria-label="Kiwiii.Stream home"><img class="brand-logo footer-brand-logo" src="/assets/kiwiii-logo.svg" alt="Kiwiii.Stream" width="170" height="54"></a>
       <span>A little corner of the internet, grown with care. © <span id="year">2026</span></span>
       <div class="footer-links">
         <a href="#services">Services</a>
-        <a href="https://jellyfin.kiwiii.stream">Jellyfin</a>
+        <a href="#blog">Blog</a>
+        <a href="https://blog.kiwiii.stream/">Writing</a>
+        <a href="https://jellyfin.kiwiii.stream">Media</a>
       </div>
     </div>
   </footer>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    fetch('https://blog.kiwiii.stream/feed.json', { headers: { Accept: 'application/json' } })
+      .then(response => { if (!response.ok) throw new Error('Blog feed unavailable'); return response.json(); })
+      .then(feed => {
+        const posts = Array.isArray(feed.posts) ? feed.posts : [];
+        const latest = posts.filter(post => post && post.published !== false && post.url && post.title)
+          .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))[0];
+        if (!latest) return;
+        document.getElementById('post-title').textContent = latest.title;
+        document.getElementById('post-excerpt').textContent = latest.excerpt || 'Read the latest note from Kiwiii.';
+        document.getElementById('post-link').href = latest.url;
+        document.getElementById('post-link').innerHTML = 'Read article <span aria-hidden="true">↗</span>';
+        const date = latest.date ? new Date(latest.date) : null;
+        document.getElementById('post-meta').textContent = date && !Number.isNaN(date.getTime()) ? 'LATEST NOTE · ' + new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(date) : 'LATEST NOTE';
+      }).catch(() => {});
   </script>
 </body>
 </html>

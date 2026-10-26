@@ -1,0 +1,5 @@
+/feed.json
+  Access-Control-Allow-Origin: https://kiwiii.stream
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  Access-Control-Allow-Headers: Content-Type
+
