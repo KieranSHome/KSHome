@@ -20,7 +20,7 @@ published: true
 ---
 ```
 
-Use `published: false` for drafts. The generator includes only published posts.
+Use `published: false` for drafts. The generator includes only posts explicitly marked `published: true`. The repository is public, so this hides drafts from the website but not from GitHub; keep sensitive or private drafts outside this repository.
 
 ## Media in posts
 
