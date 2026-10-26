@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="A transparent, privacy-conscious record of a debt-free journey, built around real figures and steady progress.">
+  <title>Kiwiii.Broke — Kiwiii.Stream</title>
+  <link rel="icon" type="image/png" href="https://kiwiii.stream/assets/Kiwiii%20Broke%20Neon%20Bird%20Logo.png">
+  <link rel="stylesheet" href="https://kiwiii.stream/brand.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="https://kiwiii.stream/" aria-label="Kiwiii.Broke home">
+        <img class="site-logo" src="/assets/Kiwiii%20Broke%20Neon%20Bird%20Logo.png" alt="Kiwiii.Broke" width="190" height="66">
+        
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="https://kiwiii.stream/">Home</a>
+        <a href="https://blog.kiwiii.stream/">Blog</a>
+        <a href="#dashboard" aria-current="page">Broke</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell">
+    <section class="hero broke-hero">
+      <p class="eyebrow">Personal finance · public accountability</p>
+      <h1>Getting out of debt, one real number at a time.</h1>
+      <p class="hero-copy">A clear, honest record of the journey: the overall picture, the cost of running a life, and what is realistically available to repay. No miracle claims. No private creditor details.</p>
+      <div class="status-line"><span class="status-dot" aria-hidden="true"></span><span id="data-status" role="status">Public figures have not been published yet.</span></div>
+    </section>
+
+    <section id="dashboard" class="section-block" aria-labelledby="overview-title">
+      <div class="section-heading">
+        <p class="eyebrow">The overview</p>
+        <h2 id="overview-title">The numbers that matter</h2>
+        <p>Only approved aggregate figures belong here. Until a reviewed export is available, values remain unpublished rather than estimated.</p>
+      </div>
+      <div class="metric-grid" aria-live="polite">
+        <article class="panel metric-card">
+          <p class="metric-label">Total debt</p>
+          <p class="metric-value" id="total-debt">Not published</p>
+          <p class="metric-note">Combined balance only; no creditor names or account details.</p>
+        </article>
+        <article class="panel metric-card">
+          <p class="metric-label">Monthly income</p>
+          <p class="metric-value" id="monthly-income">Not published</p>
+          <p class="metric-note">Aggregate income for the reporting period.</p>
+        </article>
+        <article class="panel metric-card">
+          <p class="metric-label">Essential costs</p>
+          <p class="metric-value" id="essential-costs">Not published</p>
+          <p class="metric-note">Core living and operating expenses.</p>
+        </article>
+        <article class="panel metric-card">
+          <p class="metric-label">Repayment capacity</p>
+          <p class="metric-value" id="repayment-capacity">Not published</p>
+          <p class="metric-note">Income remaining after essentials and required commitments.</p>
+        </article>
+      </div>
+      <p class="data-footnote" id="reporting-period">Reporting period: not published.</p>
+    </section>
+
+    <section class="section-block" aria-labelledby="trajectory-title">
+      <div class="section-heading">
+        <p class="eyebrow">Progress over time</p>
+        <h2 id="trajectory-title">The trajectory</h2>
+        <p>Progress will be shown only when dated, reviewed figures are available. No projected debt-free date will be invented.</p>
+      </div>
+      <div class="panel trajectory-panel" id="trajectory-panel">
+        <p class="empty-state" id="trajectory-empty">A verified history has not been published yet.</p>
+        <ol class="trajectory-list" id="trajectory-list" hidden></ol>
+      </div>
+    </section>
+
+    <section class="section-block story-grid" aria-labelledby="approach-title">
+      <div>
+        <p class="eyebrow">The approach</p>
+        <h2 id="approach-title">Honesty over hype</h2>
+      </div>
+      <div class="story-copy">
+        <p>This is a working record of improving financial stability, not financial advice and not a promise of a particular outcome.</p>
+        <ul>
+          <li>Use actual figures from reviewed records.</li>
+          <li>Separate essential living costs from debt repayments.</li>
+          <li>Show changes over time only when the underlying periods are comparable.</li>
+          <li>Explain setbacks and uncertainty instead of hiding them.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-block privacy-panel panel" aria-labelledby="privacy-title">
+      <p class="eyebrow">Privacy by design</p>
+      <h2 id="privacy-title">A public summary, not a public ledger</h2>
+      <p>This site is designed to publish totals and trends only. It must not contain creditor names, account or reference numbers, addresses, identity documents, bank statements, the private workbook, or raw transaction-level records.</p>
+      <p class="last-updated" id="last-updated">Last reviewed: not published.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Broke · part of <a href="https://kiwiii.stream/">Kiwiii.Stream</a></p>
+    <p>Figures are informational and reflect only the reporting data explicitly published here.</p>
+  </footer>
+</body>
+</html>
