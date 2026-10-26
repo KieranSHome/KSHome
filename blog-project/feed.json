@@ -1,5 +1,13 @@
 {
   "title": "Kiwiii notes",
   "home": "https://blog.kiwiii.stream/",
-  "posts": []
+  "posts": [
+    {
+      "title": "A place for the things in between",
+      "date": "2026-10-26",
+      "excerpt": "A starting point for notes on technology, nature, projects and the ideas that connect them.",
+      "url": "https://blog.kiwiii.stream/posts/hello-world.html",
+      "published": true
+    }
+  ]
 }
