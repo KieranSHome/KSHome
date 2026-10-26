@@ -112,7 +112,7 @@
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 11px; }
     .footer-inner .brand { color: var(--ink); font-size: 17px; }
     .footer-inner .brand-mark { width: 28px; height: 28px; border-radius: 10px 10px 10px 3px; font-size: 17px; }
-    .brand-logo { display:block; width:190px; height:auto; max-height:66px; object-fit:contain; object-position:left center; }
+    .brand-logo { display:block; width:230px; height:auto; max-height:72px; object-fit:contain; object-position:left center; }\n    .footer-brand-logo { width:170px; max-height:54px; }
     .blog-section { padding-top:35px; }
     .latest-post { display:grid; grid-template-columns:1fr 130px; align-items:center; gap:24px; padding:30px; border:1px solid #456158; border-radius:16px 16px 16px 4px; background:linear-gradient(120deg,#1b2d2a,#142522); }
     .post-meta { margin-bottom:12px; color:var(--lime); font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase; }
@@ -120,7 +120,7 @@
     .latest-post p:not(.post-meta) { max-width:650px; margin-bottom:18px; color:var(--muted); font-size:14px; line-height:1.8; }
     .latest-post-mark { display:grid; place-items:center; width:120px; height:120px; border:1px solid #73905d; border-radius:50% 50% 50% 10%; background:#203b34; color:var(--lime); font:900 48px var(--display); }
     .blog-all { margin:20px 0 0; }
-    @media (max-width:460px) { .brand-logo { width:160px; max-height:56px; } .latest-post { grid-template-columns:1fr; padding:22px; } .latest-post-mark { display:none; } }
+    @media (max-width:460px) { .brand-logo { width:175px; max-height:58px; } .footer-brand-logo { width:150px; max-height:48px; } .latest-post { grid-template-columns:1fr; padding:22px; } .latest-post-mark { display:none; } }
     .footer-links { display: flex; gap: 17px; }
     .footer-links a:hover { color: var(--leaf); }
     @media (max-width: 850px) {
@@ -394,7 +394,7 @@
 
   <footer>
     <div class="shell footer-inner">
-      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">🌱</span><span class="brand-name">Kiwiii<span>.Stream</span></span></a>
+      <a class="brand" href="#top" aria-label="Kiwiii.Stream home"><img class="brand-logo footer-brand-logo" src="/assets/kiwiii-logo.svg" alt="Kiwiii.Stream" width="170" height="54"></a>
       <span>A little corner of the internet, grown with care. © <span id="year">2026</span></span>
       <div class="footer-links">
         <a href="#services">Services</a>
