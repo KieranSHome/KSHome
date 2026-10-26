@@ -12,9 +12,9 @@ The public website is maintained and deployed from this repository, `KieranSHome
 
 ## Blog workflow
 
-Add or edit Markdown files in `blog-project/posts/`. Set `published: true` to include a post in the public build; keep drafts at `published: false`. The GitHub Pages workflow runs `python3 blog-project/build.py`, which generates the blog under `/blog/`, including article pages and `/blog/feed.json`.
+Add or edit Markdown files in `blog-project/posts/`. Set `published: true` to include a post in the public build; keep drafts at `published: false`. The Cloudflare Pages build runs `python3 blog-project/build.py`, which generates the blog under `/blog/`, including article pages and `/blog/feed.json`.
 
-The former `KieranSHome/Blog` repository is retained as a non-destructive archive while the consolidated deployment is verified. Do not delete it until the new route and published posts have been checked in production.
+The canonical blog address is `https://kiwiii.stream/blog/`. The former `KieranSHome/Blog` repository remains as a non-destructive archive; the active blog source is `KieranSHome/KSHome/blog-project/`.
 
 ## Broke privacy rules
 
@@ -22,7 +22,7 @@ Only reviewed aggregate figures may be published. Never copy the private workboo
 
 ## Production boundaries
 
-- The website and its static pages deploy through GitHub Pages from this repository.
+- The custom domain website deploys through Cloudflare Pages from this repository. Its build command is `python3 blog-project/build.py`, and its output directory is `.`.
 - Jellyfin and Caddy remain separate services; this repository must not change their server configuration.
 - DNS and domain routing changes are separate from repository changes.
 - Do not add secrets, private financial records, or generated private exports.
