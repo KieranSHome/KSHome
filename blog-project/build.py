@@ -47,14 +47,101 @@ def read_post(path):
     }
 
 
+def inline_markdown(text):
+    """Render common inline Markdown without allowing unsafe link schemes."""
+    text = escape(text, quote=False)
+    code = []
+    def hold_code(match):
+        code.append("<code>" + match.group(1) + "</code>")
+        return f"\x00CODE{len(code) - 1}\x00"
+    text = re.sub(r"`([^`]+)`", hold_code, text)
+    def link(match):
+        label, url = match.group(1), match.group(2).strip()
+        if url.startswith("//") or (re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:", url) and not url.lower().startswith(("https:", "http:", "mailto:"))):
+            return label
+        return f'<a href="{escape(url, quote=True)}">{label}</a>'
+    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", link, text)
+    text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
+    text = re.sub(r"(?<!\*)\*([^*\n]+)\*(?!\*)", r"<em>\1</em>", text)
+    for index, fragment in enumerate(code):
+        text = text.replace(f"\x00CODE{index}\x00", fragment)
+    return text
+
+
+def render_markdown(source):
+    """Render headings, paragraphs, unordered/ordered lists, quotes and code."""
+    lines = source.splitlines()
+    out, paragraph, list_kind, code_lines = [], [], None, []
+    in_code = False
+
+    def flush_paragraph():
+        if paragraph:
+            out.append("<p>" + "<br>\n".join(inline_markdown(line) for line in paragraph) + "</p>")
+            paragraph.clear()
+
+    def close_list():
+        nonlocal list_kind
+        if list_kind:
+            out.append(f"</{list_kind}>")
+            list_kind = None
+
+    for line in lines:
+        if line.strip().startswith("```"):
+            flush_paragraph()
+            close_list()
+            if in_code:
+                out.append("<pre><code>" + escape("\n".join(code_lines)) + "</code></pre>")
+                code_lines.clear()
+                in_code = False
+            else:
+                in_code = True
+            continue
+        if in_code:
+            code_lines.append(line)
+            continue
+        if not line.strip():
+            flush_paragraph()
+            close_list()
+            continue
+        heading = re.match(r"^(#{1,4})\s+(.+)$", line)
+        if heading:
+            flush_paragraph()
+            close_list()
+            level = len(heading.group(1))
+            out.append(f"<h{level}>" + inline_markdown(heading.group(2)) + f"</h{level}>")
+            continue
+        if re.match(r"^\s*(---+|\*\*\*+|___+)\s*$", line):
+            flush_paragraph()
+            close_list()
+            out.append("<hr>")
+            continue
+        quote = re.match(r"^\s*>\s?(.*)$", line)
+        if quote:
+            flush_paragraph()
+            close_list()
+            out.append("<blockquote><p>" + inline_markdown(quote.group(1)) + "</p></blockquote>")
+            continue
+        item = re.match(r"^\s*([-*+]\s+|\d+[.)]\s+)(.+)$", line)
+        if item:
+            flush_paragraph()
+            wanted = "ol" if item.group(1).strip()[0].isdigit() else "ul"
+            if list_kind != wanted:
+                close_list()
+                out.append(f"<{wanted}>")
+                list_kind = wanted
+            out.append("<li>" + inline_markdown(item.group(2)) + "</li>")
+            continue
+        close_list()
+        paragraph.append(line.strip())
+    if in_code:
+        out.append("<pre><code>" + escape("\n".join(code_lines)) + "</code></pre>")
+    flush_paragraph()
+    close_list()
+    return "\n".join(out)
+
+
 def render_article(post):
-    paragraphs = [p.strip() for p in post["body"].split("\n\n") if p.strip()]
-    rendered = []
-    for paragraph in paragraphs:
-        if paragraph.startswith("## "):
-            rendered.append("<h2>" + escape(paragraph[3:]) + "</h2>")
-        else:
-            rendered.append("<p>" + escape(paragraph).replace("\n", "<br>") + "</p>")
+    rendered = render_markdown(post["body"])
     page = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="{excerpt}"><meta name="theme-color" content="#101b1b">
