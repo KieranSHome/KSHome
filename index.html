@@ -73,8 +73,11 @@
     .sticker-two span { font-size: 25px; }
     .sprout { position: absolute; top: 3px; right: 10px; color: var(--leaf); font-size: 42px; transform: rotate(18deg); }
     .ticker { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #e9eedf; }
-    .ticker-inner { min-height: 59px; display: flex; align-items: center; justify-content: space-around; gap: 20px; color: var(--leaf-dark); font: 800 12px var(--display); }
+    .ticker-inner { width: max-content; min-width: 100%; min-height: 59px; display: flex; align-items: center; justify-content: flex-start; gap: 34px; padding: 0 24px; color: var(--leaf-dark); font: 800 12px var(--display); animation: ticker-scroll 24s linear infinite; }
+    .ticker:hover .ticker-inner, .ticker:focus-within .ticker-inner { animation-play-state: paused; }
+    .ticker-group { display: flex; align-items: center; gap: 34px; flex: 0 0 auto; }
     .ticker span { white-space: nowrap; }
+    @keyframes ticker-scroll { to { transform: translateX(-50%); } }
     .ticker b { padding-left: 17px; color: #8da45b; font-size: 18px; }
     .section { padding: 92px 0; }
     .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 34px; }
@@ -160,6 +163,8 @@
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      .ticker-inner { animation: none; width: 100%; min-width: 0; flex-wrap: wrap; justify-content: center; }
+      .ticker-group[aria-hidden="true"] { display: none; }
     }
 
     /* Kiwiii.Stream: optimistic eco-tech, little robot / ship-console energy */
@@ -318,11 +323,19 @@
     </section>
 
     <div class="ticker" aria-label="Things that make this corner of the internet">
-      <div class="shell ticker-inner">
-        <span>TECHNOLOGY <b>✳</b></span>
-        <span>NATURE <b>✳</b></span>
-        <span>PERSONAL PROJECTS <b>✳</b></span>
-        <span>NOTES &amp; IDEAS <b>✳</b></span>
+      <div class="ticker-inner">
+        <div class="ticker-group">
+          <span>TECHNOLOGY <b>✳</b></span>
+          <span>NATURE <b>✳</b></span>
+          <span>PERSONAL PROJECTS <b>✳</b></span>
+          <span>NOTES &amp; IDEAS <b>✳</b></span>
+        </div>
+        <div class="ticker-group" aria-hidden="true">
+          <span>TECHNOLOGY <b>✳</b></span>
+          <span>NATURE <b>✳</b></span>
+          <span>PERSONAL PROJECTS <b>✳</b></span>
+          <span>NOTES &amp; IDEAS <b>✳</b></span>
+        </div>
       </div>
     </div>
 
