@@ -1,10 +1,10 @@
-# Kiwiii.Blog
+# Kiwiii.Stream Blog
 
-Kiwiii.Blog is the static blog for [kiwiii.stream/blog](https://kiwiii.stream/blog), designed as a companion to [Kiwiii.Stream](https://kiwiii.stream).
+The blog is published at [kiwiii.stream/blog](https://kiwiii.stream/blog/) as part of the main Kiwiii.Stream site.
 
-## Visual direction
+## Design
 
-Botanical eco-tech meets a friendly sci-fi command console: deep teal surfaces, leaf green and warm lime accents, quiet dotted texture, rounded panels, accessible contrast, responsive layout, and restrained motion. The header and favicon use the approved artwork at `https://kiwiii.stream/assets/Kiwiii%20Blog%20Kiwi%20Emblem%20Logo.png`.
+Botanical eco-tech meets a friendly sci-fi command console. The shared design system is `/brand.css`; the Blog uses the approved asset `assets/Kiwiii Blog Kiwi Emblem Logo.png`.
 
 ## Write a post
 
@@ -20,18 +20,18 @@ published: true
 ---
 ```
 
-Use `published: false` for a draft. Categories are optional and can be comma-separated. The builder supports headings, paragraphs, links, bold and italic text, quotes, lists, horizontal rules, inline code and fenced code blocks.
+Use `published: false` for drafts. The generator includes only published posts.
 
-Build from this directory:
+## Build and deploy
 
-```bash
-python3 build.py
+From the repository root:
+
+```powershell
+python blog-project/build.py
 ```
 
-This regenerates `index.html`, individual `posts/*.html` pages and `feed.json`. Only Python's standard library is required.
+The script reads Markdown from `blog-project/posts/` and generates the website under the root `blog/` directory. GitHub Actions runs this build before publishing the complete KSHome repository to GitHub Pages. The feed is available at `/blog/feed.json`.
 
-## Deployment
+The separate `KieranSHome/Blog` repository is being retained as an archive until the consolidated deployment has been verified. Make future blog changes in `KieranSHome/KSHome/blog-project/`.
 
-The blog source lives in `blog-project/`. The GitHub Pages workflow runs `python3 blog-project/build.py` and publishes the generated site at `/blog/` alongside the main site. The feed is served at `/blog/feed.json` on the same origin, so no cross-origin request is required.
-
-This migration changes repository files and GitHub Pages build steps only. It does not change DNS, Cloudflare routing, or Jellyfin settings.
+This migration does not change DNS, Cloudflare routing, Jellyfin, or Caddy configuration.
