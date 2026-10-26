@@ -1,11 +1,10 @@
 # Kiwiii website logos
 
-Store the logo image files used across the Kiwiii websites in this folder.
+Store the approved logo artwork used across the Kiwiii websites in this folder.
 
-Planned files:
-- `kiwiii-home.svg` (added) — main Kiwiii.Stream homepage
-- `kiwiii-stream.svg` — Kiwiii Stream page branding
-- `kiwiii-broke.svg` — Broke debt-free dashboard
-- `kiwiii-blog.svg` — Kiwiii Blog
+- `Kiwiii Home Green Tech Logo.png` — approved Home logo; used for the Kiwiii.Stream homepage favicon, header and footer.
+- `kiwiii-stream.svg` — planned Stream branding.
+- `kiwiii-broke.svg` — planned Broke debt-free dashboard branding.
+- `kiwiii-blog.svg` — planned Kiwiii Blog branding.
 
-Use lowercase filenames and prefer scalable SVG logos with transparent backgrounds where practical. Update each page's image references when a logo is added or replaced.
+Use the approved artwork rather than substituting a newly drawn version. Keep filenames consistent and update all page references when a logo is added or replaced.
