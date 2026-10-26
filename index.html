@@ -458,19 +458,35 @@
         .then(() => setServiceStatus('jellyfin', true))
         .catch(() => setServiceStatus('jellyfin', false));
     }, 60000);
-    fetch('https://blog.kiwiii.stream/feed.json', { headers: { Accept: 'application/json' } })
+    // Show the current first post immediately; refresh from the public feed when available.
+    const postTitle = document.getElementById('post-title');
+    const postExcerpt = document.getElementById('post-excerpt');
+    const postLink = document.getElementById('post-link');
+    const postMeta = document.getElementById('post-meta');
+    function renderLatestPost(latest) {
+      if (!latest || !latest.title || !latest.url) return;
+      postTitle.textContent = latest.title;
+      postExcerpt.textContent = latest.excerpt || 'Read the latest note from Kiwiii.';
+      postLink.href = latest.url;
+      postLink.innerHTML = 'Read article <span aria-hidden="true">↗</span>';
+      const date = latest.date ? new Date(latest.date) : null;
+      postMeta.textContent = date && !Number.isNaN(date.getTime())
+        ? 'LATEST NOTE · ' + new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(date)
+        : 'LATEST NOTE';
+    }
+    renderLatestPost({
+      title: 'A place for the things in between',
+      date: '2026-10-26',
+      excerpt: 'A starting point for notes on technology, nature, projects and the ideas that connect them.',
+      url: 'https://blog.kiwiii.stream/posts/hello-world.html'
+    });
+    fetch('https://blog.kiwiii.stream/feed.json', { headers: { Accept: 'application/json' }, cache: 'no-store' })
       .then(response => { if (!response.ok) throw new Error('Blog feed unavailable'); return response.json(); })
       .then(feed => {
         const posts = Array.isArray(feed.posts) ? feed.posts : [];
         const latest = posts.filter(post => post && post.published !== false && post.url && post.title)
           .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))[0];
-        if (!latest) return;
-        document.getElementById('post-title').textContent = latest.title;
-        document.getElementById('post-excerpt').textContent = latest.excerpt || 'Read the latest note from Kiwiii.';
-        document.getElementById('post-link').href = latest.url;
-        document.getElementById('post-link').innerHTML = 'Read article <span aria-hidden="true">↗</span>';
-        const date = latest.date ? new Date(latest.date) : null;
-        document.getElementById('post-meta').textContent = date && !Number.isNaN(date.getTime()) ? 'LATEST NOTE · ' + new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(date) : 'LATEST NOTE';
+        if (latest) renderLatestPost(latest);
       }).catch(() => {});
   </script>
 </body>
