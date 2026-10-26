@@ -3,7 +3,7 @@
 The public site has these destinations:
 
 - **Home:** `index.html` (the single-page homepage).
-- **Blog:** [blog.kiwiii.stream](https://blog.kiwiii.stream/), generated from Markdown posts in `blog-project/posts/`.
+- **Blog:** [blog.kiwiii.stream](https://blog.kiwiii.stream/), published from the separate `KieranSHome/Blog` repository through Cloudflare Pages.
 - **Jellyfin:** [jellyfin.kiwiii.stream](https://jellyfin.kiwiii.stream), the external media service.
 - **Projects:** `/Projects/`, the project portfolio page.
 - **Broke:** `/broke/`, the debt dashboard.
@@ -12,7 +12,7 @@ The homepage contains sections such as Services and About. Blog and Jellyfin are
 
 ## Blog source
 
-Edit Markdown posts in `blog-project/posts/` and use `blog-project/build.py` to build the blog output. The homepage reads the blog's `feed.json` to display the latest post.
+The canonical blog source is the separate [`KieranSHome/Blog`](https://github.com/KieranSHome/Blog) repository. Its `build.py` generates the Cloudflare Pages site in `dist/`. The `blog-project/` directory in this repository is a legacy copy and should not be treated as the live deployment source. Keep the homepage's latest-post feed integration aligned with the canonical blog when publishing new posts.
 
 ## Production safety
 
