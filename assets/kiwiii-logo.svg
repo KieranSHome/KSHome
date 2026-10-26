@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 190" role="img" aria-labelledby="title">
+<title id="title">Kiwiii.Stream</title>
+<defs><linearGradient id="kiwiii-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b25ff"/><stop offset=".48" stop-color="#328dff"/><stop offset="1" stop-color="#00e5df"/></linearGradient></defs>
+<g fill="none" stroke="url(#kiwiii-gradient)" stroke-width="27" stroke-linecap="round" stroke-linejoin="round">
+<path d="M86 145 25 115 75 35 Q89 15 108 34 L173 120 Q184 137 166 147 L86 174 Q63 180 49 161 L27 132"/>
+<path d="M76 133 98 93 Q105 79 119 89 L146 112"/>
+</g>
+<circle cx="125" cy="80" r="6" fill="#00e5df"/>
+<text x="210" y="132" fill="#edf5df" font-family="Arial,Helvetica,sans-serif" font-size="100" font-weight="800" letter-spacing="-5">Kiwiii</text>
+<text x="488" y="132" fill="#9bd36a" font-family="Arial,Helvetica,sans-serif" font-size="42" font-weight="700">.Stream</text>
+</svg>
