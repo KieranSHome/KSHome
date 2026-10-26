@@ -3,7 +3,7 @@
 The public site has these destinations:
 
 - **Home:** `index.html` (the single-page homepage).
-- **Blog:** [blog.kiwiii.stream](https://blog.kiwiii.stream/), published from the separate `KieranSHome/Blog` repository through Cloudflare Pages.
+- **Blog:** [kiwiii.stream/blog](https://kiwiii.stream/blog/), published from the separate `KieranSHome/Blog` repository through Cloudflare Pages.
 - **Jellyfin:** [jellyfin.kiwiii.stream](https://jellyfin.kiwiii.stream), the external media service.
 - **Projects:** `/Projects/`, the project portfolio page.
 - **Broke:** `/broke/`, the debt dashboard.
@@ -12,7 +12,7 @@ The homepage contains sections such as Services and About. Blog and Jellyfin are
 
 ## Blog source
 
-The canonical blog source is the separate [`KieranSHome/Blog`](https://github.com/KieranSHome/Blog) repository. Its `build.py` generates the Cloudflare Pages site in `dist/`. The `blog-project/` directory in this repository is a legacy copy and should not be treated as the live deployment source. Keep the homepage's latest-post feed integration aligned with the canonical blog when publishing new posts.
+The consolidated blog source is `blog-project/` in this repository. Its `build.py` generates the site under `/blog/` during the GitHub Pages workflow. The former `KieranSHome/Blog` repository is retained as a non-destructive archive until migration verification is complete. Do not delete the old Blog repository until the consolidated site has been verified. Keep the homepage's latest-post feed integration aligned with the canonical blog when publishing new posts.
 
 ## Production safety
 
