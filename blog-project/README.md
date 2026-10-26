@@ -1,6 +1,6 @@
 # Kiwiii.Blog
 
-Kiwiii.Blog is the static blog for [blog.kiwiii.stream](https://blog.kiwiii.stream), designed as a companion to [Kiwiii.Stream](https://kiwiii.stream).
+Kiwiii.Blog is the static blog for [kiwiii.stream/blog](https://kiwiii.stream/blog), designed as a companion to [Kiwiii.Stream](https://kiwiii.stream).
 
 ## Visual direction
 
@@ -32,6 +32,6 @@ This regenerates `index.html`, individual `posts/*.html` pages and `feed.json`. 
 
 ## Deployment
 
-The blog source lives in this repository's `blog-project/` directory. Configure the static host for `blog.kiwiii.stream` to use that directory as its project/root directory and run `python3 build.py` as its build command (or commit generated output). Ensure `feed.json` is served over HTTPS and allows cross-origin requests from `https://kiwiii.stream` so the main site can show the latest post.
+The blog source lives in `blog-project/`. The GitHub Pages workflow runs `python3 blog-project/build.py` and publishes the generated site at `/blog/` alongside the main site. The feed is served at `/blog/feed.json` on the same origin, so no cross-origin request is required.
 
-This work changes repository files only. It does not change DNS, Cloudflare, domain routing, or Jellyfin settings.
+This migration changes repository files and GitHub Pages build steps only. It does not change DNS, Cloudflare routing, or Jellyfin settings.
