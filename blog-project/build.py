@@ -4,6 +4,7 @@ from datetime import date
 from html import escape
 import json
 from pathlib import Path
+from urllib.parse import parse_qs, urlparse
 import re
 
 ROOT = Path(__file__).resolve().parent
@@ -55,6 +56,11 @@ article.prose{padding:clamp(8px,2vw,20px) 0;color:var(--muted);font-size:1.06rem
 .prose code{padding:2px 5px;border-radius:4px;background:#0c1515;color:#d8e8bd;font-size:.9em}
 .prose pre{padding:18px;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#0c1515;color:var(--ink)}
 .prose pre code{padding:0}.prose hr{border:0;border-top:1px solid var(--line);margin:2.5em 0}
+.prose .article-image{display:block;max-width:100%;height:auto;margin:1.5rem auto;border:1px solid var(--line);border-radius:12px}
+.prose .video-embed{position:relative;width:100%;aspect-ratio:16/9;margin:1.5rem 0;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#0c1515}
+.prose .video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.prose .social-card{display:block;margin:1.5rem 0;padding:16px 20px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(145deg,#1b2d2a,#152321);text-decoration:none}
+.prose .social-card strong{display:block;color:var(--ink)}.prose .social-card span{display:block;color:var(--muted);font-size:.9rem;overflow-wrap:anywhere}
 footer{border-top:1px solid var(--line);padding:26px 0 34px;color:var(--muted);font-size:.85rem}
 .footer-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}.footer-links{display:flex;gap:18px}.footer-links a{text-decoration:none}
 @media(max-width:680px){.topbar{align-items:flex-start;flex-direction:column;padding:15px 0;gap:12px}.nav{width:100%;flex-wrap:wrap;gap:10px 18px}.post-list{grid-template-columns:1fr}.section-title{align-items:flex-start;flex-direction:column}.hero{padding:24px}.footer-inner{align-items:flex-start;flex-direction:column}}
@@ -98,12 +104,38 @@ def inline_markdown(text):
         if url.startswith("//") or (re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:",url) and not url.lower().startswith(("https:","http:","mailto:"))):
             return label
         return f'<a href="{escape(url,quote=True)}">{label}</a>'
+    def image(match):
+        alt, url = match.group(1), match.group(2).strip()
+        if url.startswith("//") or (re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:",url) and not url.lower().startswith(("https:","http:"))):
+            return escape(alt)
+        return f'<img class="article-image" src="{escape(url,quote=True)}" alt="{escape(alt,quote=True)}" loading="lazy" decoding="async">'
+    text = re.sub(r"!\[([^\]]*)\]\(([^)]+)\)",image,text)
     text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)",link,text)
     text = re.sub(r"\*\*(.+?)\*\*",r"<strong>\1</strong>",text)
     text = re.sub(r"(?<!\*)\*([^*\n]+)\*(?!\*)",r"<em>\1</em>",text)
     for i, fragment in enumerate(codes):
         text = text.replace(f"\x00CODE{i}\x00",fragment)
     return text
+
+def youtube_embed(url):
+    parsed = urlparse(url)
+    host = (parsed.hostname or "").lower()
+    video_id = ""
+    if host in {"youtu.be", "www.youtu.be"}:
+        video_id = parsed.path.strip("/").split("/")[0]
+    elif host in {"youtube.com", "www.youtube.com", "m.youtube.com"}:
+        if parsed.path == "/watch":
+            video_id = parse_qs(parsed.query).get("v", [""])[0]
+        else:
+            match = re.match(r"^/(?:embed|shorts)/([A-Za-z0-9_-]+)", parsed.path)
+            video_id = match.group(1) if match else ""
+    if not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
+        return None
+    return (f'<div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/{video_id}" '
+            'title="YouTube video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" '
+            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" '
+            'allowfullscreen></iframe></div>')
+
 
 def render_markdown(source):
     lines=source.splitlines(); out=[]; paragraph=[]; list_kind=None; code_lines=[]; in_code=False
@@ -125,6 +157,19 @@ def render_markdown(source):
             continue
         if in_code: code_lines.append(line); continue
         if not line.strip(): flush_paragraph(); close_list(); continue
+        youtube = re.fullmatch(r"\s*\{\{youtube:\s*(https?://\S+)\s*\}\}\s*", line)
+        if youtube:
+            flush_paragraph(); close_list()
+            embed = youtube_embed(youtube.group(1))
+            out.append(embed if embed else '<p>Video link: '+inline_markdown(youtube.group(1))+'</p>')
+            continue
+        social = re.fullmatch(r"\s*\{\{social:\s*(https?://\S+?)(?:\s*\|\s*(.+?))?\s*\}\}\s*", line)
+        if social:
+            flush_paragraph(); close_list()
+            url, label = social.group(1), social.group(2) or "View the original social post"
+            safe_url = escape(url, quote=True)
+            out.append(f'<a class="social-card" href="{safe_url}" target="_blank" rel="noopener noreferrer"><strong>{escape(label)}</strong><span>{escape(url)}</span></a>')
+            continue
         heading=re.match(r"^(#{1,4})\s+(.+)$",line)
         if heading:
             flush_paragraph(); close_list(); level=len(heading.group(1))
