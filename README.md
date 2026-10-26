@@ -1,12 +1,14 @@
 # Kiwiii.Stream
 
-The public site has three destinations:
+The public site has these destinations:
 
 - **Home:** `index.html` (the single-page homepage).
 - **Blog:** [blog.kiwiii.stream](https://blog.kiwiii.stream/), generated from Markdown posts in `blog-project/posts/`.
 - **Jellyfin:** [jellyfin.kiwiii.stream](https://jellyfin.kiwiii.stream), the external media service.
+- **Projects:** `/Projects/`, the project portfolio page.
+- **Broke:** `/broke/`, the debt dashboard.
 
-The homepage contains sections such as Services and About; these are sections on Home, not separate pages. The Blog and Jellyfin are separate services.
+The homepage contains sections such as Services and About. Blog and Jellyfin are separate services; Projects and Broke use dedicated paths.
 
 ## Blog source
 
