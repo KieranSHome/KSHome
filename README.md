@@ -1,1 +1,17 @@
-# KSHome
+# Kiwiii.Stream
+
+The public site has three destinations:
+
+- **Home:** `index.html` (the single-page homepage).
+- **Blog:** [blog.kiwiii.stream](https://blog.kiwiii.stream/), generated from Markdown posts in `blog-project/posts/`.
+- **Jellyfin:** [jellyfin.kiwiii.stream](https://jellyfin.kiwiii.stream), the external media service.
+
+The homepage contains sections such as Services and About; these are sections on Home, not separate pages. The Blog and Jellyfin are separate services.
+
+## Blog source
+
+Edit Markdown posts in `blog-project/posts/` and use `blog-project/build.py` to build the blog output. The homepage reads the blog's `feed.json` to display the latest post.
+
+## Production safety
+
+Do not store DNS, domain, Cloudflare, or Jellyfin configuration in this repository. Changes to those systems should be made separately and deliberately.
