@@ -31,6 +31,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Build consolidated blog
+        run: python3 blog-project/build.py
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
