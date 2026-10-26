@@ -1,502 +1,116 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101b1b">
-  <meta name="description" content="Kiwiii.Stream — planty vibes, thoughtful pet sitting, friendly tech help and a gateway to the Kiwiii media library.">
-  <title>Kiwiii.Stream — Technology, nature and ideas</title>
-  <link rel="icon" type="image/png" href="/assets/Kiwiii%20Home%20Green%20Tech%20Logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      color-scheme: light;
-      --cream: #f4f3e8;
-      --paper: #fffdf5;
-      --ink: #20392c;
-      --muted: #647267;
-      --leaf: #2e6648;
-      --leaf-dark: #204b36;
-      --mint: #dcebd6;
-      --lime: #d9ed79;
-      --pink: #f4c8c0;
-      --peach: #f8dfb9;
-      --line: #d8dfd0;
-      --sans: 'DM Sans', sans-serif;
-      --display: 'Nunito', sans-serif;
-      --radius: 24px;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-decoration: none; }
-    a:focus-visible { outline: 3px solid #c08a38; outline-offset: 4px; }
-    .shell { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
-    .topbar { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); }
-    .brand { display: inline-flex; align-items: center; gap: 10px; font: 900 24px/1 var(--display); letter-spacing: -.8px; }
-    .brand-mark { width: 38px; height: 38px; display: grid; place-items: center; background: var(--lime); border-radius: 14px 14px 14px 5px; font-size: 23px; transform: rotate(-4deg); }
-    .brand-name span { color: var(--leaf); }
-    .nav { display: flex; align-items: center; gap: 27px; font-size: 13px; font-weight: 700; }
-    .nav a:not(.pill):hover { color: var(--leaf); }
-    .pill, .button { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 19px; border: 0; border-radius: 999px; background: var(--leaf); color: white; font: 700 13px var(--sans); transition: transform .2s, background .2s; }
-    .pill:hover, .button:hover { transform: translateY(-2px); background: var(--leaf-dark); }
-    .hero { display: grid; grid-template-columns: 1fr .92fr; align-items: center; gap: 60px; padding: 76px 0 70px; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 19px; padding: 8px 12px; border: 1px solid #c9d9c3; border-radius: 999px; color: var(--leaf); background: #e8f0e1; font-size: 11px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; }
-    h1, h2, h3, p { margin-top: 0; }
-    h1, h2, h3 { font-family: var(--display); }
-    h1 { max-width: 630px; margin-bottom: 21px; font-size: clamp(46px, 6.3vw, 76px); font-weight: 900; letter-spacing: -2.8px; line-height: .99; }
-    h1 em { position: relative; display: inline-block; color: var(--leaf); font-style: normal; z-index: 0; }
-    h1 em::after { position: absolute; content: ''; z-index: -1; left: 1px; right: 0; bottom: 4px; height: 13px; background: var(--lime); border-radius: 20px; transform: rotate(-1.5deg); }
-    .hero-copy > p:not(.eyebrow) { max-width: 510px; margin-bottom: 27px; color: var(--muted); font-size: 16px; line-height: 1.8; }
-    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-    .button.secondary { background: var(--paper); color: var(--ink); border: 1px solid var(--line); }
-    .button.secondary:hover { background: var(--mint); }
-    .tiny-note { margin: 20px 0 0; color: var(--muted); font-size: 12px; }
-    .hero-art { position: relative; min-height: 420px; display: grid; place-items: center; }
-    .art-blob { position: absolute; width: min(100%, 440px); aspect-ratio: 1; border-radius: 46% 54% 61% 39% / 43% 43% 57% 57%; background: var(--mint); transform: rotate(-7deg); }
-    .botanical-art { position: relative; z-index: 1; width: min(76%, 330px); aspect-ratio: .88; display: grid; place-items: center; border: 1px solid #486a55; border-radius: 48% 48% 22px 22px; background: linear-gradient(150deg, #29483d, #172a27 78%); box-shadow: 0 24px 60px #0005, inset 0 0 45px #9bd36a0b; transform: rotate(2deg); overflow: hidden; }
-    .botanical-art::before, .botanical-art::after { content: ""; position: absolute; width: 170px; height: 76px; border: 1px solid #9bd36a66; border-radius: 100% 0 100% 0; background: linear-gradient(135deg, #9bd36a55, #9bd36a08 75%); }
-    .botanical-art::before { top: 19%; left: -7%; transform: rotate(32deg); }
-    .botanical-art::after { right: -7%; bottom: 19%; transform: rotate(212deg); }
-    .botanical-stem { position: absolute; width: 2px; height: 68%; background: linear-gradient(#9bd36a22, #9bd36a); transform: rotate(18deg); }
-    .botanical-leaf { position: absolute; width: 104px; height: 49px; border: 1px solid #9bd36a99; border-radius: 100% 0 100% 0; background: linear-gradient(135deg, #9bd36a88, #527d4b33); }
-    .leaf-a { top: 23%; left: 24%; transform: rotate(-25deg); }
-    .leaf-b { top: 37%; right: 13%; transform: rotate(155deg); }
-    .leaf-c { top: 51%; left: 12%; transform: rotate(-18deg); }
-    .leaf-d { top: 65%; right: 17%; transform: rotate(158deg); }
-    .botanical-caption { position: absolute; bottom: 17px; z-index: 2; color: #d9e8c9; font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
-    .sticker { position: absolute; z-index: 2; display: grid; place-items: center; text-align: center; font-family: var(--display); font-weight: 900; box-shadow: 0 10px 25px #20392c12; }
-    .sticker-one { top: 35px; left: 0; width: 96px; height: 96px; padding: 12px; background: var(--pink); border-radius: 50%; font-size: 14px; line-height: 1.1; transform: rotate(-12deg); }
-    .sticker-two { right: 0; bottom: 35px; width: 120px; height: 105px; padding: 12px; background: var(--lime); border-radius: 23px 23px 23px 5px; font-size: 13px; line-height: 1.2; transform: rotate(7deg); }
-    .sticker-two span { font-size: 25px; }
-    .sprout { position: absolute; top: 3px; right: 10px; color: var(--leaf); font-size: 42px; transform: rotate(18deg); }
-    .ticker { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #e9eedf; }
-    .ticker-inner { width: max-content; min-width: 100%; min-height: 59px; display: flex; align-items: center; justify-content: flex-start; gap: 34px; padding: 0 24px; color: var(--leaf-dark); font: 800 12px var(--display); animation: ticker-scroll 24s linear infinite; }
-    .ticker:hover .ticker-inner, .ticker:focus-within .ticker-inner { animation-play-state: paused; }
-    .ticker-group { display: flex; align-items: center; gap: 34px; flex: 0 0 auto; }
-    .ticker span { white-space: nowrap; }
-    @keyframes ticker-scroll { to { transform: translateX(-50%); } }
-    .ticker b { padding-left: 17px; color: #8da45b; font-size: 18px; }
-    .section { padding: 92px 0; }
-    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 34px; }
-    .kicker { margin-bottom: 12px; color: var(--leaf); font-size: 11px; font-weight: 800; letter-spacing: 1.1px; text-transform: uppercase; }
-    h2 { max-width: 620px; margin-bottom: 0; font-size: clamp(34px, 4.5vw, 52px); font-weight: 900; letter-spacing: -1.5px; line-height: 1.04; }
-    .section-intro { max-width: 365px; margin-bottom: 3px; color: var(--muted); font-size: 14px; line-height: 1.75; }
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
-    .card { min-height: 275px; padding: 27px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); transition: transform .2s, box-shadow .2s; }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 15px 35px #20392c0b; }
-    .card:nth-child(2) { background: #e7f0df; border-color: #d4e3cc; }
-    .card:nth-child(3) { background: #f8e7d4; border-color: #f0dac0; }
-    .card-icon { width: 54px; height: 54px; display: grid; place-items: center; margin-bottom: 25px; border-radius: 18px 18px 18px 5px; background: var(--mint); font-size: 27px; }
-    .card:nth-child(2) .card-icon { background: var(--paper); }
-    .card:nth-child(3) .card-icon { background: var(--pink); }
-    .card h3 { margin-bottom: 10px; font-size: 23px; font-weight: 900; letter-spacing: -.5px; }
-    .card p { margin-bottom: 18px; color: var(--muted); font-size: 13px; line-height: 1.75; }
-    .card-link { display: inline-flex; align-items: center; gap: 7px; color: var(--leaf); font-size: 12px; font-weight: 800; }
-    .about { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 70px; padding: 48px; border-radius: 30px; background: var(--leaf-dark); color: white; }
-    .about-art { min-height: 265px; display: grid; place-items: center; position: relative; overflow: hidden; border-radius: 24px; background: #dcebd6; }
-    .about-art .big-leaf { font-size: clamp(100px, 15vw, 180px); filter: drop-shadow(0 14px 0 #204b3610); transform: rotate(-15deg); }
-    .about-art .small-sticker { position: absolute; right: 16px; bottom: 16px; padding: 12px 16px; border-radius: 15px; background: var(--lime); color: var(--ink); font: 900 12px var(--display); transform: rotate(4deg); }
-    .about .kicker { color: var(--lime); }
-    .about h2 { margin-bottom: 18px; }
-    .about p:not(.kicker) { color: #e0e9df; font-size: 14px; line-height: 1.8; }
-    .about .button { margin-top: 7px; background: var(--lime); color: var(--ink); }
-    .media-band { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 25px; padding: 31px 35px; border: 2px dashed #b9cba9; border-radius: var(--radius); background: #e8f0e1; }
-    .media-logo { display:block; width:min(100%,220px); max-height:90px; object-fit:contain; object-position:left center; margin-bottom:12px; }
-    .media-band .media-label { margin-bottom: 7px; color: var(--leaf); font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
-    .media-band h3 { margin-bottom: 6px; font-size: 27px; font-weight: 900; }
-    .media-band p { max-width: 590px; margin-bottom: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
-    .contact { padding: 75px 0; text-align: center; }
-    .contact .eyebrow { margin-bottom: 18px; }
-    .contact h2 { max-width: 700px; margin: 0 auto 16px; }
-    .contact p { max-width: 490px; margin: 0 auto 23px; color: var(--muted); font-size: 14px; line-height: 1.8; }
-    footer { padding: 25px 0; border-top: 1px solid var(--line); }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 11px; }
-    .footer-inner .brand { color: var(--ink); font-size: 17px; }
-    .footer-inner .brand-mark { width: 28px; height: 28px; border-radius: 10px 10px 10px 3px; font-size: 17px; }
-    .brand-logo { display:block; width:230px; height:auto; max-height:72px; object-fit:contain; object-position:left center; }
-    .footer-brand-logo { width:170px; max-height:54px; }
-    .blog-section { padding-top:35px; }
-    .latest-post { display:grid; grid-template-columns:1fr 130px; align-items:center; gap:24px; padding:30px; border:1px solid #456158; border-radius:16px 16px 16px 4px; background:linear-gradient(120deg,#1b2d2a,#142522); }
-    .post-meta { margin-bottom:12px; color:var(--lime); font-size:11px; font-weight:800; letter-spacing:1px; text-transform:uppercase; }
-    .latest-post h3 { margin-bottom:10px; font-size:clamp(25px,3vw,34px); }
-    .latest-post p:not(.post-meta) { max-width:650px; margin-bottom:18px; color:var(--muted); font-size:14px; line-height:1.8; }
-    .latest-post-mark { display:grid; place-items:center; width:120px; height:120px; border:1px solid #73905d; border-radius:50% 50% 50% 10%; background:#203b34; color:var(--lime); font:900 48px var(--display); }
-    .blog-all { margin:20px 0 0; }
-    @media (max-width:460px) { .brand-logo { width:175px; max-height:58px; } .footer-brand-logo { width:150px; max-height:48px; } .latest-post { grid-template-columns:1fr; padding:22px; } .latest-post-mark { display:none; } }
-    .footer-links { display: flex; gap: 17px; }
-    .footer-links a:hover { color: var(--leaf); }
-    @media (max-width: 850px) {
-      .shell { width: min(100% - 36px, 650px); }
-      .nav { gap: 14px; }
-      .nav a:not(.pill) { display: none; }
-      .hero { grid-template-columns: 1fr; gap: 25px; padding: 54px 0 45px; }
-      .hero-copy { max-width: 620px; }
-      .hero-art { min-height: 390px; }
-      .botanical-art { width: min(72%, 300px); }
-      .section { padding: 68px 0; }
-      .section-heading { display: block; }
-      .section-intro { margin-top: 16px; }
-      .cards { grid-template-columns: 1fr; }
-      .card { min-height: 0; }
-      .card-icon { margin-bottom: 18px; }
-      .about { grid-template-columns: 1fr; gap: 30px; padding: 24px; }
-      .about-art { min-height: 220px; }
-      .media-band { grid-template-columns: 1fr; padding: 25px; }
-      .media-band .button { justify-self: start; }
-      .ticker-inner { justify-content: flex-start; overflow: hidden; }
-    }
-    @media (max-width: 460px) {
-      .shell { width: calc(100% - 30px); }
-      .topbar { min-height: 72px; }
-      .brand { font-size: 21px; }
-      .brand-mark { width: 34px; height: 34px; }
-      .nav .pill { min-height: 40px; padding: 0 13px; font-size: 12px; }
-      h1 { font-size: clamp(43px, 13vw, 60px); letter-spacing: -2px; }
-      .hero-art { min-height: 325px; }
-      .botanical-art { width: 72%; }
-      .sticker-one { top: 13px; width: 78px; height: 78px; font-size: 12px; }
-      .sticker-two { right: -2px; bottom: 17px; width: 100px; height: 90px; font-size: 11px; }
-      .ticker-inner { min-height: 50px; font-size: 11px; }
-      .footer-inner { align-items: flex-start; flex-direction: column; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
-      .ticker-inner { animation: none; width: 100%; min-width: 0; flex-wrap: wrap; justify-content: center; }
-      .ticker-group[aria-hidden="true"] { display: none; }
-    }
-
-    /* Kiwiii.Stream: optimistic eco-tech, little robot / ship-console energy */
-    :root {
-      color-scheme: dark;
-      --cream: #101b1b;
-      --paper: #172626;
-      --ink: #edf5df;
-      --muted: #a9b9aa;
-      --leaf: #9bd36a;
-      --leaf-dark: #203d35;
-      --mint: #23413a;
-      --lime: #e6c85a;
-      --pink: #e8a58d;
-      --peach: #d8b879;
-      --line: #345048;
-      --radius: 18px;
-    }
-    body {
-      background:
-        radial-gradient(ellipse at 82% 8%, #263f36 0, transparent 32rem),
-        radial-gradient(ellipse at 5% 35%, #1b3430 0, transparent 35rem),
-        var(--cream);
-      color: var(--ink);
-    }
-    body::before {
-      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
-      opacity: .15;
-      background-image: radial-gradient(#d8e8bd 1px, transparent 1px);
-      background-size: 28px 28px;
-      mask-image: linear-gradient(to bottom, black, transparent 75%);
-    }
-    .topbar { border-bottom-color: var(--line); }
-    .brand-mark { background: var(--lime); color: #182522; border-radius: 12px 12px 12px 4px; box-shadow: 0 0 24px #e6c85a22; }
-    .brand-name span, .card-link { color: var(--leaf); }
-    .pill, .button { background: var(--lime); color: #172321; border-radius: 10px 10px 10px 3px; box-shadow: 0 5px 0 #9d8537; }
-    .pill:hover, .button:hover { background: #f1d975; color: #172321; box-shadow: 0 2px 0 #9d8537; }
-    .button.secondary { background: #1c302d; color: var(--ink); border-color: #456158; box-shadow: none; }
-    .button.secondary:hover { background: #29443b; }
-    .eyebrow { background: #1d332d; color: var(--leaf); border-color: #48654e; border-radius: 8px; letter-spacing: 1.3px; }
-    h1, h2, h3 { letter-spacing: -.035em; }
-    h1 em { color: var(--lime); }
-    h1 em::after { background: #9bd36a44; height: 9px; bottom: 2px; }
-    .hero { padding-top: 82px; }
-    .hero-art { min-height: 450px; }
-    .art-blob { background: #203b34; border: 1px solid #486a55; box-shadow: inset 0 0 65px #9bd36a0b; }
-    .botanical-art { border-color: #73905d; }
-    .botanical-art::before, .botanical-art::after { border-color: #9bd36a77; }
-    .botanical-leaf { box-shadow: 0 0 28px #9bd36a0c; }
-    .sticker { box-shadow: 0 10px 30px #0004; border: 1px solid #ffffff26; }
-    .sticker-one { background: var(--lime); color: #172321; border-radius: 13px 13px 13px 4px; }
-    .sticker-two { background: #d8e8bd; color: #1b3029; border-radius: 13px 13px 4px 13px; }
-    .sprout { color: var(--lime); }
-    .ticker { background: #182b28; border-color: var(--line); }
-    .ticker-inner { color: #d9e8c9; }
-    .ticker b { color: var(--lime); }
-    .section { padding-top: 84px; padding-bottom: 84px; }
-    .card, .card:nth-child(2), .card:nth-child(3) {
-      background: linear-gradient(145deg, #1b2d2a, #152321);
-      border-color: #355148;
-      border-radius: 16px 16px 16px 4px;
-    }
-    .card:nth-child(2) { border-top: 2px solid var(--leaf); }
-    .card:nth-child(3) { border-top: 2px solid var(--lime); }
-    .card:hover { box-shadow: 0 18px 42px #0003; border-color: #66866a; }
-    .card-icon, .card:nth-child(2) .card-icon, .card:nth-child(3) .card-icon {
-      background: #2c4940; border: 1px solid #52745a; border-radius: 12px 12px 12px 4px;
-    }
-    .card:nth-child(3) .card-icon { background: #49432b; border-color: #827344; }
-    .card p, .section-intro, .hero-copy > p:not(.eyebrow), .contact p { color: var(--muted); }
-    .about { background: linear-gradient(125deg, #203d35, #142522); border: 1px solid #456356; border-radius: 20px 20px 20px 5px; }
-    .about-art { background: #dce7c6; border-radius: 15px; }
-    .about .kicker { color: var(--lime); }
-    .about p:not(.kicker) { color: #c5d4c4; }
-    .about .button { background: var(--lime); color: #172321; }
-    .media-band { background: #1a302b; border-color: #73905d; border-radius: 16px 16px 16px 4px; }
-    .media-band .media-label { color: var(--lime); }
-    .media-band p { color: var(--muted); }
-    .contact .eyebrow { background: #1d332d; }
-    footer { border-color: var(--line); }
-    .footer-inner { color: var(--muted); }
-    .footer-uptime { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin-top:12px; padding-top:12px; border-top:1px solid var(--line); color:var(--muted); font-size:11px; }
-    .footer-uptime-item { display:inline-flex; align-items:center; gap:7px; }
-    .uptime-dot { width:7px; height:7px; flex:0 0 7px; border-radius:50%; background:var(--leaf); box-shadow:0 0 10px #9bd36a33; }
-    .uptime-dot.pending { background:#d8b879; box-shadow:none; }
-    /* Responsive polish: keep navigation discoverable and prevent narrow-screen overflow. */
-    .nav a, .button, .pill { touch-action: manipulation; }
-    .nav a:focus-visible, .button:focus-visible, .pill:focus-visible,
-    .card-link:focus-visible, .footer-links a:focus-visible {
-      outline: 3px solid var(--lime);
-      outline-offset: 4px;
-    }
-    img { max-width: 100%; }
-    .ticker-inner { flex-wrap: wrap; padding-top: 12px; padding-bottom: 12px; }
-    @media (max-width: 850px) {
-      .hero { padding-top: 54px; }
-      .topbar { flex-wrap: wrap; padding: 14px 0; row-gap: 12px; }
-      .nav { width: 100%; flex-wrap: wrap; justify-content: flex-start; gap: 10px 18px; }
-      .nav a:not(.pill) { display: inline-flex; min-height: 36px; align-items: center; }
-      .nav .pill { margin-left: auto; }
-      .ticker-inner { justify-content: center; }
-    }
-    @media (max-width: 460px) {
-      .topbar { align-items: flex-start; }
-      .nav { gap: 8px 12px; }
-      .nav a:not(.pill) { font-size: 12px; }
-      .nav .pill { margin-left: 0; }
-      .actions .button { width: 100%; }
-      .sticker-one { left: -2px; }
-      .sticker-two { right: -2px; }
-      .ticker-inner { justify-content: flex-start; gap: 8px 16px; }
-      .ticker-inner span { font-size: 10px; }
-      .about { padding: 20px; }
-      .media-band { padding: 20px; }
-    }
-
-  </style>
-  <link rel="stylesheet" href="/site-header.css">
-</head>
-<body>
-  <header class="site-header" id="top">
-    <div class="site-header-inner">
-      <a class="site-brand" href="/" aria-label="Kiwiii.Stream home">
-        <img class="site-brand-logo site-brand-logo-home" src="/assets/Kiwiii%20Home%20Green%20Tech%20Logo.png" alt="Kiwiii Home" width="230" height="79">
-      </a>
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="/" aria-current="page">Home</a>
-        <a href="/blog/">Blog</a>
-        <a href="/Projects/">Projects</a>
-        <a href="/broke/">Broke</a>
-        <a href="https://jellyfin.kiwiii.stream/">Media <span aria-hidden="true">↗</span></a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="shell hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">KIWIII.STREAM · PERSONAL SITE</p>
-        <h1>Technology,<br>nature &amp;<br><em>curiosity.</em></h1>
-        <p>A personal space for practical technology, creative projects, ideas in progress and the everyday details that make life interesting.</p>
-        <div class="actions">
-          <a class="button" href="#services">Have a little look <span aria-hidden="true">↘</span></a>
-          <a class="button secondary" href="https://jellyfin.kiwiii.stream">Media corner</a>
-        </div>
-        <p class="tiny-note">Independent projects, thoughtful notes and a work in progress.</p>
-      </div>
-      <div class="hero-art" role="img" aria-label="Abstract botanical artwork in layered green tones">
-        <div class="art-blob" aria-hidden="true"></div>
-        <span class="sprout" aria-hidden="true">✳</span>
-        <div class="botanical-art" aria-hidden="true">
-          <span class="botanical-stem"></span>
-          <span class="botanical-leaf leaf-a"></span>
-          <span class="botanical-leaf leaf-b"></span>
-          <span class="botanical-leaf leaf-c"></span>
-          <span class="botanical-leaf leaf-d"></span>
-          <span class="botanical-caption">Rooted in curiosity</span>
-        </div>
-        <div class="sticker sticker-two"><span>🐾</span> Kind care for<br>your little pals</div>
-      </div>
-    </section>
-
-    <div class="ticker" aria-label="Things that make this corner of the internet">
-      <div class="ticker-inner">
-        <div class="ticker-group">
-          <span>TECHNOLOGY <b>✳</b></span>
-          <span>NATURE <b>✳</b></span>
-          <span>PERSONAL PROJECTS <b>✳</b></span>
-          <span>NOTES &amp; IDEAS <b>✳</b></span>
-        </div>
-        <div class="ticker-group" aria-hidden="true">
-          <span>TECHNOLOGY <b>✳</b></span>
-          <span>NATURE <b>✳</b></span>
-          <span>PERSONAL PROJECTS <b>✳</b></span>
-          <span>NOTES &amp; IDEAS <b>✳</b></span>
-        </div>
-      </div>
-    </div>
-
-    <section class="shell section" id="services" aria-labelledby="services-title">
-      <div class="section-heading">
-        <div>
-          <p class="kicker">A few things I can help with</p>
-          <h2 id="services-title">A friendly interface<br>for a living world.</h2>
-        </div>
-        <p class="section-intro">Think of this as a small command deck for the things I care about: practical tech support, reliable pet care and curious, sustainable projects.</p>
-      </div>
-      <div class="cards">
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">🐾</div>
-          <h3>Pet &amp; home sitting</h3>
-          <p>Going away? I can help keep your furry friends company and their routines feeling familiar while you're out and about.</p>
-          <a class="card-link" href="#contact">Let's talk pet sitting <span aria-hidden="true">↗</span></a>
-        </article>
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">💻</div>
-          <h3>Friendly tech help</h3>
-          <p>From computer niggles and setup help to getting devices talking to each other, I want tech to feel less intimidating.</p>
-          <a class="card-link" href="#contact">Untangle some tech <span aria-hidden="true">↗</span></a>
-        </article>
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">🪴</div>
-          <h3>Plants &amp; projects</h3>
-          <p>A home for my planty side, experiments, personal projects and the things I get excited about along the way.</p>
-          <a class="card-link" href="https://www.instagram.com/plantiethingz/" target="_blank" rel="noopener noreferrer">Visit PlantieThingz <span aria-hidden="true">↗</span></a>
-        </article>
-      </div>
-    </section>
-
-
-    <section class="shell section blog-section" id="blog" aria-labelledby="blog-title">
-      <div class="section-heading"><div><p class="kicker">From the notebook</p><h2 id="blog-title">Latest writing.</h2></div><p class="section-intro">A separate stream of thoughts, experiments, lessons and things worth writing down.</p></div>
-      <article class="latest-post" aria-live="polite"><div class="latest-post-copy"><p class="post-meta" id="post-meta">KIWIII NOTES</p><h3 id="post-title">The blog is taking shape</h3><p id="post-excerpt">The latest post will appear here automatically when the blog publishes its feed.</p><a class="card-link" id="post-link" href="/blog/">Explore the blog <span aria-hidden="true">↗</span></a></div><div class="latest-post-mark" aria-hidden="true">K.</div></article>
-      <p class="blog-all"><a class="button secondary" href="/blog/">Visit the blog <span aria-hidden="true">↗</span></a></p>
-    </section>
-
-    <section class="shell section" id="about" aria-labelledby="about-title">
-      <div class="about">
-        <div class="about-art" aria-hidden="true">
-          <span class="big-leaf">🌿</span>
-          <span class="small-sticker">Growing at my own pace ✨</span>
-        </div>
-        <div>
-          <p class="kicker">A little introduction</p>
-          <h2 id="about-title">A little robot heart.<br>A human-sized mission.</h2>
-          <p>Inspired by hopeful sci-fi, helpful digital assistants and a planet worth looking after, Kiwiii.Stream is where technology and nature meet. The goal is simple: use what I know to help people, care for living things and make everyday systems a little kinder.</p>
-          <a class="button" href="#contact">Say hello <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="shell" aria-labelledby="media-title">
-      <div class="media-band">
-        <div>
-          <img class="media-logo" src="/assets/Kiwiii%20Stream%20Kiwi%20Logo.png" alt="Kiwiii Stream" width="220" height="90">
-          <p class="media-label">Your cosy corner for watching</p>
-          <h3 id="media-title">Your personal media bay</h3>
-          <p>Your home media system is ready when you are. Sign in with your usual account.</p>
-        </div>
-        <a class="button" href="https://jellyfin.kiwiii.stream">Open media <span aria-hidden="true">↗</span></a>
-      </div>
-    </section>
-
-    <section class="shell contact" id="contact" aria-labelledby="contact-title">
-      <p class="eyebrow">💌 Good things start with hello</p>
-      <h2 id="contact-title">Need a hand, human?</h2>
-      <p>Have a pet-sitting enquiry, a tech puzzle or a sustainable idea? Drop by Instagram for now — more contact options are on the roadmap.</p>
-      <a class="button secondary" href="https://www.instagram.com/plantiethingz/" target="_blank" rel="noopener noreferrer">Find me on Instagram <span aria-hidden="true">↗</span></a>
-    </section>
-  </main>
-
-  <footer>
-    <div class="shell footer-inner">
-      <a class="brand" href="#top" aria-label="Kiwiii.Stream home"><img class="brand-logo footer-brand-logo" src="/assets/Kiwiii%20Home%20Green%20Tech%20Logo.png" alt="Kiwiii Home" width="170" height="58"></a>
-      <span>A little corner of the internet, grown with care. © <span id="year">2026</span></span>
-      <div class="footer-links">
-        <a href="#top">Home</a>
-        <a href="/blog/">Blog</a>
-        <a href="https://jellyfin.kiwiii.stream">Media</a>
-        <a href="/Projects/">Projects</a>
-        <a href="/broke/">Broke</a>
-      </div>
-    </div>
-    <div class="shell footer-uptime" aria-label="Website uptime and service status">
-      <span class="footer-uptime-item"><span class="uptime-dot" aria-hidden="true"></span><span>Site elapsed: <strong id="site-uptime">calculating…</strong></span></span>
-      <span class="footer-uptime-item"><span class="uptime-dot pending" id="website-status-dot" aria-hidden="true"></span><span>Website: <strong id="website-status">checking…</strong></span></span>
-      <span class="footer-uptime-item"><span class="uptime-dot pending" id="jellyfin-status-dot" aria-hidden="true"></span><span>Media: <strong id="jellyfin-status">checking…</strong></span></span>
-    </div>
-  </footer>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const siteLaunchDate = new Date('2026-10-20T00:00:00Z');
-    const uptimeEl = document.getElementById('site-uptime');
-    function updateSiteUptime() {
-      const elapsedMs = Math.max(0, Date.now() - siteLaunchDate.getTime());
-      const totalMinutes = Math.floor(elapsedMs / 60000);
-      const days = Math.floor(totalMinutes / 1440);
-      const hours = Math.floor((totalMinutes % 1440) / 60);
-      const minutes = totalMinutes % 60;
-      uptimeEl.textContent = days + 'd ' + String(hours).padStart(2, '0') + 'h ' + String(minutes).padStart(2, '0') + 'm';
-    }
-    updateSiteUptime();
-    window.setInterval(updateSiteUptime, 60000);
-
-    function setServiceStatus(name, reachable) {
-      document.getElementById(name + '-status').textContent = reachable ? 'reachable' : 'unreachable';
-      const dot = document.getElementById(name + '-status-dot');
-      dot.classList.toggle('pending', !reachable);
-      dot.style.background = reachable ? 'var(--leaf)' : '#e08b79';
-    }
-    setServiceStatus('website', true);
-    // This is a visitor-side reachability check, not historical uptime monitoring.
-    fetch('https://jellyfin.kiwiii.stream/', { mode: 'no-cors', cache: 'no-store' })
-      .then(() => setServiceStatus('jellyfin', true))
-      .catch(() => setServiceStatus('jellyfin', false));
-    window.setInterval(() => {
-      fetch('https://jellyfin.kiwiii.stream/', { mode: 'no-cors', cache: 'no-store' })
-        .then(() => setServiceStatus('jellyfin', true))
-        .catch(() => setServiceStatus('jellyfin', false));
-    }, 60000);
-    // Show the current first post immediately; refresh from the public feed when available.
-    const postTitle = document.getElementById('post-title');
-    const postExcerpt = document.getElementById('post-excerpt');
-    const postLink = document.getElementById('post-link');
-    const postMeta = document.getElementById('post-meta');
-    function renderLatestPost(latest) {
-      if (!latest || !latest.title || !latest.url) return;
-      postTitle.textContent = latest.title;
-      postExcerpt.textContent = latest.excerpt || 'Read the latest note from Kiwiii.';
-      postLink.href = latest.url;
-      postLink.innerHTML = 'Read article <span aria-hidden="true">↗</span>';
-      const date = latest.date ? new Date(latest.date) : null;
-      postMeta.textContent = date && !Number.isNaN(date.getTime())
-        ? 'LATEST NOTE · ' + new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(date)
-        : 'LATEST NOTE';
-    }
-    renderLatestPost({
-      title: 'A place for the things in between',
-      date: '2026-10-26',
-      excerpt: 'A starting point for notes on technology, nature, projects and the ideas that connect them.',
-      url: '/blog/posts/hello-world.html'
-    });
-    fetch('/blog/feed.json', { headers: { Accept: 'application/json' }, cache: 'no-store' })
-      .then(response => { if (!response.ok) throw new Error('Blog feed unavailable'); return response.json(); })
-      .then(feed => {
-        const posts = Array.isArray(feed.posts) ? feed.posts : [];
-        const latest = posts.filter(post => post && post.published !== false && post.url && post.title)
-          .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))[0];
-        if (latest) renderLatestPost(latest);
-      }).catch(() => {});
-  </script>
-</body>
-</html>
+/* Shared Kiwiii.Stream header */
+.site-header {
+  position: relative;
+  z-index: 20;
+  display: block;
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #345048;
+  background: transparent;
+  color: #edf5df;
+}
+.site-header .site-header-inner {
+  width: min(1160px, calc(100% - 3rem));
+  min-height: 82px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.site-header .site-brand {
+  display: inline-flex;
+  flex: 0 1 auto;
+  align-items: center;
+  min-width: 0;
+  text-decoration: none;
+}
+.site-header .site-brand-logo {
+  display: block;
+  width: min(230px, 52vw);
+  height: 66px;
+  max-width: 100%;
+  flex: 0 0 auto;
+  object-fit: contain;
+  object-position: left center;
+}
+.site-header .site-brand-logo-home {
+  width: 280px;
+  height: 76px;
+  transform: scale(1.18);
+  transform-origin: left center;
+}
+.site-header .site-nav {
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(10px, 1.8vw, 22px);
+}
+.site-header .site-nav a {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  color: #c2cec0;
+  font-size: .9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-header .site-nav a:hover,
+.site-header .site-nav a[aria-current="page"] {
+  color: #e6c85a;
+}
+.site-header .site-nav a:focus-visible,
+.site-header .site-brand:focus-visible {
+  outline: 3px solid #e6c85a;
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+@media (max-width: 760px) {
+  .site-header {
+    display: block;
+    padding: 0;
+  }
+  .site-header .site-header-inner {
+    min-height: 0;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    padding-block: 14px;
+  }
+  .site-header .site-brand-logo {
+    width: min(220px, 58vw);
+    height: 60px;
+  }
+  .site-header .site-brand-logo-home {
+    width: min(250px, 64vw);
+    height: 68px;
+    transform: scale(1.18);
+    transform-origin: left center;
+  }
+  .site-header .site-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 4px 14px;
+  }
+  .site-header .site-nav a {
+    min-height: 38px;
+    font-size: .88rem;
+  }
+}
+@media (max-width: 380px) {
+  .site-header .site-header-inner {
+    width: calc(100% - 2rem);
+  }
+  .site-header .site-nav {
+    gap: 2px 10px;
+  }
+  .site-header .site-nav a {
+    font-size: .82rem;
+  }
+}
