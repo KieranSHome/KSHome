@@ -8,7 +8,7 @@
   padding: 0;
   box-sizing: border-box;
   border-bottom: 1px solid #345048;
-  background: rgb(16 27 27 / 96%);
+  background: transparent;
   color: #edf5df;
 }
 .site-header .site-header-inner {
@@ -35,6 +35,10 @@
   flex: 0 0 auto;
   object-fit: contain;
   object-position: left center;
+}
+.site-header .site-brand-logo-home {
+  width: 280px;
+  height: 76px;
 }
 .site-header .site-nav {
   display: flex;
@@ -80,6 +84,10 @@
   .site-header .site-brand-logo {
     width: min(220px, 58vw);
     height: 60px;
+  }
+  .site-header .site-brand-logo-home {
+    width: min(250px, 64vw);
+    height: 68px;
   }
   .site-header .site-nav {
     width: 100%;
