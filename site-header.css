@@ -41,6 +41,7 @@
   height: 76px;
   transform: scale(1.18);
   transform-origin: left center;
+  mix-blend-mode: lighten;
 }
 .site-header .site-nav {
   display: flex;
