@@ -241,6 +241,10 @@
     .contact .eyebrow { background: #1d332d; }
     footer { border-color: var(--line); }
     .footer-inner { color: var(--muted); }
+    .footer-uptime { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin-top:12px; padding-top:12px; border-top:1px solid var(--line); color:var(--muted); font-size:11px; }
+    .footer-uptime-item { display:inline-flex; align-items:center; gap:7px; }
+    .uptime-dot { width:7px; height:7px; flex:0 0 7px; border-radius:50%; background:var(--leaf); box-shadow:0 0 10px #9bd36a33; }
+    .uptime-dot.pending { background:#d8b879; box-shadow:none; }
     /* Responsive polish: keep navigation discoverable and prevent narrow-screen overflow. */
     .nav a, .button, .pill { touch-action: manipulation; }
     .nav a:focus-visible, .button:focus-visible, .pill:focus-visible,
@@ -403,9 +407,44 @@
         <a href="https://jellyfin.kiwiii.stream">Jellyfin</a>
       </div>
     </div>
+    <div class="shell footer-uptime" aria-label="Website uptime and service status">
+      <span class="footer-uptime-item"><span class="uptime-dot" aria-hidden="true"></span><span>Site elapsed: <strong id="site-uptime">calculating…</strong></span></span>
+      <span class="footer-uptime-item"><span class="uptime-dot pending" id="website-status-dot" aria-hidden="true"></span><span>Website: <strong id="website-status">checking…</strong></span></span>
+      <span class="footer-uptime-item"><span class="uptime-dot pending" id="jellyfin-status-dot" aria-hidden="true"></span><span>Jellyfin: <strong id="jellyfin-status">checking…</strong></span></span>
+    </div>
   </footer>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const siteLaunchDate = new Date('2026-10-20T00:00:00Z');
+    const uptimeEl = document.getElementById('site-uptime');
+    function updateSiteUptime() {
+      const elapsedMs = Math.max(0, Date.now() - siteLaunchDate.getTime());
+      const totalMinutes = Math.floor(elapsedMs / 60000);
+      const days = Math.floor(totalMinutes / 1440);
+      const hours = Math.floor((totalMinutes % 1440) / 60);
+      const minutes = totalMinutes % 60;
+      uptimeEl.textContent = days + 'd ' + String(hours).padStart(2, '0') + 'h ' + String(minutes).padStart(2, '0') + 'm';
+    }
+    updateSiteUptime();
+    window.setInterval(updateSiteUptime, 60000);
+
+    function setServiceStatus(name, reachable) {
+      document.getElementById(name + '-status').textContent = reachable ? 'reachable' : 'unreachable';
+      const dot = document.getElementById(name + '-status-dot');
+      dot.classList.toggle('pending', !reachable);
+      dot.style.background = reachable ? 'var(--leaf)' : '#e08b79';
+    }
+    setServiceStatus('website', true);
+    // This is a visitor-side reachability check, not historical uptime monitoring.
+    fetch('https://jellyfin.kiwiii.stream/', { mode: 'no-cors', cache: 'no-store' })
+      .then(() => setServiceStatus('jellyfin', true))
+      .catch(() => setServiceStatus('jellyfin', false));
+    window.setInterval(() => {
+      fetch('https://jellyfin.kiwiii.stream/', { mode: 'no-cors', cache: 'no-store' })
+        .then(() => setServiceStatus('jellyfin', true))
+        .catch(() => setServiceStatus('jellyfin', false));
+    }, 60000);
     fetch('https://blog.kiwiii.stream/feed.json', { headers: { Accept: 'application/json' } })
       .then(response => { if (!response.ok) throw new Error('Blog feed unavailable'); return response.json(); })
       .then(feed => {
