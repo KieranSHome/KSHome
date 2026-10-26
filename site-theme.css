@@ -1,0 +1,115 @@
+/* Shared Kiwiii.Stream page theme, based on the Home page */
+:root {
+  color-scheme: dark;
+  --home-bg: #101b1b;
+  --home-panel: #172626;
+  --home-ink: #edf5df;
+  --home-muted: #a9b9aa;
+  --home-leaf: #9bd36a;
+  --home-lime: #e6c85a;
+  --home-line: #345048;
+  --home-display: "Nunito", "DM Sans", system-ui, sans-serif;
+  --home-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+html {
+  background: var(--home-bg);
+  color-scheme: dark;
+}
+body {
+  background:
+    radial-gradient(ellipse at 82% 8%, #263f36 0, transparent 32rem),
+    radial-gradient(ellipse at 5% 35%, #1b3430 0, transparent 35rem),
+    var(--home-bg);
+  color: var(--home-ink);
+  font-family: var(--home-sans);
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .15;
+  background-image: radial-gradient(#d8e8bd 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(to bottom, black, transparent 75%);
+}
+h1, h2, h3, h4 {
+  color: var(--home-ink);
+  font-family: var(--home-display);
+  font-weight: 900;
+  letter-spacing: -.035em;
+}
+a {
+  color: var(--home-lime);
+  text-underline-offset: .22em;
+}
+a:hover { color: var(--home-leaf); }
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--home-lime);
+  outline-offset: 4px;
+}
+.eyebrow, .kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid #48654e;
+  border-radius: 8px;
+  background: #1d332d;
+  color: var(--home-leaf);
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+.project-card, .panel, .post-card, .article-head {
+  border: 1px solid #355148;
+  border-radius: 16px 16px 16px 4px;
+  background: linear-gradient(145deg, #1b2d2a, #152321);
+  color: var(--home-ink);
+}
+.project-card:nth-child(2), .metric-card:nth-child(2), .post-card:nth-child(2) {
+  border-top: 2px solid var(--home-leaf);
+}
+.project-card:nth-child(3), .metric-card:nth-child(3), .post-card:nth-child(3) {
+  border-top: 2px solid var(--home-lime);
+}
+.project-card, .post-card {
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.project-card:hover, .post-card:hover {
+  transform: translateY(-4px);
+  border-color: #66866a;
+  box-shadow: 0 18px 42px #0003;
+}
+.project-card h2, .post-card h2 {
+  color: var(--home-ink);
+  font-family: var(--home-display);
+  font-weight: 900;
+}
+.project-card p, .post-card p, .panel p {
+  color: var(--home-muted);
+}
+.metric-value { color: var(--home-ink); }
+.eyebrow { margin-bottom: .7rem; }
+.article-head {
+  background: linear-gradient(125deg, #203d35, #142522);
+  border-color: #456356;
+  border-radius: 20px 20px 20px 5px;
+}
+.button, a.button, button {
+  border-radius: 10px 10px 10px 3px;
+  background: var(--home-lime);
+  color: #172321;
+  font-weight: 800;
+}
+.button:hover, a.button:hover, button:hover {
+  background: #f1d975;
+  color: #172321;
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card, .post-card { transition: none; }
+  .project-card:hover, .post-card:hover { transform: none; }
+}
