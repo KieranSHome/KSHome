@@ -38,7 +38,7 @@ From the repository root:
 python blog-project/build.py
 ```
 
-The script reads Markdown from `blog-project/posts/` and generates the site under the root `blog/` directory. Cloudflare Pages runs the build command `python3 blog-project/build.py` and publishes the repository root. The feed is available at `/blog/feed.json`.
+The script reads Markdown from `blog-project/posts/`, copies only the public site pages and assets into `dist/`, and generates the blog under `dist/blog/`. Cloudflare Pages runs `python3 blog-project/build.py` and publishes `dist/`. Unpublished posts are excluded from the generated site, and old generated article pages are cleared on each build. The feed is available at `/blog/feed.json`.
 
 The separate `KieranSHome/Blog` repository is an archive. Make future blog changes in `KieranSHome/KSHome/blog-project/`.
 
