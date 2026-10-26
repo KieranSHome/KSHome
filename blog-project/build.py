@@ -223,10 +223,24 @@ def prepare_output():
         source = ROOT.parent / name
         if source.is_file():
             shutil.copy2(source, DIST / name)
-    for name in ("assets", "Projects", "broke"):
-        source = ROOT.parent / name
-        if source.is_dir():
-            shutil.copytree(source, DIST / name)
+    assets = ROOT.parent / "assets"
+    allowed_asset_types = {".avif", ".gif", ".ico", ".jpeg", ".jpg", ".png", ".svg", ".webp"}
+    if assets.is_dir():
+        for source in assets.rglob("*"):
+            if source.is_file() and source.suffix.lower() in allowed_asset_types:
+                target = DIST / source.relative_to(ROOT.parent)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source, target)
+
+    projects_output = DIST / "Projects"
+    projects_output.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(ROOT.parent / "Projects" / "index.html", projects_output / "index.html")
+
+    broke_output = DIST / "broke"
+    (broke_output / "data").mkdir(parents=True, exist_ok=True)
+    for name in ("index.html", "style.css", "app.js"):
+        shutil.copy2(ROOT.parent / "broke" / name, broke_output / name)
+    shutil.copy2(ROOT.parent / "broke" / "data" / "public.json", broke_output / "data" / "public.json")
 
 
 def main():
