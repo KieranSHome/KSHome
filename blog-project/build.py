@@ -5,6 +5,7 @@ from html import escape
 import json
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
+import shutil
 import re
 
 ROOT = Path(__file__).resolve().parent
