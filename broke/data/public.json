@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "not_published",
+  "currency": "GBP",
+  "reporting_period": null,
+  "last_reviewed": null,
+  "summary": {
+    "total_debt": null,
+    "monthly_income": null,
+    "monthly_essential_costs": null,
+    "monthly_repayment_capacity": null
+  },
+  "trajectory": [],
+  "privacy_note": "Approved aggregate figures only. Do not add creditor names, account identifiers, addresses, raw transactions, bank statements, identity documents, or private workbook contents."
+}
