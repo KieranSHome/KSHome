@@ -21,7 +21,7 @@ a{color:var(--lime);text-underline-offset:.22em}a:hover{color:var(--teal)}a:focu
 .wrap{width:min(var(--width),calc(100% - 40px));margin-inline:auto}
 header{border-bottom:1px solid var(--line);background:#101b1be8}
 .topbar{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:inline-flex;align-items:center;gap:11px;color:var(--ink);text-decoration:none;font-weight:900;letter-spacing:-.04em;font-size:1.2rem}
+.brand{display:inline-flex;align-items:center;gap:11px;color:var(--ink);text-decoration:none;font-weight:900;letter-spacing:-.04em;font-size:1.2rem}.brand-logo{display:block;width:250px;max-width:min(52vw,250px);height:auto}
 .brand:hover{color:var(--ink)}
 .brand-icon{display:grid;place-items:center;width:42px;height:42px;border:1px solid #78905d;border-radius:13px 13px 13px 4px;background:linear-gradient(145deg,#2b493d,#172a27);color:var(--lime);font-size:1.2rem;box-shadow:0 0 25px #9bd36a14}
 .brand-name span{color:var(--leaf)}
@@ -144,7 +144,7 @@ def render_markdown(source):
     return "\n".join(out)
 
 def header():
-    return f'<header><div class="wrap topbar"><a class="brand" href="{SITE}/" aria-label="Kiwiii Blog home"><span class="brand-icon" aria-hidden="true">✳</span><span class="brand-name">Kiwiii<span>.Blog</span></span></a><nav class="nav" aria-label="Main navigation"><a href="{SITE}/">Notebook</a><a href="{HOME}/">Kiwiii.Stream ↗</a></nav></div></header>'
+    return f'<header><div class="wrap topbar"><a class="brand" href="{SITE}/" aria-label="Kiwiii Blog home"><img class="brand-logo" src="/assets/logos/kiwiii-blog.svg" alt="Kiwiii.Blog"></a><nav class="nav" aria-label="Main navigation"><a href="{SITE}/">Notebook</a><a href="{HOME}/">Kiwiii.Stream ↗</a></nav></div></header>'
 
 def footer():
     return f'<footer><div class="wrap footer-inner"><span>Small notes from a curious corner of the internet.</span><nav class="footer-links" aria-label="Footer navigation"><a href="{SITE}/">Blog home</a><a href="{HOME}/">Kiwiii.Stream ↗</a></nav></div></footer>'
@@ -153,7 +153,7 @@ def document(title, description, canonical, content):
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="{escape(description,quote=True)}"><meta name="theme-color" content="#101b1b">
-<link rel="canonical" href="{escape(canonical,quote=True)}"><meta property="og:type" content="article"><meta property="og:site_name" content="Kiwiii.Blog">
+<link rel="canonical" href="{escape(canonical,quote=True)}"><link rel="icon" type="image/svg+xml" href="/assets/logos/kiwiii-blog.svg"><meta property="og:type" content="article"><meta property="og:site_name" content="Kiwiii.Blog">
 <meta property="og:title" content="{escape(title,quote=True)}"><meta property="og:description" content="{escape(description,quote=True)}">
 <meta name="twitter:card" content="summary"><title>{escape(title)} — Kiwiii.Blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
