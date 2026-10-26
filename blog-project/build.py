@@ -192,8 +192,7 @@ def render_markdown(source):
     return "\n".join(out)
 
 def header():
-    return f'<header class="site-header"><div class="site-header-inner"><a class="site-brand" href="{HOME}/" aria-label="Kiwiii.Stream home"><img class="site-brand-logo" src="/assets/Kiwiii%20Stream%20Kiwi%20Logo.png" alt="Kiwiii.Stream" width="230" height="66"></a><nav class="site-nav" aria-label="Main navigation"><a href="{HOME}/">Home</a><a href="{SITE}/" aria-current="page">Blog</a><a href="https://jellyfin.kiwiii.stream/">Media <span aria-hidden="true">↗</span></a><a href="{HOME}/Projects/">Projects</a><a href="{HOME}/broke/">Broke</a></nav></div></header>'
-
+    return f'<header class="site-header"><div class="site-header-inner"><a class="site-brand" href="{HOME}/" aria-label="Kiwiii.Stream home"><img class="site-brand-logo" src="/assets/Kiwiii%20Stream%20Kiwi%20Logo.png" alt="Kiwiii.Stream" width="230" height="66"></a><nav class="site-nav" aria-label="Main navigation"><a href="{HOME}/">Home</a><a href="{SITE}/" aria-current="page">Blog</a><a href="{HOME}/Projects/">Projects</a><a href="{HOME}/broke/">Broke</a><a href="https://jellyfin.kiwiii.stream/">Media <span aria-hidden="true">↗</span></a></nav></div></header>'
 def footer():
     return f'<footer><div class="wrap footer-inner"><span>Small notes from a curious corner of the internet.</span><nav class="footer-links" aria-label="Footer navigation"><a href="{SITE}/">Blog home</a><a href="{HOME}/">Kiwiii.Stream ↗</a></nav></div></footer>'
 
