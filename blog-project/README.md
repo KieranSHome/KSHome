@@ -4,7 +4,7 @@ Kiwiii.Blog is the static blog for [blog.kiwiii.stream](https://blog.kiwiii.stre
 
 ## Visual direction
 
-Botanical eco-tech meets a friendly sci-fi command console: deep teal surfaces, leaf green and warm lime accents, quiet dotted texture, rounded panels, accessible contrast, responsive layout, and restrained motion. The blog uses a matching CSS wordmark until a dedicated Blog logo is added.
+Botanical eco-tech meets a friendly sci-fi command console: deep teal surfaces, leaf green and warm lime accents, quiet dotted texture, rounded panels, accessible contrast, responsive layout, and restrained motion. The header and favicon use the approved artwork at `https://kiwiii.stream/assets/Kiwiii%20Blog%20Kiwi%20Emblem%20Logo.png`.
 
 ## Write a post
 
