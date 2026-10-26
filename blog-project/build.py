@@ -11,7 +11,8 @@ ROOT = Path(__file__).resolve().parent
 POSTS = ROOT / "posts"
 SITE = "https://kiwiii.stream/blog"
 HOME = "https://kiwiii.stream"
-OUT = ROOT.parent / "blog"
+DIST = ROOT.parent / "dist"
+OUT = DIST / "blog"
 
 CSS = """
 :root{color-scheme:dark;--bg:#101b1b;--panel:#172626;--panel2:#1d332d;--ink:#edf5df;--muted:#a9b9aa;--leaf:#9bd36a;--lime:#e6c85a;--teal:#77d9c0;--line:#345048;--pink:#e8a58d;--width:1080px;--reading:760px}
@@ -83,7 +84,7 @@ def read_post(path):
                     meta[key] = value.lower() not in {"false", "no", "0"}
                 else:
                     meta[key] = value
-    if not meta.get("title") or meta.get("published") is False:
+    if not meta.get("title") or meta.get("published") is not True:
         return None
     slug = path.stem
     excerpt = meta.get("excerpt") or re.sub(r"\s+", " ", body)[:180]
@@ -214,11 +215,29 @@ def render_article(post):
 <article class="prose">{body}</article><p><a class="back-link" href="{SITE}/">← Back to all notes</a></p></div>'''
     (OUT / "posts" / (post["slug"]+".html")).write_text(document(post["title"],post["excerpt"],post["url"],content),encoding="utf-8")
 
+def prepare_output():
+    if DIST.exists():
+        shutil.rmtree(DIST)
+    DIST.mkdir(parents=True)
+    for name in ("index.html", "brand.css", "_headers"):
+        source = ROOT.parent / name
+        if source.is_file():
+            shutil.copy2(source, DIST / name)
+    for name in ("assets", "Projects", "broke"):
+        source = ROOT.parent / name
+        if source.is_dir():
+            shutil.copytree(source, DIST / name)
+
+
 def main():
+    prepare_output()
     POSTS.mkdir(exist_ok=True)
     posts=[p for path in POSTS.glob("*.md") if (p:=read_post(path))]
     posts.sort(key=lambda p:p["date"],reverse=True)
-    (OUT / "posts").mkdir(parents=True, exist_ok=True)
+    post_output = OUT / "posts"
+    post_output.mkdir(parents=True, exist_ok=True)
+    for old_page in post_output.glob("*.html"):
+        old_page.unlink()
     for post in posts: render_article(post)
     public=[{k:p[k] for k in ("title","date","excerpt","url","published","categories")} for p in posts]
     (OUT/"feed.json").write_text(json.dumps({"title":"Kiwiii.Blog","home":SITE+"/","posts":public},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
