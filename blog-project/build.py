@@ -8,8 +8,9 @@ import re
 
 ROOT = Path(__file__).resolve().parent
 POSTS = ROOT / "posts"
-SITE = "https://blog.kiwiii.stream"
+SITE = "https://kiwiii.stream/blog"
 HOME = "https://kiwiii.stream"
+OUT = ROOT.parent / "blog"
 
 CSS = """
 :root{color-scheme:dark;--bg:#101b1b;--panel:#172626;--panel2:#1d332d;--ink:#edf5df;--muted:#a9b9aa;--leaf:#9bd36a;--lime:#e6c85a;--teal:#77d9c0;--line:#345048;--pink:#e8a58d;--width:1080px;--reading:760px}
@@ -166,21 +167,22 @@ def render_article(post):
     content = f'''<div class="article-shell"><a class="back-link" href="{SITE}/">← All notes</a>
 <header class="article-head"><p class="date">{escape(post["date"])}</p><h1>{escape(post["title"])}</h1><p class="excerpt">{escape(post["excerpt"])}</p><div class="hero-bottom">{categories}</div></header>
 <article class="prose">{body}</article><p><a class="back-link" href="{SITE}/">← Back to all notes</a></p></div>'''
-    (POSTS / (post["slug"]+".html")).write_text(document(post["title"],post["excerpt"],post["url"],content),encoding="utf-8")
+    (OUT / "posts" / (post["slug"]+".html")).write_text(document(post["title"],post["excerpt"],post["url"],content),encoding="utf-8")
 
 def main():
     POSTS.mkdir(exist_ok=True)
     posts=[p for path in POSTS.glob("*.md") if (p:=read_post(path))]
     posts.sort(key=lambda p:p["date"],reverse=True)
+    (OUT / "posts").mkdir(parents=True, exist_ok=True)
     for post in posts: render_article(post)
     public=[{k:p[k] for k in ("title","date","excerpt","url","published","categories")} for p in posts]
-    (ROOT/"feed.json").write_text(json.dumps({"title":"Kiwiii.Blog","home":SITE+"/","posts":public},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    cards="".join(f'<article class="post-card"><p class="date">{escape(p["date"])}</p><h2><a href="/posts/{escape(p["slug"])}.html">{escape(p["title"])}</a></h2><p>{escape(p["excerpt"])}</p><a class="read-link" href="/posts/{escape(p["slug"])}.html">Read note ↗</a></article>' for p in posts)
+    (OUT/"feed.json").write_text(json.dumps({"title":"Kiwiii.Blog","home":SITE+"/","posts":public},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    cards="".join(f'<article class="post-card"><p class="date">{escape(p["date"])}</p><h2><a href="/blog/posts/{escape(p["slug"])}.html">{escape(p["title"])}</a></h2><p>{escape(p["excerpt"])}</p><a class="read-link" href="/blog/posts/{escape(p["slug"])}.html">Read note ↗</a></article>' for p in posts)
     if not cards: cards='<p class="empty">New writing will appear here soon.</p>'
     content=f'''<section class="hero"><p class="kicker">K I W I I I . B L O G &nbsp; / &nbsp; FIELD NOTES</p><h1>Notes from <em>the stream.</em></h1><p class="intro">Thoughts, experiments, useful discoveries and ideas in progress — a calm little archive of technology, nature, creative projects and the connections between them.</p><div class="hero-bottom"><span class="tag">Practical technology</span><span class="tag">Nature &amp; everyday life</span><span class="tag">Projects in progress</span></div></section>
 <section aria-labelledby="latest-title"><div class="section-title"><h2 id="latest-title">Latest notes</h2><p>Longer thoughts, lessons learned and things worth writing down.</p></div><div class="post-list">{cards}</div></section>'''
     index=document("Kiwiii.Blog","Notes on technology, nature, personal projects and the ideas that connect them.",SITE+"/",content)
-    (ROOT/"index.html").write_text(index,encoding="utf-8")
+    (OUT/"index.html").write_text(index,encoding="utf-8")
 
 if __name__=="__main__":
     main()
