@@ -56,7 +56,17 @@
     .tiny-note { margin: 20px 0 0; color: var(--muted); font-size: 12px; }
     .hero-art { position: relative; min-height: 420px; display: grid; place-items: center; }
     .art-blob { position: absolute; width: min(100%, 440px); aspect-ratio: 1; border-radius: 46% 54% 61% 39% / 43% 43% 57% 57%; background: var(--mint); transform: rotate(-7deg); }
-    .plant-photo { position: relative; width: 78%; height: 355px; object-fit: cover; border: 9px solid var(--paper); border-radius: 48% 48% 28px 28px; box-shadow: 0 18px 50px #264a2c1a; transform: rotate(2deg); }
+    .botanical-art { position: relative; z-index: 1; width: min(76%, 330px); aspect-ratio: .88; display: grid; place-items: center; border: 1px solid #486a55; border-radius: 48% 48% 22px 22px; background: linear-gradient(150deg, #29483d, #172a27 78%); box-shadow: 0 24px 60px #0005, inset 0 0 45px #9bd36a0b; transform: rotate(2deg); overflow: hidden; }
+    .botanical-art::before, .botanical-art::after { content: ""; position: absolute; width: 170px; height: 76px; border: 1px solid #9bd36a66; border-radius: 100% 0 100% 0; background: linear-gradient(135deg, #9bd36a55, #9bd36a08 75%); }
+    .botanical-art::before { top: 19%; left: -7%; transform: rotate(32deg); }
+    .botanical-art::after { right: -7%; bottom: 19%; transform: rotate(212deg); }
+    .botanical-stem { position: absolute; width: 2px; height: 68%; background: linear-gradient(#9bd36a22, #9bd36a); transform: rotate(18deg); }
+    .botanical-leaf { position: absolute; width: 104px; height: 49px; border: 1px solid #9bd36a99; border-radius: 100% 0 100% 0; background: linear-gradient(135deg, #9bd36a88, #527d4b33); }
+    .leaf-a { top: 23%; left: 24%; transform: rotate(-25deg); }
+    .leaf-b { top: 37%; right: 13%; transform: rotate(155deg); }
+    .leaf-c { top: 51%; left: 12%; transform: rotate(-18deg); }
+    .leaf-d { top: 65%; right: 17%; transform: rotate(158deg); }
+    .botanical-caption { position: absolute; bottom: 17px; z-index: 2; color: #d9e8c9; font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
     .sticker { position: absolute; z-index: 2; display: grid; place-items: center; text-align: center; font-family: var(--display); font-weight: 900; box-shadow: 0 10px 25px #20392c12; }
     .sticker-one { top: 35px; left: 0; width: 96px; height: 96px; padding: 12px; background: var(--pink); border-radius: 50%; font-size: 14px; line-height: 1.1; transform: rotate(-12deg); }
     .sticker-two { right: 0; bottom: 35px; width: 120px; height: 105px; padding: 12px; background: var(--lime); border-radius: 23px 23px 23px 5px; font-size: 13px; line-height: 1.2; transform: rotate(7deg); }
@@ -120,7 +130,7 @@
       .hero { grid-template-columns: 1fr; gap: 25px; padding: 54px 0 45px; }
       .hero-copy { max-width: 620px; }
       .hero-art { min-height: 390px; }
-      .plant-photo { height: 325px; }
+      .botanical-art { width: min(72%, 300px); }
       .section { padding: 68px 0; }
       .section-heading { display: block; }
       .section-intro { margin-top: 16px; }
@@ -141,7 +151,7 @@
       .nav .pill { min-height: 40px; padding: 0 13px; font-size: 12px; }
       h1 { font-size: clamp(43px, 13vw, 60px); letter-spacing: -2px; }
       .hero-art { min-height: 325px; }
-      .plant-photo { height: 275px; border-width: 7px; }
+      .botanical-art { width: 72%; }
       .sticker-one { top: 13px; width: 78px; height: 78px; font-size: 12px; }
       .sticker-two { right: -2px; bottom: 17px; width: 100px; height: 90px; font-size: 11px; }
       .ticker-inner { min-height: 50px; font-size: 11px; }
@@ -195,7 +205,9 @@
     .hero { padding-top: 82px; }
     .hero-art { min-height: 450px; }
     .art-blob { background: #203b34; border: 1px solid #486a55; box-shadow: inset 0 0 65px #9bd36a0b; }
-    .plant-photo { border: 7px solid #d9d7b8; border-radius: 20px 20px 48% 48%; box-shadow: 0 0 0 1px #d8c879, 0 24px 60px #0006; filter: saturate(.82) contrast(1.05); }
+    .botanical-art { border-color: #73905d; }
+    .botanical-art::before, .botanical-art::after { border-color: #9bd36a77; }
+    .botanical-leaf { box-shadow: 0 0 28px #9bd36a0c; }
     .sticker { box-shadow: 0 10px 30px #0004; border: 1px solid #ffffff26; }
     .sticker-one { background: var(--lime); color: #172321; border-radius: 13px 13px 13px 4px; }
     .sticker-two { background: #d8e8bd; color: #1b3029; border-radius: 13px 13px 4px 13px; }
@@ -285,11 +297,17 @@
         </div>
         <p class="tiny-note">Independent projects, thoughtful notes and a work in progress.</p>
       </div>
-      <div class="hero-art" aria-label="A leafy houseplant illustration">
+      <div class="hero-art" role="img" aria-label="Abstract botanical artwork in layered green tones">
         <div class="art-blob" aria-hidden="true"></div>
         <span class="sprout" aria-hidden="true">✳</span>
-        <img class="plant-photo" src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1000&q=85" alt="A lush green houseplant in a pot" loading="eager" fetchpriority="high" decoding="async">
-        <div class="sticker sticker-one">hello,<br>plant pal! 🌱</div>
+        <div class="botanical-art" aria-hidden="true">
+          <span class="botanical-stem"></span>
+          <span class="botanical-leaf leaf-a"></span>
+          <span class="botanical-leaf leaf-b"></span>
+          <span class="botanical-leaf leaf-c"></span>
+          <span class="botanical-leaf leaf-d"></span>
+          <span class="botanical-caption">Rooted in curiosity</span>
+        </div>
         <div class="sticker sticker-two"><span>🐾</span> Kind care for<br>your little pals</div>
       </div>
     </section>
