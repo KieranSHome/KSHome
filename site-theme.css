@@ -16,24 +16,17 @@ html {
   color-scheme: dark;
 }
 body {
-  background:
+  background-color: var(--home-bg);
+  background-image:
+    radial-gradient(rgb(216 232 189 / 15%) 1px, transparent 1px),
     radial-gradient(ellipse at 82% 8%, #263f36 0, transparent 32rem),
-    radial-gradient(ellipse at 5% 35%, #1b3430 0, transparent 35rem),
-    var(--home-bg);
+    radial-gradient(ellipse at 5% 35%, #1b3430 0, transparent 35rem);
+  background-size: 28px 28px, auto, auto;
+  background-repeat: repeat, no-repeat, no-repeat;
+  background-attachment: fixed, scroll, scroll;
   color: var(--home-ink);
   font-family: var(--home-sans);
   -webkit-font-smoothing: antialiased;
-}
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: .15;
-  background-image: radial-gradient(#d8e8bd 1px, transparent 1px);
-  background-size: 28px 28px;
-  mask-image: linear-gradient(to bottom, black, transparent 75%);
 }
 h1, h2, h3, h4 {
   color: var(--home-ink);
