@@ -2,7 +2,11 @@
 .site-header {
   position: relative;
   z-index: 20;
+  display: block;
   width: 100%;
+  min-height: 0;
+  padding: 0;
+  box-sizing: border-box;
   border-bottom: 1px solid #345048;
   background: rgb(16 27 27 / 96%);
   color: #edf5df;
@@ -62,6 +66,10 @@
   border-radius: 3px;
 }
 @media (max-width: 760px) {
+  .site-header {
+    display: block;
+    padding: 0;
+  }
   .site-header .site-header-inner {
     min-height: 0;
     align-items: flex-start;
