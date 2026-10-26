@@ -1,19 +1,28 @@
 # Kiwiii.Stream
 
-The public site has these destinations:
+The public website is maintained and deployed from this repository, `KieranSHome/KSHome`.
 
-- **Home:** `index.html` (the single-page homepage).
-- **Blog:** [kiwiii.stream/blog](https://kiwiii.stream/blog/), published from the separate `KieranSHome/Blog` repository through Cloudflare Pages.
-- **Jellyfin:** [jellyfin.kiwiii.stream](https://jellyfin.kiwiii.stream), the external media service.
-- **Projects:** `/Projects/`, the project portfolio page.
-- **Broke:** `/broke/`, the debt dashboard.
+## Site map
 
-The homepage contains sections such as Services and About. Blog and Jellyfin are separate services; Projects and Broke use dedicated paths.
+- **Home:** `/` — the main landing page.
+- **Blog:** `/blog/` — generated from Markdown in `blog-project/posts/`.
+- **Projects:** `/Projects/` — the project portfolio.
+- **Broke:** `/broke/` — the privacy-conscious public debt dashboard.
+- **Jellyfin:** `https://jellyfin.kiwiii.stream/` — the existing external media service.
 
-## Blog source
+## Blog workflow
 
-The consolidated blog source is `blog-project/` in this repository. Its `build.py` generates the site under `/blog/` during the GitHub Pages workflow. The former `KieranSHome/Blog` repository is retained as a non-destructive archive until migration verification is complete. Do not delete the old Blog repository until the consolidated site has been verified. Keep the homepage's latest-post feed integration aligned with the canonical blog when publishing new posts.
+Add or edit Markdown files in `blog-project/posts/`. Set `published: true` to include a post in the public build; keep drafts at `published: false`. The GitHub Pages workflow runs `python3 blog-project/build.py`, which generates the blog under `/blog/`, including article pages and `/blog/feed.json`.
 
-## Production safety
+The former `KieranSHome/Blog` repository is retained as a non-destructive archive while the consolidated deployment is verified. Do not delete it until the new route and published posts have been checked in production.
 
-Do not store DNS, domain, Cloudflare, or Jellyfin configuration in this repository. Changes to those systems should be made separately and deliberately.
+## Broke privacy rules
+
+Only reviewed aggregate figures may be published. Never copy the private workbook, raw transactions, creditor or account details, identity documents, or credentials into this repository. The current `broke/data/public.json` is an unpublished template with null values.
+
+## Production boundaries
+
+- The website and its static pages deploy through GitHub Pages from this repository.
+- Jellyfin and Caddy remain separate services; this repository must not change their server configuration.
+- DNS and domain routing changes are separate from repository changes.
+- Do not add secrets, private financial records, or generated private exports.
