@@ -104,6 +104,7 @@
     .about p:not(.kicker) { color: #e0e9df; font-size: 14px; line-height: 1.8; }
     .about .button { margin-top: 7px; background: var(--lime); color: var(--ink); }
     .media-band { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 25px; padding: 31px 35px; border: 2px dashed #b9cba9; border-radius: var(--radius); background: #e8f0e1; }
+    .media-logo { display:block; width:min(100%,220px); max-height:90px; object-fit:contain; object-position:left center; margin-bottom:12px; }
     .media-band .media-label { margin-bottom: 7px; color: var(--leaf); font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
     .media-band h3 { margin-bottom: 6px; font-size: 27px; font-weight: 900; }
     .media-band p { max-width: 590px; margin-bottom: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
@@ -396,7 +397,8 @@
     <section class="shell" aria-labelledby="media-title">
       <div class="media-band">
         <div>
-          <p class="media-label">🍿 Your cosy corner for watching</p>
+          <img class="media-logo" src="/assets/Kiwiii%20Stream%20Kiwi%20Logo.png" alt="Kiwiii Stream" width="220" height="90">
+          <p class="media-label">Your cosy corner for watching</p>
           <h3 id="media-title">Your personal media bay</h3>
           <p>Your home media system is ready when you are. Sign in with your usual account.</p>
         </div>
