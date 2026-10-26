@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" role="img" aria-labelledby="title desc">
+  <title id="title">Kiwiii.Blog</title>
+  <desc id="desc">Botanical eco-tech logo with a leaf and connected-node motif.</desc>
+  <defs>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b5e879"/><stop offset="1" stop-color="#55c8ad"/></linearGradient>
+  </defs>
+  <g transform="translate(8 8)">
+    <path d="M51 8C27 10 8 29 11 54c2 20 19 34 39 34 3-22 0-42-9-59 16 12 25 30 27 51C90 61 87 31 66 16 61 12 56 9 51 8Z" fill="url(#leaf)"/>
+    <path d="M23 76C36 60 48 45 64 29" fill="none" stroke="#e6c85a" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="64" cy="29" r="4" fill="#e6c85a"/><circle cx="23" cy="76" r="4" fill="#e6c85a"/>
+    <path d="M13 96H78" stroke="#345048" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <text x="108" y="71" fill="#edf5df" font-family="Nunito, 'Segoe UI', sans-serif" font-size="48" font-weight="800" letter-spacing="-1.8">Kiwiii<tspan fill="#9bd36a">.Blog</tspan></text>
+  <path d="M111 87H292" stroke="#77d9c0" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
