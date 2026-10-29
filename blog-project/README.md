@@ -22,6 +22,10 @@ published: true
 
 Use `published: false` for drafts. The generator includes only posts explicitly marked `published: true`. The repository is public, so this hides drafts from the website but not from GitHub; keep sensitive or private drafts outside this repository.
 
+The value must be lowercase `true` (optionally quoted). Missing, blank, misspelled,
+or other values keep the post out of article pages, listings and the feed. The publication
+regression checks also verify that rebuilding removes an article that is changed back to a draft.
+
 ## Media in posts
 
 - **Images:** use Markdown image syntax, such as `![Kiwi in the garden](/assets/kiwi.jpg)`. Add the image to the repository's root `assets/` folder, then use its `/assets/filename.jpg` path. Remote HTTPS image URLs also work.

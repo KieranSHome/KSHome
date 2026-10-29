@@ -1,5 +1,5 @@
 const fs=require('node:fs');
-const source=fs.readFileSync('Projects/blocks/game.js','utf8');
+const source=fs.readFileSync('Projects/blocks/game.js','utf8').replace(/\r\n/g,'\n');
 function harness(source) {
   const elements = {};
   const context = new Proxy({}, {get:(_,key) => key === 'fillStyle' ? '' : () => {}, set:()=>true});
@@ -35,30 +35,50 @@ console.log('Gameplay checks passed');
 (async () => {
   const {webcrypto}=require('node:crypto');
   const apiSource=fs.readFileSync('functions/api/blocks.js','utf8').replace('export async function','async function');
-  const api=new Function('crypto',apiSource+';return onRequest;')(webcrypto);
+  const cached=new Map();let cacheFailure=false;
+  const cache={
+    async match(key){if(cacheFailure)throw new Error('cache offline');return cached.get(key.url)?.clone();},
+    async put(key,value){if(cacheFailure)throw new Error('cache offline');cached.set(key.url,value);},
+    async delete(key){if(cacheFailure)throw new Error('cache offline');return cached.delete(key.url);}
+  };
+  const api=new Function('crypto','globalThis',apiSource+';return onRequest;')(webcrypto,{caches:{default:cache}});
   const assert=(v,m)=>{if(!v)throw new Error(m);};
-  let used=false, inserted=0, rateLimited=false;
+  let used=false, inserted=0, rateLimited=false, writeLimited=false, cleanups=0, reads=0;
   const db={
-    prepare(sql){return {args:[],bind(...args){this.args=args;return this;},
-      async all(){return {results:[{name:'Kiwi',score:100,lines:1}]};},
-      async first(){return {created:Math.floor(Date.now()/1000)-60,used:used?1:0};},
+    prepare(sql){return {sql,args:[],bind(...args){this.args=args;return this;},
+      async all(){reads++;return {results:[{name:'Kiwi',score:100,lines:1}]};},
+      async first(){if(sql.startsWith('INSERT INTO blocks_request_limits'))return writeLimited?null:{requests:1};return {created:Math.floor(Date.now()/1000)-60,used:used?1:0};},
       async run(){return {meta:{changes:sql.startsWith('INSERT')?(rateLimited?0:1):0}};}
     };},
-    async batch(statements){if(used)return [{meta:{changes:0}}];used=true;inserted++;return [{meta:{changes:1}}];}
+    async batch(statements){if(statements[0].sql.startsWith('DELETE')){cleanups++;return [{meta:{changes:0}}];}if(used)return [{meta:{changes:0}}];used=true;inserted++;return [{meta:{changes:1}}];}
   };
   const req=(body,origin='https://example.com')=>new Request('https://example.com/api/blocks',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify(body)});
   const call=(request,env={BLOCKS_DB:db})=>api({request,env});
   assert((await call(new Request('https://example.com/api/blocks'),{})).status===503,'missing DB graceful');
-  assert((await call(new Request('https://example.com/api/blocks'))).status===200,'read scoreboard');
+  const firstRead=await call(new Request('https://example.com/api/blocks'));
+  assert(firstRead.status===200 && firstRead.headers.get('Cache-Control')==='no-store','read scoreboard without browser cache');
+  assert(cached.get('https://example.com/api/blocks').headers.get('Cache-Control')==='public, max-age=10','public edge cache is short lived');
+  const cachedRead=await call(new Request('https://example.com/api/blocks?bypass=123'));
+  assert(cachedRead.status===200 && reads===1 && cachedRead.headers.get('Cache-Control')==='no-store','query strings cannot bypass edge score cache');
+  await call(new Request('https://preview.example.com/api/blocks'));
+  assert(reads===2,'different deployment origins use distinct caches');
   assert((await call(req({action:'start'},'https://evil.example'))).status===403,'reject cross origin');
   assert((await call(req({action:'start'}))).status===201,'issue session');
+  assert(cleanups===1,'admitted session performs bounded cleanup');
   rateLimited=true;assert((await call(req({action:'start'}))).status===429,'enforce start rate');rateLimited=false;
+  assert(cleanups===1,'rate-limited session does not perform cleanup');
+  writeLimited=true;const blocked=req({name:'x'.repeat(2000)});const limited=await call(blocked);
+  assert(limited.status===429 && Number(limited.headers.get('Retry-After'))>=1 && !blocked.bodyUsed,'write burst limit rejects before reading body and gives retry delay');
+  writeLimited=false;
   assert((await call(req({name:'x'.repeat(2000)}))).status===413,'bound streamed body');
   const good={token:'12345678-1234-1234-1234-123456789abc',name:'Kiwi',score:100,lines:1};
   assert((await call(req({...good,name:'<script>'}))).status===400,'reject unsafe nickname');
   assert((await call(req({...good,score:-1}))).status===400,'reject negative score');
   assert((await call(req({...good,score:9000000}))).status===400,'reject implausible score');
   assert((await call(req(good))).status===201,'save valid score');
+  assert(!cached.has('https://example.com/api/blocks'),'accepted score invalidates local edge cache');
   assert((await call(req(good))).status===400 && inserted===1,'reject replay');
+  cacheFailure=true;
+  assert((await call(new Request('https://example.com/api/blocks'))).status===200,'cache failure falls back to database');
   console.log('Leaderboard API checks passed');
 })().catch(error=>{console.error(error);process.exitCode=1;});

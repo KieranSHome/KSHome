@@ -82,7 +82,7 @@ def read_post(path):
                 key, value = line.split(":", 1)
                 key, value = key.strip(), value.strip().strip('"').strip("'")
                 if key == "published":
-                    meta[key] = value.lower() not in {"false", "no", "0"}
+                    meta[key] = value == "true"
                 else:
                     meta[key] = value
     if not meta.get("title") or meta.get("published") is not True:
