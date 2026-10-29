@@ -1,0 +1,45 @@
+name: Blocks and site checks
+on:
+  push:
+    branches: [main, codex/kiwiii-blocks]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Verify gameplay and leaderboard validation
+        run: node tests/blocks.cjs
+      - name: Build production site
+        run: python3 blog-project/build.py
+      - name: Verify Pages release and D1 schema
+        run: python3 tests/check-release.py
+      - name: Check game and Projects output
+        run: |
+          test -s dist/Projects/blocks/index.html
+          test -s dist/Projects/blocks/game.js
+          test -s dist/Projects/blocks/leaderboard.js
+          test -s dist/Projects/blocks/style.css
+          grep -q '/Projects/blocks/' dist/Projects/index.html
+          test -s functions/api/blocks.js
+      - name: Install browser checks
+        if: github.event_name == 'pull_request'
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Test live preview on desktop and mobile
+        if: github.event_name == 'pull_request'
+        run: node tests/blocks-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: github.event_name == 'pull_request' && always()
+        with:
+          name: blocks-browser-previews
+          path: blocks-*.png

@@ -236,6 +236,12 @@ def prepare_output():
     projects_output.mkdir(parents=True, exist_ok=True)
     shutil.copy2(ROOT.parent / "Projects" / "index.html", projects_output / "index.html")
 
+    # Explicitly publish only the game assets, keeping source/tests out of dist.
+    blocks_output = projects_output / "blocks"
+    blocks_output.mkdir(parents=True, exist_ok=True)
+    for name in ("index.html", "style.css", "game.js", "leaderboard.js"):
+        shutil.copy2(ROOT.parent / "Projects" / "blocks" / name, blocks_output / name)
+
     broke_output = DIST / "broke"
     (broke_output / "data").mkdir(parents=True, exist_ok=True)
     for name in ("index.html", "style.css", "app.js"):
