@@ -28,3 +28,16 @@ jobs:
           test -s dist/Projects/blocks/style.css
           grep -q '/Projects/blocks/' dist/Projects/index.html
           test -s functions/api/blocks.js
+      - name: Install browser checks
+        if: github.event_name == 'pull_request'
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Test live preview on desktop and mobile
+        if: github.event_name == 'pull_request'
+        run: node tests/blocks-browser.cjs
+      - uses: actions/upload-artifact@v4
+        if: github.event_name == 'pull_request' && always()
+        with:
+          name: blocks-browser-previews
+          path: blocks-*.png
