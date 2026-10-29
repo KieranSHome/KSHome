@@ -18,6 +18,10 @@ jobs:
           python-version: '3.x'
       - name: Verify gameplay and leaderboard validation
         run: node tests/blocks.cjs
+      - name: Verify blog publication boundaries
+        run: python3 tests/blog-publication.py
+      - name: Verify leaderboard storage limits
+        run: python3 tests/blocks-storage.py
       - name: Build production site
         run: python3 blog-project/build.py
       - name: Verify Pages release and D1 schema

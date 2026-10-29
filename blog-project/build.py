@@ -80,11 +80,11 @@ def read_post(path):
                 if ":" not in line:
                     continue
                 key, value = line.split(":", 1)
-                key, value = key.strip(), value.strip().strip('"').strip("'")
+                key, value = key.strip(), value.strip()
                 if key == "published":
-                    meta[key] = value.lower() not in {"false", "no", "0"}
+                    meta[key] = value in {"true", '"true"', "'true'"}
                 else:
-                    meta[key] = value
+                    meta[key] = value.strip('"').strip("'")
     if not meta.get("title") or meta.get("published") is not True:
         return None
     slug = path.stem

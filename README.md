@@ -34,6 +34,8 @@ The build explicitly copies the four game assets to `dist/Projects/blocks/`.
 Cloudflare Pages compiles `functions/api/blocks.js` from the repository root.
 
 Run `node tests/blocks.cjs` and `python3 blog-project/build.py` to check the game and site.
+Publication regression checks run with `python3 tests/blog-publication.py`; the real
+rate-limit and cleanup SQL is checked in isolated SQLite with `python3 tests/blocks-storage.py`.
 
 ### Shared leaderboard storage
 
@@ -46,8 +48,23 @@ and redeploy. No secret or raw IP address is written to this repository or the d
 Players explicitly opt in to publish a 1–16 character nickname and score at game over.
 The API bounds request bodies, validates names/scores, requires same-origin JSON, limits new
 sessions to 30/hour per daily IP hash, and atomically consumes each session once. Temporary
-sessions/hashes are pruned after 24 hours when the next session starts; only the top 100 scores
+sessions/hashes older than 24 hours are pruned in indexed batches of at most 100 rows per
+table after an accepted session start; rejected starts do not trigger cleanup. Only the top 100 scores
 are retained. The UI shows the top ten and offers refresh. Stored names are rendered as text.
+
+All same-origin JSON POSTs also share an atomic budget of 60 requests per IP-derived key
+per UTC minute, including invalid submissions; a rejection returns HTTP 429 with `Retry-After`.
+Public leaderboard GETs use a ten-second Cloudflare edge cache, ignoring query strings and
+keeping each deployment origin separate. Browsers still receive `no-store`; successful
+submissions invalidate the cache in their Cloudflare location. Other locations may show a
+score up to ten seconds later. Cache outages fall back to D1. These controls reduce abuse
+and database work; they are not a substitute for distributed attack protection.
+
+Before deploying these controls to an existing installation, reapply `database/blocks.sql`
+to both leaderboard databases. It only adds the request-budget table and expiry indexes;
+it does not delete or replace existing scores. Daily IP-derived keys are used for both
+limits; raw IP addresses are not stored. Expired request-budget rows use the same bounded
+cleanup as sessions.
 
 This is a casual browser scoreboard: timing and score plausibility checks deter simple abuse,
 but a modified client can fabricate results. Competitive integrity would require server-side
