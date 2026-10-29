@@ -42,6 +42,11 @@ the upstream availability problem is separate from this work.
 The existing leaked-credential rate-limit rule is retained. No additional paid services,
 plan changes, DNS proxy changes or replacement of existing security rules are part of this work.
 
+The security branch's separate Workers Builds preview trigger attempted `npx wrangler preview`
+and failed because this is a Pages repository. Its build/final commands were corrected to
+run the site, API, publication, storage and release checks without deploying a Worker;
+branch and path restrictions were preserved. Pages remains responsible for the preview.
+
 ## Validation and rollback
 
 Run `node tests/blocks.cjs`, `python3 tests/blog-publication.py`,

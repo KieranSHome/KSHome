@@ -15,7 +15,7 @@ class PublicationTests(unittest.TestCase):
     def test_only_explicit_true_is_publishable(self):
         with tempfile.TemporaryDirectory() as directory:
             post = Path(directory) / "note.md"
-            for value in ("false", "no", "0", "", "draft", "yes", "1", "TRUE", "tru", "null"):
+            for value in ("false", "no", "0", "", "draft", "yes", "1", "TRUE", "tru", "null", '"true', 'true"', '""true""', "'true\""):
                 with self.subTest(value=value):
                     post.write_text(f"---\ntitle: Note\npublished: {value}\n---\nDraft body", encoding="utf-8")
                     self.assertIsNone(builder.read_post(post))
