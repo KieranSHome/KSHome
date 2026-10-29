@@ -20,6 +20,8 @@ jobs:
         run: node tests/blocks.cjs
       - name: Build production site
         run: python3 blog-project/build.py
+      - name: Verify Pages release and D1 schema
+        run: python3 tests/check-release.py
       - name: Check game and Projects output
         run: |
           test -s dist/Projects/blocks/index.html
