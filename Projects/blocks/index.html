@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en-GB"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101b1b">
+<meta name="description" content="Play Kiwiii Blocks, a free falling-block puzzle from Kiwiii.Stream. Clear rows, climb levels and beat your personal best.">
+<title>Kiwiii Blocks — Kiwiii.Stream</title>
+<link rel="canonical" href="https://kiwiii.stream/Projects/blocks/">
+<link rel="stylesheet" href="/brand.css"><link rel="stylesheet" href="/site-theme.css?v=20261026-3"><link rel="stylesheet" href="/site-header.css?v=20261026-3">
+<link rel="stylesheet" href="./style.css"><script src="./game.js" defer></script><script src="./leaderboard.js" defer></script>
+</head><body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="/" aria-label="Kiwiii.Stream home"><img class="site-brand-logo" src="/assets/Kiwiii%20Projects%20Logo%20with%20Hammer%20Emblem.png" alt="Kiwiii Projects" width="230" height="66"></a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/Projects/" aria-current="page">Projects</a>
+        <a href="/broke/">Broke</a>
+        <a href="https://jellyfin.kiwiii.stream/">Media <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+<main class="blocks-shell">
+<a href="/Projects/">← All projects</a>
+<div class="game-heading"><div><p class="eyebrow">A little room to play</p><h1>Kiwiii <em>Blocks.</em></h1></div><p>Find your rhythm.<br>Make room for the next piece.</p></div>
+<section class="game-layout" aria-label="Falling block puzzle">
+<div class="board-wrap"><canvas id="board" width="300" height="600" tabindex="0" aria-label="Game board. Use arrow keys to move and rotate, Space to drop, P to pause." aria-describedby="instructions status">Your browser needs canvas support to play this game.</canvas></div>
+<div class="game-sidebar">
+<p class="eyebrow">Your next move</p><canvas id="next" width="120" height="100" aria-label="Next piece preview"></canvas>
+<dl class="stats"><div><dt>Score</dt><dd id="score">0</dd></div><div><dt>Personal best</dt><dd id="best">0</dd></div><div><dt>Level</dt><dd id="level">1</dd></div><div><dt>Lines</dt><dd id="lines">0</dd></div></dl>
+<div class="game-actions"><button id="start" class="button" type="button">Start game</button><button id="pause" class="button secondary" type="button" disabled>Pause</button></div>
+<p id="status" role="status">Ready when you are. Start a game.</p>
+<div class="touch-controls" aria-label="Game controls">
+<button type="button" data-action="left" aria-label="Move left">←</button><button type="button" data-action="rotate" aria-label="Rotate clockwise">↻</button><button type="button" data-action="right" aria-label="Move right">→</button><button type="button" data-action="down" aria-label="Move down">↓</button><button type="button" data-action="drop">Drop ⤓</button>
+</div>
+</div></section>
+<form id="share-score" class="panel" hidden><h2 style="font-size:1.5rem">Share your score</h2><p>Choose a public nickname. Your name and score will appear on the shared leaderboard. Please avoid personal information.</p><label for="player-name">Nickname</label><input id="player-name" maxlength="16" pattern="[A-Za-z0-9 _-]{1,16}" required autocomplete="off"><p><button class="button" type="submit">Share score</button></p><p id="share-status" role="status"></p></form><section class="panel" aria-labelledby="leaderboard-title"><h2 id="leaderboard-title" style="font-size:1.5rem">Kiwiii Blocks · top 10</h2><p>One shared scoreboard for a little friendly competition. <a href="/Projects/blocks/">Play a round →</a></p><ol id="leaderboard"><li>Loading shared scores…</li></ol><p id="leaderboard-status" role="status"></p><button type="button" id="refresh-scores" class="button secondary">Refresh scores</button></section>
+<section id="instructions" class="instructions"><h2>Small pieces. Fresh starts.</h2><p>Fill a horizontal row to clear it. Every 10 lines brings a faster level. The outline shows where your piece will land. Keep the stack below the top.</p><p><strong>Keyboard:</strong> focus the board, then ← → move · ↓ soft drop · ↑ / X rotate · Z rotate back · Space drop · P / Escape pause. Use the buttons on a phone or tablet. Leaving the window pauses play.</p><p>Single / double / triple / four-line clears earn 100 / 300 / 500 / 800 × your level. Soft drops earn 1 per cell; hard drops earn 2. Your best score is saved in this browser when storage is available.</p></section>
+<noscript><p>Please enable JavaScript to play Kiwiii Blocks.</p></noscript>
+</main><footer><p>Made for a quiet break · <a href="/Projects/">Kiwiii.Stream Projects</a></p></footer></body></html>

@@ -19,6 +19,7 @@
   </style>
   <link rel="stylesheet" href="/site-theme.css?v=20261026-3">
   <link rel="stylesheet" href="/site-header.css?v=20261026-3">
+  <script src="/Projects/blocks/leaderboard.js" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -38,12 +39,14 @@
     <h1>Projects</h1>
     <p>Practical experiments in self-hosting, web development, automation and personal tools. This page will grow alongside the projects themselves.</p>
     <section class="project-grid" aria-label="Projects">
+      <article class="project-card"><h2>Kiwiii Blocks</h2><p>A falling-block puzzle for a quiet break. Clear rows, climb levels and beat your personal best with keyboard or touch controls.</p><a href="/Projects/blocks/">Play Kiwiii Blocks →</a></article>
       <article class="project-card"><h2>Kiwiii.Stream</h2><p>The home base connecting the site, writing and personal services.</p><a href="/">Visit the homepage ↗</a></article>
       <article class="project-card"><h2>Kiwiii.Blog</h2><p>Notes and field reports about technology, nature, projects and lessons learned.</p><a href="/blog/">Read the blog ↗</a></article>
       <article class="project-card"><h2>Home media</h2><p>A self-hosted media library for family and friends.</p><a href="https://jellyfin.kiwiii.stream/">Open Jellyfin ↗</a></article>
       <article class="project-card"><h2>Kiwiii.Broke</h2><p>A privacy-conscious dashboard for tracking financial progress using reviewed aggregate figures only.</p><a href="/broke/">Open the dashboard ↗</a></article>
       <article class="project-card"><h2>HomeLabHub</h2><p>A planned PowerShell-first toolkit for safer, more efficient home-lab management.</p><a href="https://github.com/KieranSHome/HomeLabHub">View repository ↗</a></article>
     </section>
+<section class="panel" aria-labelledby="leaderboard-title"><h2 id="leaderboard-title" style="font-size:1.5rem">Kiwiii Blocks · top 10</h2><p>One shared scoreboard for a little friendly competition. <a href="/Projects/blocks/">Play a round →</a></p><ol id="leaderboard"><li>Loading shared scores…</li></ol><p id="leaderboard-status" role="status"></p><button type="button" id="refresh-scores" class="button secondary">Refresh scores</button></section>
     <p class="projects-nav"><a href="/">← Back to Kiwiii.Stream</a></p>
   </main>
   <footer><p>Projects · part of <a href="/">Kiwiii.Stream</a></p></footer>
